@@ -129,7 +129,7 @@ const AddEditBlogPage = () => {
                 onChange={handleChange}
               />
             </Form.Group>
-            {/* <Form.Group>
+            <Form.Group>
               <Form.Control
                 type="file"
                 name="images"
@@ -137,7 +137,7 @@ const AddEditBlogPage = () => {
                 accept="image/png image/jpeg image/jpg"
                 onChange={handleChange}
               />
-            </Form.Group> */}
+            </Form.Group>
             <Form.Group>
               {formData?.images?.map((image) => (
                 <img

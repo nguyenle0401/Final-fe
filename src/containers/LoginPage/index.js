@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Redirect, Link } from "react-router-dom";
+import { Row, Col, Form, Button } from "react-bootstrap";
+import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../redux/actions";
 import FacebookLogin from "react-facebook-login";
@@ -8,7 +8,7 @@ import { GoogleLogin } from "react-google-login";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { FB_APP_ID, GOOGLE_CLIENT_ID } from "../../config/constants";
 
-const LoginPage = () => {
+const LoginPage = ({ setShowRegister, setShowLogin }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -42,11 +42,16 @@ const LoginPage = () => {
     dispatch(authActions.loginGoogleRequest(response.accessToken));
   };
 
+  const handleSignUp = () => {
+    setShowRegister(true);
+    setShowLogin(false);
+  };
+
   if (isAuthenticated) return <Redirect to="/" />;
   return (
-    <Container>
+    <div>
       <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col xs={{ span: 8, offset: 2 }}>
           <Form onSubmit={handleSubmit}>
             <div className="text-center mb-3">
               <h1 className="text-primary">Sign In</h1>
@@ -143,12 +148,13 @@ const LoginPage = () => {
               />
             </div>
             <p>
-              Don't have an account? <Link to="/register">Sign Up</Link>
+              Don't have an account?{" "}
+              <Button onClick={handleSignUp}>Sign Up</Button>
             </p>
           </Form>
         </Col>
       </Row>
-    </Container>
+    </div>
   );
 };
 

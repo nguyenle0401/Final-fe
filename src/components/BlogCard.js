@@ -1,8 +1,17 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import Moment from "react-moment";
+import api from "../redux/api";
 
-const BlogCard = ({ blog, handleClick }) => {
+const BlogCard = ({ blog }) => {
+  const handleClickLike = () => {
+    api.get(`/blogs/favorite/${blog._id}`);
+  };
+
+  const handleClick = () => {
+    api.get(`/blogs/${blog._id}`);
+  };
+
   return (
     <Card onClick={() => handleClick(blog._id)}>
       <Card.Img
@@ -28,6 +37,9 @@ const BlogCard = ({ blog, handleClick }) => {
             <Moment fromNow>{blog.createdAt}</Moment>
           </span>
         </small>
+        <Button variant="primary" onClick={() => handleClickLike()}>
+          Like
+        </Button>
       </Card.Footer>
     </Card>
   );

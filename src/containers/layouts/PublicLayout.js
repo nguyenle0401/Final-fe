@@ -20,16 +20,17 @@ const PublicLayout = () => {
         <AlertMsg />
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/login" component={HomePage} />
           <Route exact path="/register" component={RegisterPage} />
+          <PrivateRoute exact path="/blogs/add" component={AddEditBlogPage} />
           <Route exact path="/blogs/:id" component={BlogDetailPage} />
-          <Route exact path="/verify/:code" component={VerifyEmailPage} />
-          <PrivateRoute exact path="/blog/add" component={AddEditBlogPage} />
           <PrivateRoute
             exact
-            path="/blog/edit/:id"
+            path="/blogs/:id/edit"
             component={AddEditBlogPage}
           />
+          <Route exact path="/verify/:code" component={VerifyEmailPage} />
+
           <Route component={NotFoundPage} />
         </Switch>
       </Container>

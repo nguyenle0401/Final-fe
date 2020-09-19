@@ -1,0 +1,28 @@
+/* Quiz */
+.style-answer {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  width: 70%;
+  height: 70px;
+  font-weight: bold;
+  background-color: rgb(34, 82, 1);
+  color: white;
+  font-family: monospace;
+}
+
+.style-question {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  width: 50%;
+  height: 50px;
+  font-weight: bold;
+  background-color: rgb(247, 227, 47);
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  font-family: monospace;
+}
+/* .bg-quiz {
+  background-image: url("https://media.giphy.com/media/U3qYN8S0j3bpK/giphy.gif");
+} */

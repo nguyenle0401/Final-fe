@@ -11,6 +11,7 @@ import AddEditBlogPage from "../AddEditBlogPage";
 import BlogListPage from "../Admin/BlogListPage";
 import BlogDetailPage from "../BlogDetailPage";
 import MessengerPage from "../Admin/MessengerPage";
+import GamePage from "../Admin/GamePage";
 
 const AdminLayout = () => {
   return (
@@ -26,13 +27,18 @@ const AdminLayout = () => {
               <Route exact path="/admin/friends" component={FriendListPage} />
               <Route exact path="/admin/blogs" component={BlogListPage} />
               <Route exact path="/admin/blogs/:id" component={BlogDetailPage} />
-              <Route exact path="/admin/blog/add" component={AddEditBlogPage} />
               <Route
                 exact
-                path="/admin/blog/edit/:id"
+                path="/admin/blogs/add"
+                component={AddEditBlogPage}
+              />
+              <Route
+                exact
+                path="/admin/blogs/edit/:id"
                 component={AddEditBlogPage}
               />
               <Route exact path="/admin/messenger" component={MessengerPage} />
+              <Route exact path="/admin/game" component={GamePage} />
               <Route component={NotFoundPage} />
             </Switch>
           </Col>

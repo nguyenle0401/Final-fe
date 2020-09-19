@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { authActions } from "../../redux/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const RegisterPage = () => {
+const RegisterPage = ({ setShowLogin, setShowRegister }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -36,6 +36,11 @@ const RegisterPage = () => {
     }
     // TODO: handle Register
     dispatch(authActions.register(name, email, password, avatarUrl));
+  };
+
+  const handleSignIn = () => {
+    setShowLogin(true);
+    setShowRegister(false);
   };
 
   const uploadWidget = () => {
@@ -169,7 +174,8 @@ const RegisterPage = () => {
             )}
 
             <p>
-              Already have an account? <Link to="/login">Sign In</Link>
+              Already have an account?{" "}
+              <Button onClick={handleSignIn}>Sign In</Button>
             </p>
           </Form>
         </Col>

@@ -6,19 +6,22 @@ import { blogActions } from "../../../redux/actions";
 import { Button, Row, Col, Container, Table, FormCheck } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import Moment from "react-moment";
+import { authActions } from "../../../redux/actions/auth.actions";
 
 const BlogListPage = () => {
   const [pageNum, setPageNum] = useState(1);
   const [searchInput, setSearchInput] = useState("");
-  const [myBlogOnly, setMyBlogOnly] = useState(false);
+  const [myFavorWords, setmyFavorWords] = useState(false);
   const [sortBy, setSortBy] = useState({ key: "", ascending: -1 });
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.blog.loading);
   const blogs = useSelector((state) => state.blog.blogs);
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
   const currentUser = useSelector((state) => state.auth.user);
   const totalPageNum = useSelector((state) => state.blog.totalPageNum);
+
+  console.log(currentUser);
 
   const handleInputChange = (e) => {
     setSearchInput(e.target.value);
@@ -39,17 +42,24 @@ const BlogListPage = () => {
     }
   };
 
-  const handleCheckMyBlogOnly = () => {
-    if (myBlogOnly) {
-      setMyBlogOnly(false);
+  const handleFavorWords = () => {
+    if (myFavorWords) {
+      setFilteredBlogs(blogs);
+      setmyFavorWords(false);
     } else {
-      setMyBlogOnly(currentUser._id);
+      dispatch(authActions.getCurrentUser());
+      setFilteredBlogs(currentUser.favoriteWords);
+      setmyFavorWords(true);
     }
   };
 
   useEffect(() => {
-    dispatch(blogActions.blogsRequest(pageNum, 10, query, myBlogOnly, sortBy));
-  }, [dispatch, pageNum, query, sortBy, myBlogOnly]);
+    dispatch(blogActions.blogsRequest(pageNum, 10, query, sortBy));
+  }, [dispatch, pageNum, query, sortBy]);
+
+  useEffect(() => {
+    setFilteredBlogs(blogs);
+  }, [blogs]);
 
   return (
     <Container fluid>
@@ -66,9 +76,9 @@ const BlogListPage = () => {
         <Col md={4} className="d-flex justify-content-end align-items-start">
           <FormCheck
             type="checkbox"
-            label="My Blogs only"
-            checked={myBlogOnly}
-            onChange={handleCheckMyBlogOnly}
+            label="My Favorite Word"
+            checked={myFavorWords}
+            onChange={handleFavorWords}
           />
         </Col>
         <Col md={4} className="d-flex justify-content-end align-items-start">
@@ -83,33 +93,23 @@ const BlogListPage = () => {
             <thead>
               <tr>
                 <th className="mouse-hover" onClick={() => handleSort("title")}>
-                  Title <FontAwesomeIcon icon="sort" size="sm" />
+                  Word <FontAwesomeIcon icon="sort" size="sm" />
                 </th>
-                <th>Author</th>
-                <th
-                  className="mouse-hover"
-                  onClick={() => handleSort("reviewCount")}
-                >
-                  Review Count <FontAwesomeIcon icon="sort" size="sm" />
-                </th>
-                <th>Created At</th>
+                <th>Description</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {blogs.map((blog) => (
+              {filteredBlogs.map((blog) => (
                 <tr key={blog._id}>
                   <td>
                     <Link to={`/admin/blogs/${blog._id}`}>{blog.title}</Link>
                   </td>
-                  <td>{blog.author.name}</td>
-                  <td>{blog.reviewCount}</td>
-                  <td>
-                    <Moment fromNow>{blog.createdAt}</Moment>
-                  </td>
+                  <td>{blog.content}</td>
+
                   <td>
                     {currentUser?._id === blog?.author?._id ? (
-                      <Link to={`/admin/blog/edit/${blog._id}`}>
+                      <Link to={`/admin/blogs/edit/${blog._id}`}>
                         <Button variant="primary">
                           <FontAwesomeIcon icon="edit" size="1x" /> Edit
                         </Button>

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { blogActions } from "../../redux/actions";
 import BlogCard from "../../components/BlogCard";
 import ClipLoader from "react-spinners/ClipLoader";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PaginationItem from "../../components/PaginationItem";
 
 const HomePage = () => {
@@ -14,14 +14,13 @@ const HomePage = () => {
   const blogs = useSelector((state) => state.blog.blogs);
   const totalPageNum = useSelector((state) => state.blog.totalPageNum);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const history = useHistory();
   useEffect(() => {
     dispatch(blogActions.blogsRequest(pageNum));
   }, [dispatch, pageNum]);
 
-  const handleClickOnBlog = (id) => {
-    history.push(`/blogs/${id}`);
-  };
+  // const handleClickOnBlog = (id) => {
+  //   history.push(`/blogs/${id}`);
+  // };
 
   return (
     <>
@@ -30,7 +29,7 @@ const HomePage = () => {
           <h1>Social Blog</h1>
           <p>Write about your amazing experiences.</p>
           {isAuthenticated && (
-            <Link to="/blog/add">
+            <Link to="/blogs/add">
               <Button variant="primary">Write now</Button>
             </Link>
           )}
@@ -52,7 +51,7 @@ const HomePage = () => {
                     <BlogCard
                       blog={blog}
                       key={blog._id}
-                      handleClick={handleClickOnBlog}
+                      // handleClick={handleClickOnBlog}
                     />
                   ))}
                 </CardColumns>

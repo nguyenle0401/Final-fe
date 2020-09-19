@@ -47,6 +47,16 @@ const SideMenu = () => {
             Messenger
           </Nav.Link>
         </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            as={NavLink}
+            to="/admin/game"
+            activeClassName="active"
+            strict={true}
+          >
+            Game
+          </Nav.Link>
+        </Nav.Item>
       </div>
     </Nav>
   );
