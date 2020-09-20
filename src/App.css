@@ -154,6 +154,10 @@
   border: none !important;
 }
 
+/* Card Idiom */
+.font {
+  font-family: Ubuntu-Regular;
+}
 .card-idiom {
   position: relative;
   display: block;

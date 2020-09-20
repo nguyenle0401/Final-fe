@@ -1,0 +1,11 @@
+.style-btn {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  width: 70%;
+  height: 70px;
+  font-weight: bold;
+  /* background-color: rgb(34, 82, 1); */
+  color: white;
+  font-family: monospace;
+}

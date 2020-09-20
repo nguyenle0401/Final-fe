@@ -56,16 +56,24 @@ const IdiomCard = ({ idiom }) => {
           height={100}
         />
         <div className="media-body d-flex flex-column align-items-start justify-content-around mt-2">
-          <h5 className="mt-0 d-flex align-items-start">{idiom.title}</h5>
+          <h5 className="mt-0 d-flex align-items-start font">
+            <strong>
+              <i>"{idiom.title}"</i>
+            </strong>
+          </h5>
           <span>
             <p>
+              Meaning:
               {idiom.content.length <= 99
                 ? idiom.content
                 : idiom.content.slice(0, 99) + "..."}
             </p>
             <div className="content-footer d-flex align-items-start"></div>
           </span>
-          <div className="d-flex align-items-start style-login mr-2">
+          <div
+            className="d-flex align-items-start style-login mr-2"
+            style={{ "font-size": "13px" }}
+          >
             <span className="mr-2">
               Last update: <Moment fromNow>{idiom.createdAt}</Moment>
             </span>

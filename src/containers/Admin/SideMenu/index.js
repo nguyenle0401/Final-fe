@@ -1,6 +1,9 @@
 import React from "react";
+import "./style.css";
+
 import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+
 // import { useSelector, useDispatch } from "react-redux";
 
 const SideMenu = () => {
@@ -8,34 +11,55 @@ const SideMenu = () => {
     <Nav className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div className="sidebar-sticky pt-3">
         <Nav.Item>
-          <Nav.Link
-            as={NavLink}
-            to="/admin/profile"
-            activeClassName="active"
-            strict={true}
-          >
-            Profile
-          </Nav.Link>
+          <div class="card">
+            <div class="icon">
+              <i class="material-icons">Profile</i>
+            </div>
+            <p class="title">
+              <Nav.Link
+                as={NavLink}
+                to="/admin/profile"
+                activeClassName="active"
+                strict={true}
+              >
+                Profile
+              </Nav.Link>
+            </p>
+          </div>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link
-            as={NavLink}
-            to="/admin/idioms"
-            activeClassName="active"
-            strict={true}
-          >
-            Idioms
-          </Nav.Link>
+          <div class="card">
+            <div class="icon">
+              <i class="material-icons">Idioms</i>
+            </div>
+            <p class="title">
+              <Nav.Link
+                as={NavLink}
+                to="/admin/idioms"
+                activeClassName="active"
+                strict={true}
+              >
+                Idioms
+              </Nav.Link>
+            </p>
+          </div>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link
-            as={NavLink}
-            to="/admin/friends"
-            activeClassName="active"
-            strict={true}
-          >
-            Friends
-          </Nav.Link>
+          <div class="card">
+            <div class="icon">
+              <i class="material-icons">Friends</i>
+            </div>
+            <p class="title">
+              <Nav.Link
+                as={NavLink}
+                to="/admin/friends"
+                activeClassName="active"
+                strict={true}
+              >
+                Friends
+              </Nav.Link>
+            </p>
+          </div>
         </Nav.Item>
         {/* <Nav.Item>
           <Nav.Link
@@ -48,17 +72,40 @@ const SideMenu = () => {
           </Nav.Link>
         </Nav.Item> */}
         <Nav.Item>
-          <Nav.Link
-            as={NavLink}
-            to="/admin/game"
-            activeClassName="active"
-            strict={true}
-          >
-            Game
-          </Nav.Link>
+          <div class="card">
+            <div class="icon">
+              <i class="material-icons">Game</i>
+            </div>
+            <p class="title">
+              <Nav.Link
+                as={NavLink}
+                to="/admin/game"
+                activeClassName="active"
+                strict={true}
+              >
+                Game
+              </Nav.Link>
+            </p>
+          </div>
         </Nav.Item>
       </div>
     </Nav>
+    // <div class="card">
+    //   <div class="icon">
+    //     <i class="material-icons">face</i>
+    //   </div>
+    //   <p class="title">
+    //     <Nav.Link
+    //       as={NavLink}
+    //       to="/admin/game"
+    //       activeClassName="active"
+    //       strict={true}
+    //     >
+    //       Game
+    //     </Nav.Link>
+    //   </p>
+    //   <p class="text">Check all your favourites in one place.</p>
+    // </div>
   );
 };
 

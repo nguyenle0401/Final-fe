@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./style.css";
 import { Row, Col, Form, Button } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
