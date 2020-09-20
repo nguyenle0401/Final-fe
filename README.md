@@ -1,19 +1,20 @@
 ---
-title: FTW Week 6 - Social Blog
+title: FTW Week 6 - Social Idiom
 tags: CoderSchool, FTW, Project
 ---
 
-# Social Blog app
+# Social Idiom app
 
 ## Introduction
 
-This week we'll learn to create a social blog application using React, Redux, Redux Thunk, and React Router. The idea is an application that helps user to share their experiences after a trip in a blog post. The other users can leave reviews/comments and give "reaction" (laugh, like, sad, love, angry) to the blog post.
+This week we'll learn to create a social idiom application using React, Redux, Redux Thunk, and React Router. The idea is an application that helps user to share their experiences after a trip in a idiom post. The other users can leave reviews/comments and give "reaction" (laugh, like, sad, love, angry) to the idiom post.
 
 You will be provided a backend API server with Node.js, Express, and MongoDB, which you will learn soon. So let's focus on the front-end side for now. This application is a perfect example of how your final project should look like.
 
 **IMPORTANT**
-* [Demo App](https://social-blog-cs.netlify.app/)
-* [API Documentation](https://documenter.getpostman.com/view/7621298/T1Dv8F6p?version=latest#a071427d-c177-49b5-b7be-50c3456b9aac)
+
+- [Demo App](https://idiom-cs.netlify.app/)
+- [API Documentation](https://documenter.getpostman.com/view/7621298/T1Dv8F6p?version=latest#a071427d-c177-49b5-b7be-50c3456b9aac)
 
 ## Vocab
 
@@ -25,7 +26,6 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
 - **Switch** Renders the first child <Route> or <Redirect> that matches the location. <Switch> is unique in that it renders a route exclusively (only one route wins).
 - [axios](https://github.com/axios/axios#request-config), a new tool that can replace `fetch` and has some cool features: Intercept request and response, Transform Request and Response data, Automatic transform for JSON data, Cancel requests.
 
-
 ## Implementation
 
 ### Project setup
@@ -33,8 +33,8 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
 - Create project with `create-react-app`
 
   ```javascript
-  npx create-react-app social-blog
-  cd social-blog
+  npx create-react-app idiom
+  cd idiom
   npm i redux react-redux redux-thunk redux-devtools-extension
   npm i react-router-dom
   npm i bootstrap react-bootstrap
@@ -48,16 +48,16 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
   - Replace the icon and the title of the app:
     - Copy your icon file to `/public/` e.g. `icon.png`, delete `favicon.ico`.
     - Go to `/puclic/index.html` replace `<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />` with `<link rel="icon" href="%PUBLIC_URL%/icon.png" />`
-    - In `/puclic/index.html`, change `<title>React App</title>` to `<title>Social Blog</title>`
-  - In `App.js`, add `import "bootstrap/dist/css/bootstrap.min.css";` 
+    - In `/puclic/index.html`, change `<title>React App</title>` to `<title>Social Idiom</title>`
+  - In `App.js`, add `import "bootstrap/dist/css/bootstrap.min.css";`
 
 ### Project Structure
 
 ```
 |- src\
     |- components\
-        |- BlogCard.js
-        |- ReviewBlog.js
+        |- IdiomCard.js
+        |- ReviewIdiom.js
         |- ReviewList.js
     |- containers\
         |- HomePage\
@@ -86,6 +86,7 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
 ### Step 1 - Setup routes and protected routes
 
 - Create `src/containers/Routes/PrivateRoute.js`:
+
   ```javascript
   const PrivateRoute = ({ isAuthenticated, ...rest }) => {
     if (isAuthenticated) return <Route {...rest} />;
@@ -95,6 +96,7 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
 
   export default PrivateRoute;
   ```
+
 - Create `HomePage`, `LoginPage`, `RegisterPage`, and `DashboardPage`: Create according folder in `src/containers`. In each folder, create `index.js`, then use `rface` to create the component. Add a `h1` title in each component.
 - Create `src/containers/Routes/index.js`:
   ```javascript
@@ -110,14 +112,14 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
   };
   export default Routes;
   ```
-  Put `isAuthenticated={true}` in `PrivateRoute` to test the `DashboardPage`. 
+  Put `isAuthenticated={true}` in `PrivateRoute` to test the `DashboardPage`.
 - Test the routes: in `App.js`:
   ```javascript
-  return(
+  return (
     <Router>
       <Routes />
     </Router>
-  )
+  );
   ```
 
 ### Step 2 - Building the UI first
@@ -125,6 +127,7 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
 #### The Login Page
 
 - Setup states and handle event functions for the login form:
+
   ```javascript
   const LoginPage = ({ isAuthenticated, loading }) => {
     const [formData, setFormData] = useState({
@@ -145,79 +148,81 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
   ```
 
 - Implement UI:
-    ```javascript=
-    return (
-        <Container>
-          <Row>
-            <Col md={{ span: 6, offset: 3 }}>
-              <Form onSubmit={handleSubmit}>
-                <div className="text-center mb-3">
-                  <h1 className="text-primary">Sign In</h1>
-                  <p className="lead">
-                    <i className="fas fa-user" /> Sign Into Your Account
-                  </p>
-                </div>
-                <Form.Group>
-                  <Form.Control
-                    type="email"
-                    required
-                    placeholder="Email Address"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                  {errors.email && (
-                    <small className="form-text text-danger">{errors.email}</small>
-                  )}
-                </Form.Group>
-                <Form.Group>
-                  <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    minLength="3"
-                  />
-                  {errors.password && (
-                    <small className="form-text text-danger">
-                      {errors.password}
-                    </small>
-                  )}
-                </Form.Group>
 
-                {loading ? (
-                  <Button
-                    className="btn-block"
-                    variant="primary"
-                    type="button"
-                    disabled
-                  >
-                    <span
-                      className="spinner-border spinner-border-sm"
-                      role="status"
-                      aria-hidden="true"
-                    ></span>
-                    Loading...
-                  </Button>
-                ) : (
-                  <Button className="btn-block" type="submit" variant="primary">
-                    Login
-                  </Button>
-                )}
-                <p>
-                  Don't have an account? <Link to="/register">Sign Up</Link>
-                </p>
-              </Form>
-            </Col>
-          </Row>
-        </Container>
-      );
-    ```
+  ```javascript=
+  return (
+    <Container>
+      <Row>
+        <Col md={{ span: 6, offset: 3 }}>
+          <Form onSubmit={handleSubmit}>
+            <div className="text-center mb-3">
+              <h1 className="text-primary">Sign In</h1>
+              <p className="lead">
+                <i className="fas fa-user" /> Sign Into Your Account
+              </p>
+            </div>
+            <Form.Group>
+              <Form.Control
+                type="email"
+                required
+                placeholder="Email Address"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+              {errors.email && (
+                <small className="form-text text-danger">{errors.email}</small>
+              )}
+            </Form.Group>
+            <Form.Group>
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                minLength="3"
+              />
+              {errors.password && (
+                <small className="form-text text-danger">
+                  {errors.password}
+                </small>
+              )}
+            </Form.Group>
+
+            {loading ? (
+              <Button
+                className="btn-block"
+                variant="primary"
+                type="button"
+                disabled
+              >
+                <span
+                  className="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Loading...
+              </Button>
+            ) : (
+              <Button className="btn-block" type="submit" variant="primary">
+                Login
+              </Button>
+            )}
+            <p>
+              Don't have an account? <Link to="/register">Sign Up</Link>
+            </p>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
+  );
+  ```
 
 #### The Register Page
 
 - States and handle event functions:
+
   ```javascript
   const RegisterPage = ({ isAuthenticated, loading }) => {
     const [formData, setFormData] = useState({
@@ -245,7 +250,9 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
     };
     if (isAuthenticated) return <Redirect to="/" />;
   ```
-  - Implement UI: 
+
+  - Implement UI:
+
   ```javascript
   return (
     <Container>
@@ -344,7 +351,9 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
     </Container>
   );
   ```
+
   - (Optional) For convinience, you can add a button that fills in fake data:
+
   ```javascript
   const fillFakeData = () => {
     setFormData({
@@ -368,6 +377,7 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
 #### The Navbar
 
 - Create `src/containers/PublicNavbar/index.js`:
+
   ```javascript
   const PublicNavbar = ({ isAuthenticated, loading }) => {
     const handleLogout = () => {
@@ -410,6 +420,7 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
 
   export default PublicNavbar;
   ```
+
 - In `HomePage/index.js`:
   ```javascript
   return (
@@ -427,6 +438,7 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
 #### The layout wrapper
 
 - Create `src/containers/layouts/PublicLayout.js`, cut the public routes from `src/Routes/index.js` and paste them here:
+
   ```javascript
   const PublicLayout = () => {
     return (
@@ -445,11 +457,12 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
 
   export default PublicLayout;
   ```
+
 - Put `PublicLayout` in `Routes/index.js`:
   ```javascript
   return (
     <Switch>
-      <PrivateRoute exact path="/dashboard" component={DashboardPage}/>
+      <PrivateRoute exact path="/dashboard" component={DashboardPage} />
       <Route path="/" component={PublicLayout} />
     </Switch>
   );
@@ -485,9 +498,10 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
 
 ### The Homepage
 
-- Create a mockup stateless complonent `BlogCard`:
+- Create a mockup stateless complonent `IdiomCard`:
+
   ```javascript
-  const BlogCard = () => {
+  const IdiomCard = () => {
     return (
       <Card>
         <Card.Img variant="top" src="https://via.placeholder.com/160x100" />
@@ -505,20 +519,21 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
     );
   };
 
-  export default BlogCard;
+  export default IdiomCard;
   ```
+
 - In `HomePage/index.js`:
   ```javascript
   return (
     <Container>
       <Jumbotron className="text-center">
-        <h1>Social Blog</h1>
+        <h1>Social Idiom</h1>
         <p>Write about your amazing experiences.</p>
       </Jumbotron>
       <CardColumns>
-        <BlogCard />
-        <BlogCard />
-        <BlogCard />
+        <IdiomCard />
+        <IdiomCard />
+        <IdiomCard />
       </CardColumns>
     </Container>
   );
@@ -526,12 +541,14 @@ You will be provided a backend API server with Node.js, Express, and MongoDB, wh
 
 ### Step 3 - Redux Configuration
 
-Time to add the logic. Let's connect to the server and get the list of blogs.
+Time to add the logic. Let's connect to the server and get the list of idioms.
 
 #### Redux
 
 - **Redux Store configuaration:**
+
   - Create `src/redux/store.js`:
+
   ```javascript
   import { createStore, applyMiddleware } from "redux";
   import { composeWithDevTools } from "redux-devtools-extension";
@@ -549,6 +566,7 @@ Time to add the logic. Let's connect to the server and get the list of blogs.
   ```
 
   - In `src/index.js`:
+
   ```javascript
   import store from "./redux/store";
   import { Provider } from "react-redux";
@@ -560,65 +578,71 @@ Time to add the logic. Let's connect to the server and get the list of blogs.
   )
   ```
 
-- **Setup constants, actions and reducers for getting blogs from API:**
+- **Setup constants, actions and reducers for getting idioms from API:**
+
   - Create `src/redux/reducers/index.js`:
+
   ```javascript
   import { combineReducers } from "redux";
-  import blogReducer from "./blog.reducer";
+  import idiomReducer from "./idiom.reducer";
 
   export default combineReducers({
-    blog: blogReducer,
+    idiom: idiomReducer,
   });
   ```
 
-  - Create `src/redux/constants/blog.constants.js`:
+  - Create `src/redux/constants/idiom.constants.js`:
+
   ```javascript
   export const BLOG_REQUEST = "BLOG.BLOG_REQUEST";
   export const BLOG_REQUEST_SUCCESS = "BLOG.BLOG_REQUEST_SUCCESS";
   export const BLOG_REQUEST_FAILURE = "BLOG.BLOG_REQUEST_FAILURE";
   ```
 
-  - Create `src/redux/actions/blog.actions.js`:
+  - Create `src/redux/actions/idiom.actions.js`:
+
   ```javascript
-  import * as types from "../constants/blog.constants";
+  import * as types from "../constants/idiom.constants";
   import api from "../api";
 
-  const blogsRequest = () => async (dispatch) => {
+  const idiomsRequest = () => async (dispatch) => {
     dispatch({ type: types.BLOG_REQUEST, payload: null });
     try {
-      const res = await api.get("/blogs");
+      const res = await api.get("/idioms");
       dispatch({ type: types.BLOG_REQUEST_SUCCESS, payload: res.data.data });
     } catch (error) {
       dispatch({ type: types.BLOG_REQUEST_FAILURE, payload: error });
     }
   };
 
-  export const blogActions = {
-    blogsRequest,
+  export const idiomActions = {
+    idiomsRequest,
   };
   ```
-  
+
   - Create `src/redux/actions/index.js`:
+
   ```javascript
-  export * from "./blog.actions";
+  export * from "./idiom.actions";
   ```
 
-  - Create `src/redux/reducers/blog.reducer.js`:
+  - Create `src/redux/reducers/idiom.reducer.js`:
+
   ```javascript
-  import * as types from "../constants/blog.constants";
+  import * as types from "../constants/idiom.constants";
 
   const initialState = {
-    blogs: [],
+    idioms: [],
     loading: false,
   };
 
-  const blogReducer = (state = initialState, action) => {
+  const idiomReducer = (state = initialState, action) => {
     const { type, payload } = action;
     switch (type) {
       case types.BLOG_REQUEST:
         return { ...state, loading: true };
       case types.BLOG_REQUEST_SUCCESS:
-        return { ...state, blogs: payload, loading: false };
+        return { ...state, idioms: payload, loading: false };
       case types.BLOG_REQUEST_FAILURE:
         console.log(payload);
         return { ...state, loading: false };
@@ -627,16 +651,17 @@ Time to add the logic. Let's connect to the server and get the list of blogs.
     }
   };
 
-  export default blogReducer;
+  export default idiomReducer;
   ```
 
 - **API service:** Create `src/redux/api.js`
+
   ```javascript
   import axios from "axios";
   import store from "./store";
 
   const api = axios.create({
-    baseURL: "https://social-api-cs.great.dev/",
+    baseURL: "https://api-cs.great.dev/",
     headers: {
       "Content-Type": "application/json",
     },
@@ -670,63 +695,65 @@ Time to add the logic. Let's connect to the server and get the list of blogs.
   ```
 
 - Add fetching data in `HomePage/index.js`:
+
   ```javascript
   import { useSelector, useDispatch } from "react-redux";
-  import { blogActions } from "../../redux/actions";
+  import { idiomActions } from "../../redux/actions";
   ...
   const HomePage = () => {
     const dispatch = useDispatch();
-    const loading = useSelector((state) => state.blog.loading);
-    const blogs = useSelector((state) => state.blog.blogs);
+    const loading = useSelector((state) => state.idiom.loading);
+    const idioms = useSelector((state) => state.idiom.idioms);
 
     useEffect(() => {
-      dispatch(blogActions.blogsRequest());
+      dispatch(idiomActions.idiomsRequest());
     }, [dispatch]);
     ...
     {loading ? (
       <ClipLoader color="#f86c6b" size={150} loading={loading} />
     ) : (
       <>
-        {blogs.length ? (
+        {idioms.length ? (
           <CardColumns>
-            {blogs.map((blog) => (
-              <BlogCard blog={blog} key={blog._id} />
+            {idioms.map((idiom) => (
+              <IdiomCard idiom={idiom} key={idiom._id} />
             ))}
           </CardColumns>
         ) : (
-          <p>There are no blogs</p>
+          <p>There are no idioms</p>
         )}
       </>
     )}
   ```
 
-- Destructure the prop `blog` in `BlogCard` and fill the data in.
-     ```javascript=
-    <Card>
-      <Card.Img variant="top" src="https://via.placeholder.com/160x100" />
-      <Card.Body>
-        <Card.Title>{blog.title}</Card.Title>
-        <Card.Text>
-          {blog.content.length <= 99
-            ? blog.content
-            : blog.content.slice(0, 99) + "..."}
-        </Card.Text>
-      </Card.Body>
-      <Card.Footer>
-        <small className="text-muted">
-          <span className="text-muted">
-            @{blog?.user?.name} wrote <Moment fromNow>{blog.createdAt}</Moment>
-          </span>
-        </small>
-      </Card.Footer>
-    </Card>
-     ```
+- Destructure the prop `idiom` in `IdiomCard` and fill the data in.
+  ```javascript=
+  <Card>
+    <Card.Img variant="top" src="https://via.placeholder.com/160x100" />
+    <Card.Body>
+      <Card.Title>{idiom.title}</Card.Title>
+      <Card.Text>
+        {idiom.content.length <= 99
+          ? idiom.content
+          : idiom.content.slice(0, 99) + "..."}
+      </Card.Text>
+    </Card.Body>
+    <Card.Footer>
+      <small className="text-muted">
+        <span className="text-muted">
+          @{idiom?.user?.name} wrote <Moment fromNow>{idiom.createdAt}</Moment>
+        </span>
+      </small>
+    </Card.Footer>
+  </Card>
+  ```
 
 ### Step 4 - Authentication
 
 #### Create actions & reducers
 
 - Setup `src/redux/constants/auth.constant.js`:
+
   ```javascript
   export const REGISTER_REQUEST = "AUTH.REGISTER_REQUEST";
   export const REGISTER_SUCCESS = "AUTH.REGISTER_SUCCESS";
@@ -738,6 +765,7 @@ Time to add the logic. Let's connect to the server and get the list of blogs.
   ```
 
 - Setup `src/redux/actions/auth.actions.js`:
+
   ```javascript
   import * as types from "../constants/auth.constants";
   import api from "../api";
@@ -766,10 +794,10 @@ Time to add the logic. Let's connect to the server and get the list of blogs.
     loginRequest,
     register,
   };
-
   ```
 
 - Setup `src/redux/reducers/auth.reducer.js`:
+
   ```javascript
   import * as types from "../constants/auth.constants";
   const initialState = {
@@ -814,13 +842,17 @@ Time to add the logic. Let's connect to the server and get the list of blogs.
 #### Integrate with UI components
 
 - In `RegisterPage/index.js`:
+
   - Remove the props
   - Import:
+
   ```javascript
   import { useSelector, useDispatch } from "react-redux";
   import { authActions } from "../../redux/actions";
   ```
+
   - Connect with the store and dispatch action in `handleSubmit()`:
+
   ```javascript
   const RegisterPage = () => {
     ...
@@ -876,6 +908,7 @@ This global store contains a list of messages. Each message has an id, content a
   export const REMOVE_ALERT = "ALERT.REMOVE_ALERT";
   ```
 - Create `actions/alert.actions.js`:
+
   ```javascript
   import { v4 as uuidv4 } from "uuid";
   import * as types from "../constants/alert.constants";
@@ -897,8 +930,10 @@ This global store contains a list of messages. Each message has an id, content a
     setAlert,
   };
   ```
+
 - In `actions/index.js`, insert `export * from "./alert.actions";`
 - Create `reducers/alert.reducer.js`:
+
   ```javascript
   import * as types from "../constants/alert.constants";
   const initialState = [];
@@ -918,11 +953,13 @@ This global store contains a list of messages. Each message has an id, content a
 
   export default alertReducer;
   ```
+
 - In `reducers/index.js`, insert `alertReducer`
 
 #### Creating the Alert component:
 
 - Create `layouts/Alert.js`:
+
   ```javascript
   import React from "react";
   import { useSelector } from "react-redux";
@@ -943,6 +980,7 @@ This global store contains a list of messages. Each message has an id, content a
 
   export default AlertMsg;
   ```
+
 - In `layouts/PublicLayout.js`, add `AlertMsg`:
   ```javascript
   <PublicNavbar />
@@ -963,9 +1001,9 @@ Here we will dispatch the error message in `api.js` to capture all of the errors
   ```
   - In the callback function to handle error, add:
   ```javascript
-    console.log("RESPONSE ERROR", error);
-    store.dispatch(alertActions.setAlert(error.message, "danger"));
-    return Promise.reject(error);
+  console.log("RESPONSE ERROR", error);
+  store.dispatch(alertActions.setAlert(error.message, "danger"));
+  return Promise.reject(error);
   ```
 
 Another example is dispatch a welcome message when user logged in:
@@ -987,6 +1025,7 @@ Another example is dispatch a welcome message when user logged in:
   const loading = useSelector((state) => state.auth.loading);
   ```
 - **Persist login state**: the idea is storing the accessToken and after browser refreshing, request the user info from the server again.
+
   - Using `window.localStorage` to store the `accessToken`:
     - In `actions/auth.actions.js`, change `res.data.data` to `res.data`:
     ```javascript
@@ -1006,13 +1045,17 @@ Another example is dispatch a welcome message when user logged in:
     ```
     - Open the browser dev tool, in the tab `Application` -> `Locale Storage`, you can find the `accessToken`
   - Define a new action in `auth` to get the current user back:
+
     - Define the types in `auth.constants.js`:
+
     ```javascript
     export const GET_CURRENT_USER_REQUEST = "AUTH.GET_CURRENT_USER_REQUEST";
     export const GET_CURRENT_USER_SUCCESS = "AUTH.GET_CURRENT_USER_SUCCESS";
     export const GET_CURRENT_USER_FAILURE = "AUTH.GET_CURRENT_USER_FAILURE";
     ```
+
     - Define the middleware thunk in `auth.actions.js`. Remember to add it to `export const authActions = {...}`
+
     ```javascript
     const getCurrentUser = (accessToken) => async (dispatch) => {
       dispatch({ type: types.GET_CURRENT_USER_REQUEST, payload: null });
@@ -1022,13 +1065,18 @@ Another example is dispatch a welcome message when user logged in:
       }
       try {
         const res = await api.get("/users/me");
-        dispatch({ type: types.GET_CURRENT_USER_SUCCESS, payload: res.data.data });
+        dispatch({
+          type: types.GET_CURRENT_USER_SUCCESS,
+          payload: res.data.data,
+        });
       } catch (error) {
         dispatch({ type: types.GET_CURRENT_USER_FAILURE, payload: error });
       }
     };
     ```
+
     - In `auth.reducer.js`:
+
     ```javascript
     switch (type) {
       case types.LOGIN_REQUEST:
@@ -1049,7 +1097,9 @@ Another example is dispatch a welcome message when user logged in:
       case types.GET_CURRENT_USER_FAILURE:
         return { ...state, loading: false };
     ```
+
   - When user refresh the browser, the app will initialize again. So we should put the the request to get current user in `App.js`:
+
   ```javascript
   function App() {
     const dispatch = useDispatch();
@@ -1060,11 +1110,14 @@ Another example is dispatch a welcome message when user logged in:
       }
     }, [dispatch]);
   ```
-  - **IMPORTANT**: the `accessToken` is the key so that the server knows who the user is, and give the user the permission to change the data (e.g. write a blog, review, etc.). So we will add `accessToken` in the headers of the request as `authorization` right after user have logged in. In `auth.actions.js`, function `loginRequest()`, let's add:
+
+  - **IMPORTANT**: the `accessToken` is the key so that the server knows who the user is, and give the user the permission to change the data (e.g. write a idiom, review, etc.). So we will add `accessToken` in the headers of the request as `authorization` right after user have logged in. In `auth.actions.js`, function `loginRequest()`, let's add:
+
   ```javascript
   const res = await api.post("/auth/login", { email, password });
   dispatch({ type: types.LOGIN_SUCCESS, payload: res.data });
-  api.defaults.headers.common["authorization"] = "Bearer " + res.data.accessToken;
+  api.defaults.headers.common["authorization"] =
+    "Bearer " + res.data.accessToken;
   ```
 
 ### Step 7 - Logout
@@ -1080,8 +1133,7 @@ We should tell the server that the user want to logout. But keep it simple for b
     dispatch({ type: types.LOGOUT, payload: null });
   };
   export const authActions = {
-    ...
-    logout,
+    ...logout,
   };
   ```
 - In `auth.reducer.js`:
@@ -1097,55 +1149,55 @@ We should tell the server that the user want to logout. But keep it simple for b
   ```
 - In `PublicNavbar.js`:
   ```javascript
-  const handleLogout = () => {
-    
-  };
+  const handleLogout = () => {};
   ```
 
-### Step 8 - Show blog detail
+### Step 8 - Show idiom detail
 
-In this step, we will implement a new page to show detail of a specific blog that user clicked on. On that page, authenticated user can write review, interact by emoji icons.
+In this step, we will implement a new page to show detail of a specific idiom that user clicked on. On that page, authenticated user can write review, interact by emoji icons.
 
-- Create a empty `src/containers/BlogDetailPage/index.js`: `rface`, then put  `<h1>Blog Detail</h1>` in the `return`.
-- Add a new route `\blogs\:id` in `PublicLayout`: `<Route exact path="/blogs/:id" component={BlogDetailPage} />`
-- In `HomePage/index.js`, create a function to handle click event, and pass it to the `<BlogCard>` component
+- Create a empty `src/containers/IdiomDetailPage/index.js`: `rface`, then put `<h1>Idiom Detail</h1>` in the `return`.
+- Add a new route `\idioms\:id` in `PublicLayout`: `<Route exact path="/idioms/:id" component={IdiomDetailPage} />`
+- In `HomePage/index.js`, create a function to handle click event, and pass it to the `<IdiomCard>` component
   ```javascript
   import { useHistory } from "react-router-dom";
   ...
   const history = useHistory();
   ...
-  const handleClickOnBlog = (id) => {
-    history.push(`/blogs/${id}`);
+  const handleClickOnIdiom = (id) => {
+    history.push(`/idioms/${id}`);
   };
   ...
-  <BlogCard
-    blog={blog}
-    key={blog._id}
-    handleClick={handleClickOnBlog}
+  <IdiomCard
+    idiom={idiom}
+    key={idiom._id}
+    handleClick={handleClickOnIdiom}
   />
   ```
-- In `src/components/BlogCard.js`
+- In `src/components/IdiomCard.js`
   ```javascript
-  const BlogCard = ({ blog, handleClick }) => {
+  const IdiomCard = ({ idiom, handleClick }) => {
     return (
-      <Card onClick={() => handleClick(blog._id)}
+      <Card onClick={() => handleClick(idiom._id)}
   ```
-- Now you can click on a blog and the app will lead you to the Blog Detail Page. 
+- Now you can click on a idiom and the app will lead you to the Idiom Detail Page.
 
-Next, we will capture the blog id in the url that links to Blog Detail Page. Then we can dispatch a new action to get detail information of the blog:
+Next, we will capture the idiom id in the url that links to Idiom Detail Page. Then we can dispatch a new action to get detail information of the idiom:
 
-- In `blog.constants.js`:
+- In `idiom.constants.js`:
   ```javascript
   export const GET_SINGLE_BLOG_REQUEST = "BLOG.GET_SINGLE_BLOG_REQUEST";
-  export const GET_SINGLE_BLOG_REQUEST_SUCCESS = "BLOG.GET_SINGLE_BLOG_REQUEST_SUCCESS";
-  export const GET_SINGLE_BLOG_REQUEST_FAILURE = "BLOG.GET_SINGLE_BLOG_REQUEST_FAILURE";
+  export const GET_SINGLE_BLOG_REQUEST_SUCCESS =
+    "BLOG.GET_SINGLE_BLOG_REQUEST_SUCCESS";
+  export const GET_SINGLE_BLOG_REQUEST_FAILURE =
+    "BLOG.GET_SINGLE_BLOG_REQUEST_FAILURE";
   ```
-- In `blog.actions.js`, create `getSingleBlog()` (remember to add it to `export const blogActions = {...}`)
+- In `idiom.actions.js`, create `getSingleIdiom()` (remember to add it to `export const idiomActions = {...}`)
   ```javascript
-  const getSingleBlog = (blogId) => async (dispatch) => {
+  const getSingleIdiom = (idiomId) => async (dispatch) => {
     dispatch({ type: types.GET_SINGLE_BLOG_REQUEST, payload: null });
     try {
-      const res = await api.get(`/blogs/${blogId}`);
+      const res = await api.get(`/idioms/${idiomId}`);
       dispatch({
         type: types.GET_SINGLE_BLOG_REQUEST_SUCCESS,
         payload: res.data.data,
@@ -1155,43 +1207,47 @@ Next, we will capture the blog id in the url that links to Blog Detail Page. The
     }
   };
   ```
-- Add the new action types into `blog.reducer.js`
+- Add the new action types into `idiom.reducer.js`
+
   ```javascript
   case types.BLOG_REQUEST:
   case types.GET_SINGLE_BLOG_REQUEST:
     return { ...state, loading: true };
 
   case types.BLOG_REQUEST_SUCCESS:
-    return { ...state, blogs: payload, loading: false };
+    return { ...state, idioms: payload, loading: false };
 
   case types.GET_SINGLE_BLOG_REQUEST_SUCCESS:
-    return { ...state, selectedBlog: payload, loading: false};
-    
+    return { ...state, selectedIdiom: payload, loading: false};
+
   case types.BLOG_REQUEST_FAILURE:
   case types.GET_SINGLE_BLOG_REQUEST_FAILURE
     return { ...state, loading: false };
   ```
-- Trigger the fetching process in `BlogDetail/index.js`
+
+- Trigger the fetching process in `IdiomDetail/index.js`
+
   ```javascript
-  const BlogDetailPage = () => {
+  const IdiomDetailPage = () => {
     const params = useParams();
     const dispatch = useDispatch();
-    const blog = useSelector((state) => state.blog.selectedBlog);
+    const idiom = useSelector((state) => state.idiom.selectedIdiom);
 
     useEffect(() => {
       if (params?.id) {
-        dispatch(blogActions.getSingleBlog(params.id));
+        dispatch(idiomActions.getSingleIdiom(params.id));
       }
     }, [dispatch, params]);
 
     return (
       <div>
-        <h1>{blog.title}</h1>
+        <h1>{idiom.title}</h1>
       </div>
     );
   };
   ```
-- You should see the title of the blog that you clicked on. More info of the blog is in the variable `blog`. Time for design a nice page. Or you can use this minimal version:
+
+- You should see the title of the idiom that you clicked on. More info of the idiom is in the variable `idiom`. Time for design a nice page. Or you can use this minimal version:
   ```javascript
   return (
     <>
@@ -1199,17 +1255,17 @@ Next, we will capture the blog id in the url that links to Blog Detail Page. The
         <ClipLoader color="#f86c6b" size={150} loading={loading} />
       ) : (
         <>
-          {blog && (
+          {idiom && (
             <div className="mb-5">
-              <h1>{blog.title}</h1>
+              <h1>{idiom.title}</h1>
               <span className="text-muted">
-                @{blog?.user?.name} wrote{" "}
-                <Moment fromNow>{blog.createdAt}</Moment>
+                @{idiom?.user?.name} wrote{" "}
+                <Moment fromNow>{idiom.createdAt}</Moment>
               </span>
               <hr />
-              <Markdown source={blog.content} />
+              <Markdown source={idiom.content} />
               <hr />
-              <ReviewList reviews={blog.reviews} />
+              <ReviewList reviews={idiom.reviews} />
             </div>
           )}
         </>
@@ -1218,6 +1274,7 @@ Next, we will capture the blog id in the url that links to Blog Detail Page. The
   );
   ```
 - `Markdown` component is imported from `react-markdown`. `ReviewList` is a stateless component to show the reviews. In `src/components/ReviewList.js`:
+
   ```javascript
   const ReviewList = ({ reviews }) => {
     return (
@@ -1245,22 +1302,22 @@ Next, we will capture the blog id in the url that links to Blog Detail Page. The
   export default ReviewList;
   ```
 
-### Step 9 - Adding review to a blog
+### Step 9 - Adding review to a idiom
 
-In this step, we will add a form to submit review in the Blog Detail Page. The review will be post to the backend API `blogs\:id\reviews` which `id` is the blog's ID. First, let's prepare the action to post review:
+In this step, we will add a form to submit review in the Idiom Detail Page. The review will be post to the backend API `idioms\:id\reviews` which `id` is the idiom's ID. First, let's prepare the action to post review:
 
-- In `blog.constants.js`:
+- In `idiom.constants.js`:
   ```javascript
   export const CREATE_REVIEW_REQUEST = "BLOG.CREATE_REVIEW_REQUEST";
   export const CREATE_REVIEW_SUCCESS = "BLOG.CREATE_REVIEW_SUCCESS";
   export const CREATE_REVIEW_FAILURE = "BLOG.CREATE_REVIEW_FAILURE";
   ```
-- In `blog.actions.js`: (remember to add the new actions to `export const blogActions = {...}`)
+- In `idiom.actions.js`: (remember to add the new actions to `export const idiomActions = {...}`)
   ```javascript
-  const createReview = (blogId, reviewText) => async (dispatch) => {
+  const createReview = (idiomId, reviewText) => async (dispatch) => {
     dispatch({ type: types.CREATE_REVIEW_REQUEST, payload: null });
     try {
-      const res = await api.post(`/blogs/${blogId}/reviews`, {
+      const res = await api.post(`/idioms/${idiomId}/reviews`, {
         content: reviewText,
       });
       dispatch({
@@ -1272,7 +1329,8 @@ In this step, we will add a form to submit review in the Blog Detail Page. The r
     }
   };
   ```
-- In `blog.reducer.js`:
+- In `idiom.reducer.js`:
+
   ```javascript
   case types.CREATE_REVIEW_REQUEST:
     return { ...state, submitLoading: true };
@@ -1281,9 +1339,9 @@ In this step, we will add a form to submit review in the Blog Detail Page. The r
     return {
       ...state,
       submitLoading: false,
-      selectedBlog: {
-        ...state.selectedBlog,
-        reviews: [...state.selectedBlog.reviews, payload],
+      selectedIdiom: {
+        ...state.selectedIdiom,
+        reviews: [...state.selectedIdiom.reviews, payload],
       },
     };
 
@@ -1291,13 +1349,15 @@ In this step, we will add a form to submit review in the Blog Detail Page. The r
     return { ...state, submitLoading: false };
   ```
 
-Now let create the form in the Blog Detail Page and handle the submit event by dispatching the `createReview()` action. 
-- In `BlogDetailPage/index.js`:
+Now let create the form in the Idiom Detail Page and handle the submit event by dispatching the `createReview()` action.
+
+- In `IdiomDetailPage/index.js`:
+
   ```javascript
-  const BlogDetailPage = () => {
+  const IdiomDetailPage = () => {
     ...
     const submitLoading = useSelector(
-      (state) => state.blog.submitLoading
+      (state) => state.idiom.submitLoading
     );
     const [reviewText, setReviewText] = useState("");
 
@@ -1307,18 +1367,18 @@ Now let create the form in the Blog Detail Page and handle the submit event by d
 
     const handleSubmitReview = (e) => {
       e.preventDefault();
-      dispatch(blogActions.createReview(blog._id, reviewText));
+      dispatch(idiomActions.createReview(idiom._id, reviewText));
       setReviewText("");
     };
     ...
     return (
       ...
-      {blog && ( 
+      {idiom && (
         ...
       )}
 
       {isAuthenticated && (
-        <ReviewBlog
+        <ReviewIdiom
           reviewText={reviewText}
           handleInputChange={handleInputChange}
           handleSubmitReview={handleSubmitReview}
@@ -1328,12 +1388,14 @@ Now let create the form in the Blog Detail Page and handle the submit event by d
     );
   };
   ```
-- Create `src/components/ReviewBlog.js`:
+
+- Create `src/components/ReviewIdiom.js`:
+
   ```javascript
   import React from "react";
   import { Form, Button, Row, Col } from "react-bootstrap";
 
-  const ReviewBlog = ({
+  const ReviewIdiom = ({
     reviewText,
     handleInputChange,
     handleSubmitReview,
@@ -1372,15 +1434,17 @@ Now let create the form in the Blog Detail Page and handle the submit event by d
     );
   };
 
-  export default ReviewBlog;
+  export default ReviewIdiom;
   ```
 
-### Step 10 - Create & Edit your own blog
+### Step 10 - Create & Edit your own idiom
 
-In this step, we will implement Create, Edit, and Delete Blog features for authenticated user.
+In this step, we will implement Create, Edit, and Delete Idiom features for authenticated user.
 
 #### Actions & Reducers
-- In `blog.constants.js`:
+
+- In `idiom.constants.js`:
+
   ```javascript
   export const CREATE_BLOG_REQUEST = "BLOG.CREATE_BLOG_REQUEST";
   export const CREATE_BLOG_SUCCESS = "BLOG.CREATE_BLOG_SUCCESS";
@@ -1393,137 +1457,139 @@ In this step, we will implement Create, Edit, and Delete Blog features for authe
   export const DELETE_BLOG_REQUEST = "BLOG.DELETE_BLOG_REQUEST";
   export const DELETE_BLOG_SUCCESS = "BLOG.DELETE_BLOG_SUCCESS";
   export const DELETE_BLOG_FAILURE = "BLOG.DELETE_BLOG_FAILURE";
-  
+
   export const SET_REDIRECT_TO = "BLOG.SET_REDIRECT_TO";
   ```
 
-- In `blog.actions.js`:
+- In `idiom.actions.js`:
+
   ```javascript
-  const createNewBlog = (title, content) => async (dispatch) => {
+  const createNewIdiom = (title, content) => async (dispatch) => {
     dispatch({ type: types.CREATE_BLOG_REQUEST, payload: null });
     try {
       const formData = new FormData();
       formData.append("title", title);
       formData.append("content", content);
-      const res = await api.post("/blogs", formData);
+      const res = await api.post("/idioms", formData);
 
       dispatch({
         type: types.CREATE_BLOG_SUCCESS,
         payload: res.data.data,
       });
-      dispatch(alertActions.setAlert("New blog has been created!", "success"));
+      dispatch(alertActions.setAlert("New idiom has been created!", "success"));
     } catch (error) {
       dispatch({ type: types.CREATE_BLOG_FAILURE, payload: error });
     }
   };
 
-  const updateBlog = (blogId, title, content) => async (dispatch) => {
+  const updateIdiom = (idiomId, title, content) => async (dispatch) => {
     dispatch({ type: types.UPDATE_BLOG_REQUEST, payload: null });
     try {
       // let formData = new FormData();
       // formData.set("title", title);
       // formData.set("content", content);
-      const res = await api.put(`/blogs/${blogId}`, { title, content });
+      const res = await api.put(`/idioms/${idiomId}`, { title, content });
 
       dispatch({
         type: types.UPDATE_BLOG_SUCCESS,
         payload: res.data.data,
       });
-      dispatch(alertActions.setAlert("The blog has been updated!", "success"));
+      dispatch(alertActions.setAlert("The idiom has been updated!", "success"));
     } catch (error) {
       dispatch({ type: types.UPDATE_BLOG_FAILURE, payload: error });
     }
   };
 
-  const deleteBlog = (blogId) => async (dispatch) => {
+  const deleteIdiom = (idiomId) => async (dispatch) => {
     dispatch({ type: types.DELETE_BLOG_REQUEST, payload: null });
     try {
-      const res = await api.delete(`/blogs/${blogId}`);
+      const res = await api.delete(`/idioms/${idiomId}`);
       console.log(res);
       dispatch({
         type: types.DELETE_BLOG_SUCCESS,
         payload: res.data,
       });
-      dispatch(alertActions.setAlert("The blog has been deleted!", "success"));
+      dispatch(alertActions.setAlert("The idiom has been deleted!", "success"));
     } catch (error) {
       dispatch({ type: types.DELETE_BLOG_FAILURE, payload: error });
     }
   };
-  
+
   const setRedirectTo = (redirectTo) => ({
     type: types.SET_REDIRECT_TO,
     payload: redirectTo,
   });
 
-  export const blogActions = {
-    blogsRequest,
-    getSingleBlog,
+  export const idiomActions = {
+    idiomsRequest,
+    getSingleIdiom,
     createReview,
-    createNewBlog,
-    updateBlog,
-    deleteBlog,
+    createNewIdiom,
+    updateIdiom,
+    deleteIdiom,
     setRedirectTo,
   };
   ```
 
-- In `blog.reducer.js`:
+- In `idiom.reducer.js`:
+
   ```javascript
-  const blogReducer = (state = initialState, action) => {
-  const { type, payload } = action;
-  switch (type) {
-    case types.BLOG_REQUEST:
-    case types.GET_SINGLE_BLOG_REQUEST:
-    case types.CREATE_BLOG_REQUEST:
-    case types.UPDATE_BLOG_REQUEST:
-    case types.DELETE_BLOG_REQUEST:
-      return { ...state, loading: true };
+  const idiomReducer = (state = initialState, action) => {
+    const { type, payload } = action;
+    switch (type) {
+      case types.BLOG_REQUEST:
+      case types.GET_SINGLE_BLOG_REQUEST:
+      case types.CREATE_BLOG_REQUEST:
+      case types.UPDATE_BLOG_REQUEST:
+      case types.DELETE_BLOG_REQUEST:
+        return { ...state, loading: true };
 
-    case types.BLOG_REQUEST_SUCCESS:
-      return { ...state, blogs: payload, loading: false };
+      case types.BLOG_REQUEST_SUCCESS:
+        return { ...state, idioms: payload, loading: false };
 
-    case types.GET_SINGLE_BLOG_REQUEST_SUCCESS:
-      return { ...state, selectedBlog: payload, loading: false };
+      case types.GET_SINGLE_BLOG_REQUEST_SUCCESS:
+        return { ...state, selectedIdiom: payload, loading: false };
 
-    case types.UPDATE_BLOG_SUCCESS:
-      return {
-        ...state,
-        selectedBlog: payload,
-        loading: false,
-        redirectTo: "__GO_BACK__",
-      };
+      case types.UPDATE_BLOG_SUCCESS:
+        return {
+          ...state,
+          selectedIdiom: payload,
+          loading: false,
+          redirectTo: "__GO_BACK__",
+        };
 
-    case types.BLOG_REQUEST_FAILURE:
-    case types.GET_SINGLE_BLOG_REQUEST_FAILURE:
-    case types.CREATE_BLOG_FAILURE:
-    case types.UPDATE_BLOG_FAILURE:
-    case types.DELETE_BLOG_FAILURE:
-      return { ...state, loading: false };
+      case types.BLOG_REQUEST_FAILURE:
+      case types.GET_SINGLE_BLOG_REQUEST_FAILURE:
+      case types.CREATE_BLOG_FAILURE:
+      case types.UPDATE_BLOG_FAILURE:
+      case types.DELETE_BLOG_FAILURE:
+        return { ...state, loading: false };
 
-    case types.CREATE_BLOG_SUCCESS:
-      return { ...state, loading: false, redirectTo: "/" };
+      case types.CREATE_BLOG_SUCCESS:
+        return { ...state, loading: false, redirectTo: "/" };
 
-    case types.DELETE_BLOG_SUCCESS:
-      return { ...state, loading: false, selectedBlog: {}, redirectTo: "/" };
+      case types.DELETE_BLOG_SUCCESS:
+        return { ...state, loading: false, selectedIdiom: {}, redirectTo: "/" };
 
-    case types.CREATE_REVIEW_REQUEST:
-      return { ...state, submitLoading: true };
+      case types.CREATE_REVIEW_REQUEST:
+        return { ...state, submitLoading: true };
 
-    case types.CREATE_REVIEW_SUCCESS:
-      return {
-        ...state,
-        submitLoading: false,
-        selectedBlog: {
-          ...state.selectedBlog,
-          reviews: [...state.selectedBlog.reviews, payload],
-        },
-      };
+      case types.CREATE_REVIEW_SUCCESS:
+        return {
+          ...state,
+          submitLoading: false,
+          selectedIdiom: {
+            ...state.selectedIdiom,
+            reviews: [...state.selectedIdiom.reviews, payload],
+          },
+        };
 
-    case types.CREATE_REVIEW_FAILURE:
-      return { ...state, submitLoading: false };
-    case types.SET_REDIRECT_TO:
-      return { ...state, redirectTo: payload };
-    default:
-      return state;
+      case types.CREATE_REVIEW_FAILURE:
+        return { ...state, submitLoading: false };
+      case types.SET_REDIRECT_TO:
+        return { ...state, redirectTo: payload };
+      default:
+        return state;
     }
   };
   ```
@@ -1532,20 +1598,21 @@ In this step, we will implement Create, Edit, and Delete Blog features for authe
 
 - In `HomePage/index.js`, let create a button for user to start writing:
   ```javascript
-  <h1>Social Blog</h1>
+  <h1>Social Idiom</h1>
   <p>Write about your amazing experiences.</p>
   {isAuthenticated && (
-    <Link to="/blog/add">
+    <Link to="/idiom/add">
       <Button variant="primary">Write now</Button>
     </Link>
   )}
   ```
 - Add in `PublicLayout.js`:
   ```javascript
-  <PrivateRoute exact path="/blog/add" component={AddEditBlogPage} />
-  <PrivateRoute exact path="/blog/edit/:id" component={AddEditBlogPage}/>
+  <PrivateRoute exact path="/idiom/add" component={AddEditIdiomPage} />
+  <PrivateRoute exact path="/idiom/edit/:id" component={AddEditIdiomPage}/>
   ```
-- We are going to use one page for create, edit and also delete. Let's create `src/containers/AddEditBlogPage/index.js`:
+- We are going to use one page for create, edit and also delete. Let's create `src/containers/AddEditIdiomPage/index.js`:
+
   ```javascript
   import React, { useState, useEffect } from "react";
   import { useDispatch, useSelector } from "react-redux";
@@ -1558,153 +1625,157 @@ In this step, we will implement Create, Edit, and Delete Blog features for authe
     ButtonGroup,
   } from "react-bootstrap";
   import { useHistory, useParams, Redirect } from "react-router-dom";
-  import { blogActions } from "../../redux/actions";
+  import { idiomActions } from "../../redux/actions";
 
-  const AddEditBlogPage = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    content: "",
-  });
-  const loading = useSelector((state) => state.blog.loading);
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const params = useParams();
-  const selectedBlog = useSelector((state) => state.blog.selectedBlog);
-  const redirectTo = useSelector((state) => state.blog.redirectTo);
-  const addOrEdit = params.id ? "Edit" : "Add";
+  const AddEditIdiomPage = () => {
+    const [formData, setFormData] = useState({
+      title: "",
+      content: "",
+    });
+    const loading = useSelector((state) => state.idiom.loading);
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const params = useParams();
+    const selectedIdiom = useSelector((state) => state.idiom.selectedIdiom);
+    const redirectTo = useSelector((state) => state.idiom.redirectTo);
+    const addOrEdit = params.id ? "Edit" : "Add";
 
-  useEffect(() => {
-    if (addOrEdit === "Edit") {
-      setFormData((formData) => ({
-        ...formData,
-        title: selectedBlog.title,
-        content: selectedBlog.content,
-      }));
-    }
-  }, [addOrEdit, selectedBlog]);
-
-  const handleChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { title, content } = formData;
-    if (addOrEdit === "Add") {
-      dispatch(blogActions.createNewBlog(title, content));
-    } else if (addOrEdit === "Edit") {
-      dispatch(blogActions.updateBlog(selectedBlog._id, title, content));
-    }
-  };
-
-  const handleCancel = () => {
-    history.goBack();
-  };
-
-  const handleDelete = () => {
-    // TODO : popup confirmation modal
-    dispatch(blogActions.deleteBlog(selectedBlog._id));
-  };
-
-  useEffect(() => {
-    if (redirectTo) {
-      if (redirectTo === "__GO_BACK__") {
-        history.goBack();
-        dispatch(blogActions.setRedirectTo(""));
-      } else {
-        history.push(redirectTo);
-        dispatch(blogActions.setRedirectTo(""));
+    useEffect(() => {
+      if (addOrEdit === "Edit") {
+        setFormData((formData) => ({
+          ...formData,
+          title: selectedIdiom.title,
+          content: selectedIdiom.content,
+        }));
       }
-    }
-  }, [redirectTo]);
+    }, [addOrEdit, selectedIdiom]);
 
-  return (
-    <Container>
-      <Row>
-        <Col md={{ span: 6, offset: 3 }}>
-          <Form onSubmit={handleSubmit}>
-            <div className="text-center mb-3">
-              <h1 className="text-primary">{addOrEdit} blog</h1>
-              <p className="lead">
-                <i className="fas fa-user" />
-              </p>
-            </div>
-            <Form.Group>
-              <Form.Control
-                type="text"
-                required
-                placeholder="Title"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
-                as="textarea"
-                rows="10"
-                placeholder="Content"
-                name="content"
-                value={formData.content}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <ButtonGroup className="d-flex mb-3">
-              {loading ? (
+    const handleChange = (e) =>
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const { title, content } = formData;
+      if (addOrEdit === "Add") {
+        dispatch(idiomActions.createNewIdiom(title, content));
+      } else if (addOrEdit === "Edit") {
+        dispatch(idiomActions.updateIdiom(selectedIdiom._id, title, content));
+      }
+    };
+
+    const handleCancel = () => {
+      history.goBack();
+    };
+
+    const handleDelete = () => {
+      // TODO : popup confirmation modal
+      dispatch(idiomActions.deleteIdiom(selectedIdiom._id));
+    };
+
+    useEffect(() => {
+      if (redirectTo) {
+        if (redirectTo === "__GO_BACK__") {
+          history.goBack();
+          dispatch(idiomActions.setRedirectTo(""));
+        } else {
+          history.push(redirectTo);
+          dispatch(idiomActions.setRedirectTo(""));
+        }
+      }
+    }, [redirectTo]);
+
+    return (
+      <Container>
+        <Row>
+          <Col md={{ span: 6, offset: 3 }}>
+            <Form onSubmit={handleSubmit}>
+              <div className="text-center mb-3">
+                <h1 className="text-primary">{addOrEdit} idiom</h1>
+                <p className="lead">
+                  <i className="fas fa-user" />
+                </p>
+              </div>
+              <Form.Group>
+                <Form.Control
+                  type="text"
+                  required
+                  placeholder="Title"
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Control
+                  as="textarea"
+                  rows="10"
+                  placeholder="Content"
+                  name="content"
+                  value={formData.content}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              <ButtonGroup className="d-flex mb-3">
+                {loading ? (
+                  <Button
+                    className="mr-3"
+                    variant="primary"
+                    type="button"
+                    disabled
+                  >
+                    <span
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                    Submitting...
+                  </Button>
+                ) : (
+                  <Button className="mr-3" type="submit" variant="primary">
+                    Submit
+                  </Button>
+                )}
                 <Button
-                  className="mr-3"
-                  variant="primary"
-                  type="button"
-                  disabled
-                >
-                  <span
-                    className="spinner-border spinner-border-sm"
-                    role="status"
-                    aria-hidden="true"
-                  ></span>
-                  Submitting...
-                </Button>
-              ) : (
-                <Button className="mr-3" type="submit" variant="primary">
-                  Submit
-                </Button>
-              )}
-              <Button variant="light" onClick={handleCancel} disabled={loading}>
-                Cancel
-              </Button>
-            </ButtonGroup>
-            {addOrEdit === "Edit" && (
-              <ButtonGroup className="d-flex">
-                <Button
-                  variant="danger"
-                  onClick={handleDelete}
+                  variant="light"
+                  onClick={handleCancel}
                   disabled={loading}
                 >
-                  Delete Blog
+                  Cancel
                 </Button>
               </ButtonGroup>
-            )}
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+              {addOrEdit === "Edit" && (
+                <ButtonGroup className="d-flex">
+                  <Button
+                    variant="danger"
+                    onClick={handleDelete}
+                    disabled={loading}
+                  >
+                    Delete Idiom
+                  </Button>
+                </ButtonGroup>
+              )}
+            </Form>
+          </Col>
+        </Row>
+      </Container>
     );
   };
-  
-  export default AddEditBlogPage;
+
+  export default AddEditIdiomPage;
   ```
 
-- In `BlogDetailPage/index.js`, let's add a button for owner to edit the blog:
+- In `IdiomDetailPage/index.js`, let's add a button for owner to edit the idiom:
   ```javascript
   const currentUser = useSelector((state) => state.auth.user);
   ...
-  {currentUser?._id === blog?.user?._id ? (
-    <Link to={`/blog/edit/${blog._id}`}>
+  {currentUser?._id === idiom?.user?._id ? (
+    <Link to={`/idiom/edit/${idiom._id}`}>
       <Button variant="primary">Edit</Button>
     </Link>
   ) : (
     <span className="text-muted">
-      @{blog?.user?.name} wrote{" "}
-      <Moment fromNow>{blog.createdAt}</Moment>
+      @{idiom?.user?.name} wrote{" "}
+      <Moment fromNow>{idiom.createdAt}</Moment>
     </span>
   )}
   ```
@@ -1713,9 +1784,9 @@ In this step, we will implement Create, Edit, and Delete Blog features for authe
 
 Congratulation, you have done a great job to go to this point. It's time for you to walk on your own feet. Look at the backend API documentation and figure out any feature you can add to the app. Some suggestions:
 
-- Blog Pagination
+- Idiom Pagination
 - User can see a list of users with pagination
 - User can add friends
-- User can react with blogs or reviews with emoji icon (called `reactions` in the backend API)
+- User can react with idioms or reviews with emoji icon (called `reactions` in the backend API)
 - User can see his/her profile and update it
-- User has a dashboard layout to manage his/her blogs, friends
+- User has a dashboard layout to manage his/her idioms, friends

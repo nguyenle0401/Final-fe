@@ -7,9 +7,9 @@ import AlertMsg from "./AlertMsg";
 import ProfilePage from "../Admin/ProfilePage";
 import SideMenu from "../Admin/SideMenu";
 import FriendListPage from "../Admin/FriendListPage";
-import AddEditBlogPage from "../AddEditBlogPage";
-import BlogListPage from "../Admin/BlogListPage";
-import BlogDetailPage from "../BlogDetailPage";
+import AddEditIdiomPage from "../AddEditIdiomPage";
+import IdiomListPage from "../Admin/IdiomListPage";
+import IdiomDetailPage from "../IdiomDetailPage";
 import MessengerPage from "../Admin/MessengerPage";
 import GamePage from "../Admin/GamePage";
 
@@ -25,17 +25,21 @@ const AdminLayout = () => {
             <Switch>
               <Route exact path="/admin/profile" component={ProfilePage} />
               <Route exact path="/admin/friends" component={FriendListPage} />
-              <Route exact path="/admin/blogs" component={BlogListPage} />
-              <Route exact path="/admin/blogs/:id" component={BlogDetailPage} />
+              <Route exact path="/admin/idioms" component={IdiomListPage} />
               <Route
                 exact
-                path="/admin/blogs/add"
-                component={AddEditBlogPage}
+                path="/admin/idioms/:id"
+                component={IdiomDetailPage}
               />
               <Route
                 exact
-                path="/admin/blogs/edit/:id"
-                component={AddEditBlogPage}
+                path="/admin/idioms/add"
+                component={AddEditIdiomPage}
+              />
+              <Route
+                exact
+                path="/admin/idioms/edit/:id"
+                component={AddEditIdiomPage}
               />
               {/* <Route exact path="/admin/messenger" component={MessengerPage} /> */}
               <Route exact path="/admin/game" component={GamePage} />

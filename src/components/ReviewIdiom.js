@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 
-const ReviewBlog = ({
+const ReviewIdiom = ({
   reviewText,
   handleInputChange,
   handleSubmitReview,
@@ -40,4 +40,4 @@ const ReviewBlog = ({
   );
 };
 
-export default ReviewBlog;
+export default ReviewIdiom;

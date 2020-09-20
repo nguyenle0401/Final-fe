@@ -7,8 +7,8 @@ import { Container } from "react-bootstrap";
 import { Switch, Route } from "react-router-dom";
 import NotFoundPage from "./NotFoundPage";
 import AlertMsg from "./AlertMsg";
-import BlogDetailPage from "../BlogDetailPage";
-import AddEditBlogPage from "../AddEditBlogPage";
+import IdiomDetailPage from "../IdiomDetailPage";
+import AddEditIdiomPage from "../AddEditIdiomPage";
 import PrivateRoute from "../Routes/PrivateRoute";
 import VerifyEmailPage from "../VerifyEmailPage";
 
@@ -22,12 +22,12 @@ const PublicLayout = () => {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/login" component={HomePage} />
           <Route exact path="/register" component={RegisterPage} />
-          <PrivateRoute exact path="/blogs/add" component={AddEditBlogPage} />
-          <Route exact path="/blogs/:id" component={BlogDetailPage} />
+          <PrivateRoute exact path="/idioms/add" component={AddEditIdiomPage} />
+          <Route exact path="/idioms/:id" component={IdiomDetailPage} />
           <PrivateRoute
             exact
-            path="/blogs/:id/edit"
-            component={AddEditBlogPage}
+            path="/idioms/:id/edit"
+            component={AddEditIdiomPage}
           />
           <Route exact path="/verify/:code" component={VerifyEmailPage} />
 

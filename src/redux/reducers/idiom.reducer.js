@@ -1,13 +1,13 @@
-import * as types from "../constants/blog.constants";
+import * as types from "../constants/idiom.constants";
 
 const initialState = {
-  blogs: [],
+  idioms: [],
   totalPageNum: 1,
-  selectedBlog: null,
+  selectedIdiom: null,
   loading: false,
 };
 
-const blogReducer = (state = initialState, action) => {
+const idiomReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case types.BLOG_REQUEST:
@@ -20,18 +20,18 @@ const blogReducer = (state = initialState, action) => {
     case types.BLOG_REQUEST_SUCCESS:
       return {
         ...state,
-        blogs: payload.blogs,
+        idioms: payload.idioms,
         totalPageNum: payload.totalPages,
         loading: false,
       };
 
     case types.GET_SINGLE_BLOG_REQUEST_SUCCESS:
-      return { ...state, selectedBlog: payload, loading: false };
+      return { ...state, selectedIdiom: payload, loading: false };
 
     case types.UPDATE_BLOG_SUCCESS:
       return {
         ...state,
-        selectedBlog: payload,
+        selectedIdiom: payload,
         loading: false,
         redirectTo: "__GO_BACK__",
       };
@@ -50,7 +50,7 @@ const blogReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        selectedBlog: {},
+        selectedIdiom: {},
         redirectTo: "__GO_BACK__",
       };
 
@@ -62,26 +62,26 @@ const blogReducer = (state = initialState, action) => {
       return {
         ...state,
         submitLoading: false,
-        selectedBlog: {
-          ...state.selectedBlog,
-          reviews: [...state.selectedBlog.reviews, payload],
+        selectedIdiom: {
+          ...state.selectedIdiom,
+          reviews: [...state.selectedIdiom.reviews, payload],
         },
       };
 
     case types.BLOG_REACTION_SUCCESS:
       return {
         ...state,
-        selectedBlog: { ...state.selectedBlog, reactions: payload },
+        selectedIdiom: { ...state.selectedIdiom, reactions: payload },
         submitLoading: false,
       };
 
     case types.REVIEW_REACTION_SUCCESS:
       return {
         ...state,
-        selectedBlog: {
-          ...state.selectedBlog,
+        selectedIdiom: {
+          ...state.selectedIdiom,
           reviews: [
-            ...state.selectedBlog.reviews.map((review) => {
+            ...state.selectedIdiom.reviews.map((review) => {
               if (review._id !== payload.reviewId) return review;
               return { ...review, reactions: payload.reactions };
             }),
@@ -100,4 +100,4 @@ const blogReducer = (state = initialState, action) => {
   }
 };
 
-export default blogReducer;
+export default idiomReducer;

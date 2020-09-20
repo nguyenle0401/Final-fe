@@ -9,8 +9,8 @@ import {
 } from "react-bootstrap";
 import "./style.css";
 import { useSelector, useDispatch } from "react-redux";
-import { blogActions } from "../../redux/actions";
-import BlogCard from "../../components/BlogCard";
+import { idiomActions } from "../../redux/actions";
+import IdiomCard from "../../components/IdiomCard";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
 import PaginationItem from "../../components/PaginationItem";
@@ -19,9 +19,9 @@ import { Carousel } from "react-bootstrap";
 const HomePage = () => {
   const [pageNum, setPageNum] = useState(1);
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.blog.loading);
-  const blogs = useSelector((state) => state.blog.blogs);
-  const totalPageNum = useSelector((state) => state.blog.totalPageNum);
+  const loading = useSelector((state) => state.idiom.loading);
+  const idioms = useSelector((state) => state.idiom.idioms);
+  const totalPageNum = useSelector((state) => state.idiom.totalPageNum);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   //Carousel
@@ -33,11 +33,11 @@ const HomePage = () => {
 
   //
   useEffect(() => {
-    dispatch(blogActions.blogsRequest(pageNum));
+    dispatch(idiomActions.idiomsRequest(pageNum));
   }, [dispatch, pageNum]);
 
-  // const handleClickOnBlog = (id) => {
-  //   history.push(`/blogs/${id}`);
+  // const handleClickOnIdiom = (id) => {
+  //   history.push(`/idioms/${id}`);
   // };
 
   return (
@@ -52,7 +52,7 @@ const HomePage = () => {
             />
             <Carousel.Caption>
               {isAuthenticated && (
-                <Link to="/blogs/add">
+                <Link to="/idioms/add">
                   <div variant="primary">
                     <div id="main">
                       <div class="container">
@@ -111,20 +111,20 @@ const HomePage = () => {
           <ClipLoader color="#f86c6b" size={150} loading={loading} />
         ) : (
           <>
-            {blogs.length ? (
+            {idioms.length ? (
               <>
                 <CardColumns>
-                  {blogs.map((blog) => (
-                    <BlogCard
-                      blog={blog}
-                      key={blog._id}
-                      // handleClick={handleClickOnBlog}
+                  {idioms.map((idiom) => (
+                    <IdiomCard
+                      idiom={idiom}
+                      key={idiom._id}
+                      // handleClick={handleClickOnIdiom}
                     />
                   ))}
                 </CardColumns>
               </>
             ) : (
-              <p>There are no blogs</p>
+              <p>There are no idioms</p>
             )}
           </>
         )}

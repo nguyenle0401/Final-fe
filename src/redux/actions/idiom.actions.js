@@ -1,8 +1,8 @@
-import * as types from "../constants/blog.constants";
+import * as types from "../constants/idiom.constants";
 import api from "../api";
 import { alertActions } from "./alert.actions";
 
-const blogsRequest = (
+const idiomsRequest = (
   pageNum = 1,
   limit = 10,
   query = null,
@@ -23,7 +23,7 @@ const blogsRequest = (
       sortByString = `&sortBy[${sortBy.key}]=${sortBy.ascending}`;
     }
     const res = await api.get(
-      `/blogs?page=${pageNum}&limit=${limit}${queryString}${sortByString}`
+      `/idioms?page=${pageNum}&limit=${limit}${queryString}${sortByString}`
     );
     dispatch({
       type: types.BLOG_REQUEST_SUCCESS,
@@ -34,10 +34,10 @@ const blogsRequest = (
   }
 };
 
-const getSingleBlog = (blogId) => async (dispatch) => {
+const getSingleIdiom = (idiomId) => async (dispatch) => {
   dispatch({ type: types.GET_SINGLE_BLOG_REQUEST, payload: null });
   try {
-    const res = await api.get(`/blogs/${blogId}`);
+    const res = await api.get(`/idioms/${idiomId}`);
     dispatch({
       type: types.GET_SINGLE_BLOG_REQUEST_SUCCESS,
       payload: res.data.data,
@@ -47,10 +47,10 @@ const getSingleBlog = (blogId) => async (dispatch) => {
   }
 };
 
-const createReview = (blogId, reviewText) => async (dispatch) => {
+const createReview = (idiomId, reviewText) => async (dispatch) => {
   dispatch({ type: types.CREATE_REVIEW_REQUEST, payload: null });
   try {
-    const res = await api.post(`/reviews/blogs/${blogId}`, {
+    const res = await api.post(`/reviews/idioms/${idiomId}`, {
       content: reviewText,
     });
     dispatch({
@@ -62,7 +62,7 @@ const createReview = (blogId, reviewText) => async (dispatch) => {
   }
 };
 
-const createNewBlog = (title, content, images) => async (dispatch) => {
+const createNewIdiom = (title, content, images) => async (dispatch) => {
   dispatch({ type: types.CREATE_BLOG_REQUEST, payload: null });
   try {
     // For uploading file manually
@@ -74,49 +74,49 @@ const createNewBlog = (title, content, images) => async (dispatch) => {
     //     formData.append("images", images[index]);
     //   }
     // }
-    // const res = await api.post("/blogs", formData);
+    // const res = await api.post("/idioms", formData);
 
     // Upload images using cloudinary already
-    const res = await api.post("/blogs", { title, content, images });
+    const res = await api.post("/idioms", { title, content, images });
 
     dispatch({
       type: types.CREATE_BLOG_SUCCESS,
       payload: res.data.data,
     });
-    dispatch(alertActions.setAlert("New blog has been created!", "success"));
+    dispatch(alertActions.setAlert("New idiom has been created!", "success"));
   } catch (error) {
     dispatch({ type: types.CREATE_BLOG_FAILURE, payload: error });
   }
 };
 
-const updateBlog = (blogId, title, content) => async (dispatch) => {
+const updateIdiom = (idiomId, title, content) => async (dispatch) => {
   dispatch({ type: types.UPDATE_BLOG_REQUEST, payload: null });
   try {
     // let formData = new FormData();
     // formData.set("title", title);
     // formData.set("content", content);
-    const res = await api.put(`/blogs/${blogId}`, { title, content });
+    const res = await api.put(`/idioms/${idiomId}`, { title, content });
 
     dispatch({
       type: types.UPDATE_BLOG_SUCCESS,
       payload: res.data.data,
     });
-    dispatch(alertActions.setAlert("The blog has been updated!", "success"));
+    dispatch(alertActions.setAlert("The idiom has been updated!", "success"));
   } catch (error) {
     dispatch({ type: types.UPDATE_BLOG_FAILURE, payload: error });
   }
 };
 
-const deleteBlog = (blogId) => async (dispatch) => {
+const deleteIdiom = (idiomId) => async (dispatch) => {
   dispatch({ type: types.DELETE_BLOG_REQUEST, payload: null });
   try {
-    const res = await api.delete(`/blogs/${blogId}`);
+    const res = await api.delete(`/idioms/${idiomId}`);
     console.log(res);
     dispatch({
       type: types.DELETE_BLOG_SUCCESS,
       payload: res.data,
     });
-    dispatch(alertActions.setAlert("The blog has been deleted!", "success"));
+    dispatch(alertActions.setAlert("The idiom has been deleted!", "success"));
   } catch (error) {
     dispatch({ type: types.DELETE_BLOG_FAILURE, payload: error });
   }
@@ -131,7 +131,7 @@ const sendEmojiReaction = (targetType, target, emoji) => async (dispatch) => {
   dispatch({ type: types.SEND_REACTION_REQUEST, payload: null });
   try {
     const res = await api.post(`/reactions`, { targetType, target, emoji });
-    if (targetType === "Blog") {
+    if (targetType === "Idiom") {
       dispatch({
         type: types.BLOG_REACTION_SUCCESS,
         payload: res.data.data,
@@ -148,13 +148,13 @@ const sendEmojiReaction = (targetType, target, emoji) => async (dispatch) => {
   }
 };
 
-export const blogActions = {
-  blogsRequest,
-  getSingleBlog,
+export const idiomActions = {
+  idiomsRequest,
+  getSingleIdiom,
   createReview,
-  createNewBlog,
-  updateBlog,
-  deleteBlog,
+  createNewIdiom,
+  updateIdiom,
+  deleteIdiom,
   setRedirectTo,
   sendEmojiReaction,
 };

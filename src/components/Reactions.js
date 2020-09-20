@@ -1,14 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSelector, useDispatch } from "react-redux";
-import { blogActions } from "../redux/actions";
+import { idiomActions } from "../redux/actions";
 
 const Reactions = ({ reactionsData, targetType, target, size }) => {
-  const loading = useSelector((state) => state.blog.submitLoading);
+  const loading = useSelector((state) => state.idiom.submitLoading);
   const dispatch = useDispatch();
 
   const handleClick = (emoji) => {
-    dispatch(blogActions.sendEmojiReaction(targetType, target, emoji));
+    dispatch(idiomActions.sendEmojiReaction(targetType, target, emoji));
   };
 
   return (

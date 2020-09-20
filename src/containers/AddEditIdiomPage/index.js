@@ -9,38 +9,38 @@ import {
   ButtonGroup,
 } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
-import { blogActions } from "../../redux/actions";
+import { idiomActions } from "../../redux/actions";
 
-const AddEditBlogPage = () => {
+const AddEditIdiomPage = () => {
   const [formData, setFormData] = useState({
     title: "",
     content: "",
     images: null,
   });
-  const loading = useSelector((state) => state.blog.loading);
+  const loading = useSelector((state) => state.idiom.loading);
   const dispatch = useDispatch();
   const history = useHistory();
   const params = useParams();
-  const selectedBlog = useSelector((state) => state.blog.selectedBlog);
-  const redirectTo = useSelector((state) => state.blog.redirectTo);
+  const selectedIdiom = useSelector((state) => state.idiom.selectedIdiom);
+  const redirectTo = useSelector((state) => state.idiom.redirectTo);
   const addOrEdit = params.id ? "Edit" : "Add";
-  const blogId = params.id;
+  const idiomId = params.id;
 
   useEffect(() => {
-    if (blogId) {
-      if (!selectedBlog) {
-        dispatch(blogActions.getSingleBlog(blogId));
+    if (idiomId) {
+      if (!selectedIdiom) {
+        dispatch(idiomActions.getSingleIdiom(idiomId));
       } else {
         setFormData((formData) => ({
           ...formData,
-          title: selectedBlog.title,
-          content: selectedBlog.content,
-          images: selectedBlog.images,
+          title: selectedIdiom.title,
+          content: selectedIdiom.content,
+          images: selectedIdiom.images,
         }));
       }
     }
-  }, [blogId, selectedBlog, dispatch]);
-  console.log("haha", selectedBlog);
+  }, [idiomId, selectedIdiom, dispatch]);
+  console.log("haha", selectedIdiom);
   const handleChange = (e) => {
     if (e.target.name === "images") {
       console.log(e.target.files);
@@ -54,9 +54,9 @@ const AddEditBlogPage = () => {
     e.preventDefault();
     const { title, content, images } = formData;
     if (addOrEdit === "Add") {
-      dispatch(blogActions.createNewBlog(title, content, images));
+      dispatch(idiomActions.createNewIdiom(title, content, images));
     } else if (addOrEdit === "Edit") {
-      dispatch(blogActions.updateBlog(selectedBlog._id, title, content));
+      dispatch(idiomActions.updateIdiom(selectedIdiom._id, title, content));
     }
   };
 
@@ -65,17 +65,17 @@ const AddEditBlogPage = () => {
   };
 
   const handleDelete = () => {
-    dispatch(blogActions.deleteBlog(selectedBlog._id));
+    dispatch(idiomActions.deleteIdiom(selectedIdiom._id));
   };
 
   useEffect(() => {
     if (redirectTo) {
       if (redirectTo === "__GO_BACK__") {
         history.goBack();
-        dispatch(blogActions.setRedirectTo(""));
+        dispatch(idiomActions.setRedirectTo(""));
       } else {
         history.push(redirectTo);
-        dispatch(blogActions.setRedirectTo(""));
+        dispatch(idiomActions.setRedirectTo(""));
       }
     }
   }, [redirectTo, dispatch, history]);
@@ -85,7 +85,7 @@ const AddEditBlogPage = () => {
       {
         cloud_name: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
         upload_preset: process.env.REACT_APP_CLOUDINARY_PRESET,
-        tags: ["socialBlog", "blogImages"],
+        tags: ["socialIdiom", "idiomImages"],
       },
       function (error, result) {
         if (result && result.length) {
@@ -104,7 +104,7 @@ const AddEditBlogPage = () => {
         <Col md={{ span: 6, offset: 3 }}>
           <Form onSubmit={handleSubmit}>
             <div className="text-center mb-3">
-              <h1 className="text-primary">{addOrEdit} blog</h1>
+              <h1 className="text-primary">{addOrEdit} idiom</h1>
               <p className="lead">
                 <i className="fas fa-user" />
               </p>
@@ -165,7 +165,7 @@ const AddEditBlogPage = () => {
                   onClick={handleDelete}
                   disabled={loading}
                 >
-                  Delete Blog
+                  Delete Idiom
                 </Button>
               </ButtonGroup>
             )}
@@ -176,4 +176,4 @@ const AddEditBlogPage = () => {
   );
 };
 
-export default AddEditBlogPage;
+export default AddEditIdiomPage;

@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { blogActions } from "../../redux/actions";
+import { idiomActions } from "../../redux/actions";
 import { Button } from "react-bootstrap";
 import { ClipLoader } from "react-spinners";
 import Moment from "react-moment";
 import Markdown from "react-markdown";
 import ReviewList from "../../components/ReviewList";
-import ReviewBlog from "../../components/ReviewBlog";
+import ReviewIdiom from "../../components/ReviewIdiom";
 import Reactions from "../../components/Reactions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const BlogDetailPage = () => {
+const IdiomDetailPage = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  const blog = useSelector((state) => state.blog.selectedBlog);
-  const loading = useSelector((state) => state.blog.loading);
+  const idiom = useSelector((state) => state.idiom.selectedIdiom);
+  const loading = useSelector((state) => state.idiom.loading);
   const currentUser = useSelector((state) => state.auth.user);
-  const submitLoading = useSelector((state) => state.blog.subReviewLoading);
+  const submitLoading = useSelector((state) => state.idiom.subReviewLoading);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const history = useHistory();
 
@@ -27,13 +27,13 @@ const BlogDetailPage = () => {
   };
   const handleSubmitReview = (e) => {
     e.preventDefault();
-    dispatch(blogActions.createReview(blog._id, reviewText));
+    dispatch(idiomActions.createReview(idiom._id, reviewText));
     setReviewText("");
   };
 
   useEffect(() => {
     if (params?.id) {
-      dispatch(blogActions.getSingleBlog(params.id));
+      dispatch(idiomActions.getSingleIdiom(params.id));
     }
   }, [dispatch, params]);
 
@@ -47,8 +47,8 @@ const BlogDetailPage = () => {
         <Button onClick={handleGoBackClick}>
           <FontAwesomeIcon icon="chevron-left" size="1x" /> Back
         </Button>
-        {currentUser?._id === blog?.author?._id ? (
-          <Link to={`/blog/edit/${blog._id}`}>
+        {currentUser?._id === idiom?.author?._id ? (
+          <Link to={`/idiom/edit/${idiom._id}`}>
             <Button variant="primary">
               <FontAwesomeIcon icon="edit" size="1x" /> Edit
             </Button>
@@ -61,31 +61,31 @@ const BlogDetailPage = () => {
         <ClipLoader color="#f86c6b" size={150} loading={loading} />
       ) : (
         <>
-          {blog && (
+          {idiom && (
             <div className="mb-5">
-              <h4>{blog.title}</h4>
+              <h4>{idiom.title}</h4>
 
               <span className="text-muted">
-                @{blog?.author?.name} wrote{" "}
-                <Moment fromNow>{blog.createdAt}</Moment>
+                @{idiom?.author?.name} wrote{" "}
+                <Moment fromNow>{idiom.createdAt}</Moment>
               </span>
 
               <hr />
-              <Markdown source={blog.content} />
+              <Markdown source={idiom.content} />
               <hr />
               <Reactions
-                reactionsData={blog.reactions}
-                targetType="Blog"
-                target={blog._id}
+                reactionsData={idiom.reactions}
+                targetType="Idiom"
+                target={idiom._id}
                 size="lg"
               />
               <hr />
-              <ReviewList reviews={blog.reviews} />
+              <ReviewList reviews={idiom.reviews} />
             </div>
           )}
 
           {isAuthenticated && (
-            <ReviewBlog
+            <ReviewIdiom
               reviewText={reviewText}
               handleInputChange={handleInputChange}
               handleSubmitReview={handleSubmitReview}
@@ -98,4 +98,4 @@ const BlogDetailPage = () => {
   );
 };
 
-export default BlogDetailPage;
+export default IdiomDetailPage;

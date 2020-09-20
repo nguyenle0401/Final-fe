@@ -20,11 +20,11 @@ const SideMenu = () => {
         <Nav.Item>
           <Nav.Link
             as={NavLink}
-            to="/admin/blogs"
+            to="/admin/idioms"
             activeClassName="active"
             strict={true}
           >
-            Blogs
+            Idioms
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>

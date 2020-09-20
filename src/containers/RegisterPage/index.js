@@ -48,7 +48,7 @@ const RegisterPage = ({ setShowLogin, setShowRegister }) => {
       {
         cloud_name: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME,
         upload_preset: process.env.REACT_APP_CLOUDINARY_PRESET,
-        tags: ["socialBlog", "userAvatar"],
+        tags: ["socialIdiom", "userAvatar"],
       },
       function (error, result) {
         if (error) console.log(error);
