@@ -37,7 +37,7 @@ const AdminLayout = () => {
                 path="/admin/blogs/edit/:id"
                 component={AddEditBlogPage}
               />
-              <Route exact path="/admin/messenger" component={MessengerPage} />
+              {/* <Route exact path="/admin/messenger" component={MessengerPage} /> */}
               <Route exact path="/admin/game" component={GamePage} />
               <Route component={NotFoundPage} />
             </Switch>

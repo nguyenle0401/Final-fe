@@ -76,27 +76,26 @@ const GameNaviation = ({
   return (
     <div>
       <h1>
-        <button disabled={currentNum <= 0} onClick={() => handleNavigation(-1)}>
-          {" "}
-          Back{" "}
+        <button
+          className="button"
+          disabled={currentNum <= 0}
+          onClick={() => handleNavigation(-1)}
+        >
+          ⏪
         </button>{" "}
         &nbsp;
         <button
+          className="button"
           disabled={currentNum >= qty - 1}
           onClick={() => handleNavigation(1)}
         >
           {" "}
-          Next
+          ⏩
         </button>
       </h1>
     </div>
   );
 };
-// array scores
-// array times
-// round rate [1,2,3]
-// time/1000 /30*100
-// score=score+time*res
 let time = 300;
 let score = 0;
 const handleAnswer = (v, answer, currentNum, setCurrentNum) => {
@@ -107,14 +106,9 @@ const handleAnswer = (v, answer, currentNum, setCurrentNum) => {
     result = { status: "lose", rate: 0 };
   }
   console.log(result.status);
-  //time recorded
   console.log("pre", score);
   score = score + result.rate * time;
   console.log("score", score);
-  // setCurrentNum(currentNum + 1);
-
-  // alert("adsfasf");
-  //end round
   setCurrentNum(currentNum + 1);
   console.log("this round", currentNum + 1);
 };

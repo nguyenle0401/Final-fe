@@ -1,0 +1,78 @@
+.btn-con {
+  color: #fff;
+
+  cursor: pointer;
+
+  display: inline-block;
+
+  font-size: 16px;
+
+  font-weight: 400;
+
+  line-height: 36px;
+
+  margin: 0 0 2em;
+
+  max-width: 160px;
+
+  position: relative;
+
+  text-decoration: none;
+
+  text-transform: uppercase;
+
+  width: 100%;
+}
+
+.btn-con-1 {
+  font-weight: bolder;
+
+  transition: all 0.25s;
+}
+
+.btn-con-1 svg {
+  height: 45px;
+
+  left: 0;
+
+  position: absolute;
+
+  top: 0;
+
+  width: 100%;
+}
+
+.btn-con-1 rect {
+  fill: none;
+
+  stroke: #fff;
+
+  stroke-width: 2;
+
+  stroke-dasharray: 422, 0;
+
+  transition-delay: none;
+}
+
+.btn-con-1:hover {
+  font-weight: 900;
+
+  letter-spacing: 2px;
+}
+.btn-con-1:hover rect {
+  stroke-width: 5;
+
+  stroke-dasharray: 15, 310;
+
+  stroke-dashoffset: 48;
+
+  transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.btn-con-1.color-green:hover {
+  color: green;
+}
+
+.btn-con-1.color-green:hover rect {
+  stroke: green;
+}

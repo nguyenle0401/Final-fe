@@ -132,3 +132,34 @@
   justify-self: flex-end !important;
   align-self: flex-end !important;
 }
+
+/* Card */
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 576px) {
+  .card-columns {
+    column-count: 1 !important;
+  }
+}
+
+/* List group items */
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: 0.75rem 1.25rem;
+  background-color: #fff;
+  border: none !important;
+}
+
+.card-idiom {
+  position: relative;
+  display: block;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid black;
+  border-radius: 25px;
+  display: flex;
+  justify-content: space-between;
+}

@@ -30,16 +30,17 @@ const AddEditBlogPage = () => {
     if (blogId) {
       if (!selectedBlog) {
         dispatch(blogActions.getSingleBlog(blogId));
+      } else {
+        setFormData((formData) => ({
+          ...formData,
+          title: selectedBlog.title,
+          content: selectedBlog.content,
+          images: selectedBlog.images,
+        }));
       }
-      setFormData((formData) => ({
-        ...formData,
-        title: selectedBlog.title,
-        content: selectedBlog.content,
-        images: selectedBlog.images,
-      }));
     }
   }, [blogId, selectedBlog, dispatch]);
-
+  console.log("haha", selectedBlog);
   const handleChange = (e) => {
     if (e.target.name === "images") {
       console.log(e.target.files);
@@ -64,7 +65,6 @@ const AddEditBlogPage = () => {
   };
 
   const handleDelete = () => {
-    // TODO : popup confirmation modal
     dispatch(blogActions.deleteBlog(selectedBlog._id));
   };
 
@@ -130,24 +130,6 @@ const AddEditBlogPage = () => {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Control
-                type="file"
-                name="images"
-                multiple
-                accept="image/png image/jpeg image/jpg"
-                onChange={handleChange}
-              />
-            </Form.Group>
-            <Form.Group>
-              {formData?.images?.map((image) => (
-                <img
-                  src={image}
-                  key={image}
-                  width="90px"
-                  height="60px"
-                  alt="blog images"
-                ></img>
-              ))}
               <Button variant="info" onClick={uploadWidget}>
                 {addOrEdit} Images
               </Button>

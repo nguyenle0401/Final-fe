@@ -37,7 +37,7 @@ const SideMenu = () => {
             Friends
           </Nav.Link>
         </Nav.Item>
-        <Nav.Item>
+        {/* <Nav.Item>
           <Nav.Link
             as={NavLink}
             to="/admin/messenger"
@@ -46,7 +46,7 @@ const SideMenu = () => {
           >
             Messenger
           </Nav.Link>
-        </Nav.Item>
+        </Nav.Item> */}
         <Nav.Item>
           <Nav.Link
             as={NavLink}

@@ -20,7 +20,7 @@ const SearchItem = ({
           />
         </Col>
         {loading ? (
-          <Button variant="primary" type="button" disabled>
+          <Button variant="success" type="button" disabled>
             <span
               className="spinner-border spinner-border-sm"
               role="status"

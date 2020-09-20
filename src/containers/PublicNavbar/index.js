@@ -31,7 +31,7 @@ const PublicNavbar = () => {
         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
         <Button variant="outline-dark">Search</Button>
       </Form> */}
-      <SearchItem />
+      {/* <SearchItem /> */}
       <Nav.Link as={Link} to="/admin/profile">
         <Button variant="outline-success">Admin</Button>
       </Nav.Link>
@@ -71,7 +71,7 @@ const PublicNavbar = () => {
           <Button onClick={handleCloseRegister}>Close</Button>
         </Modal.Footer>
       </Modal>
-      <Navbar bg="light" expand="lg" width="100%">
+      <Navbar expand="lg" width="100%">
         <div
           style={{ width: "100%" }}
           className="d-flex flex-column align-items-center justify-content-center"
@@ -79,7 +79,7 @@ const PublicNavbar = () => {
           <div style={{ width: "100%" }}>
             <Navbar.Brand as={Link} to="/" className="nav-brand">
               <div className="d-flex flex-column justify-content-center align-items-center logo">
-                <img src="/your-logo.png" alt="EL" />
+                {/* <img src="/your-logo.png" alt="EL" /> */}
               </div>
             </Navbar.Brand>
           </div>
