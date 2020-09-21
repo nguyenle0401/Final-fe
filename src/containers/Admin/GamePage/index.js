@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { gameActions } from "../../../redux/actions";
-import "./style.css";
+
 function rand(items) {
   // "~~" for a closest "int"
   return items[~~(items.length * Math.random())];
@@ -32,25 +33,34 @@ const GamePage = () => {
   }
 
   return (
-    <div className="bg-quiz">
+    <div className="bg-qui" style={{ width: "100%" }}>
+      <Button variant="warning  d-flex justify-content-center align-items-center">
+        Competition
+      </Button>
       <GameInfo
         user={user}
         qty={gameObj.qty}
         totalScore={totalScore}
         currentNum={currentNum}
       />
-      <GameCard
-        question={gameObj.questions[currentNum]}
-        qty={gameObj.qty}
-        setCurrentNum={setCurrentNum}
-        currentNum={currentNum}
-        calcTotalScore={calcTotalScore}
-      />
-      <GameNaviation
-        handleNavigation={handleNavigation}
-        qty={gameObj.qty}
-        currentNum={currentNum}
-      />
+      <div style={{ width: "100%" }}>
+        <div className="game_card">
+          <GameCard
+            question={gameObj.questions[currentNum]}
+            qty={gameObj.qty}
+            setCurrentNum={setCurrentNum}
+            currentNum={currentNum}
+            calcTotalScore={calcTotalScore}
+          />
+          <div>
+            <GameNaviation
+              handleNavigation={handleNavigation}
+              qty={gameObj.qty}
+              currentNum={currentNum}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -58,11 +68,18 @@ const GamePage = () => {
 const GameInfo = ({ totalScore, user, qty, currentNum }) => {
   return (
     <div>
-      <h1>{user.name}</h1>
-      <h1>Score: {totalScore}</h1>
-      <h2>
-        Question#: {currentNum + 1}/{qty}
-      </h2>
+      <h4>
+        🧑🏼‍💻: <strong>{user.name}</strong>
+      </h4>
+      <h4>
+        Score:<strong>{totalScore}</strong>
+      </h4>
+      <h4>
+        Question:{" "}
+        <strong>
+          {currentNum + 1}/{qty}
+        </strong>
+      </h4>
     </div>
   );
 };
@@ -102,8 +119,10 @@ const handleAnswer = (v, answer, currentNum, setCurrentNum) => {
   let result;
   if (v == answer) {
     result = { status: "win", rate: 1 };
+    alert("You win");
   } else {
     result = { status: "lose", rate: 0 };
+    alert("You lose");
   }
   console.log(result.status);
   console.log("pre", score);
@@ -152,7 +171,7 @@ const GameCard = ({ question, currentNum, setCurrentNum }) => {
   };
 
   return (
-    <div>
+    <div className="game_card_container">
       <button className="style-question">
         "{question.title}", what's dose it mean?
       </button>

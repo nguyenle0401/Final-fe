@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./style.css";
 import SearchItem from "../../../components/SearchItem";
 import PaginationItem from "../../../components/PaginationItem";
 import { useSelector, useDispatch } from "react-redux";
@@ -158,7 +159,7 @@ const FriendListPage = () => {
       } else {
         return (
           <Button
-            variant="primary"
+            className="color-btn"
             onClick={() => handleActionClick(actionTypes.ADD_FRIEND, user._id)}
           >
             <FontAwesomeIcon icon="plus" size="1x" /> Add Friend

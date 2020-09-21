@@ -24,7 +24,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.952);
   border-radius: 100%;
   backdrop-filter: blur(5px);
   position: absolute;
@@ -34,7 +34,7 @@ body {
   /* width: 100vw;
   margin: 0 auto;
   height: 400px; */
-  background-color: #161616;
+  background-color: #020000;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -67,7 +67,6 @@ body {
   flex-direction: column;
   cursor: pointer;
   transition: all 0.3s ease;
-  background-color: none !important;
   background-clip: none !important;
   border: none !important;
 }
@@ -79,34 +78,21 @@ body {
   max-width: 80px;
   background: linear-gradient(
     90deg,
-    #c8ccca 0%,
-    #000708 40%,
-    rgba(0, 0, 0, 0.28) 60%
+    #fffffe 0%,
+    #ababb1 50%,
+    rgba(0, 0, 0, 0.28) 90%
   );
   border-radius: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: rgb(5, 3, 3);
   transition: all 0.8s ease;
   background-position: 0px;
   background-size: 200px;
 }
-
-.material-icons.md-18 {
-  font-size: 18px;
-}
-
-.material-icons.md-24 {
-  font-size: 24px;
-}
-
-.material-icons.md-36 {
-  font-size: 36px;
-}
-
-.material-icons.md-48 {
-  font-size: 48px;
+.color-text {
+  color: black;
 }
 
 .card .title {
@@ -114,33 +100,11 @@ body {
   /* margin: 0; */
   text-align: center;
   /* margin-top: 30px; */
-  color: white;
+  color: rgb(0, 0, 0) !important;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-}
-
-.card .text {
-  width: 80%;
-  /* margin: 0 auto; */
-  font-size: 13px;
-  text-align: center;
-  /* margin-top: 20px; */
-  color: white;
-  font-weight: 200;
+  /* text-transform: uppercase; */
   letter-spacing: 2px;
-  opacity: 0;
-  max-height: 0;
-  transition: all 0.3s ease;
 }
-
-/* .card:hover {
-  height: 200px;
-} */
-
-/* .card:hover .info {
-  height: 90%;
-} */
 
 .card:hover .icon {
   background-position: -120px;
@@ -148,12 +112,9 @@ body {
 }
 
 .card:hover .icon i {
-  background: linear-gradient(90deg, #ff7e7e, #ff4848);
-  /* -webkit-background-clip: text; */
+  background: linear-gradient(90deg, #faf9f9, #f7f6f6);
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   opacity: 1;
   transition: all 0.3s ease;
-}
-.bg-light {
-  background-color: none !important;
 }

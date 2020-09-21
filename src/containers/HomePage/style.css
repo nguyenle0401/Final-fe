@@ -1,5 +1,5 @@
 .btn-con {
-  color: #fff;
+  color: rgb(3, 0, 0);
 
   cursor: pointer;
 
@@ -45,9 +45,9 @@
 .btn-con-1 rect {
   fill: none;
 
-  stroke: #fff;
+  stroke: rgb(2, 0, 0);
 
-  stroke-width: 2;
+  stroke-width: 5;
 
   stroke-dasharray: 422, 0;
 

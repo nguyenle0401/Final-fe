@@ -6,6 +6,7 @@ import ReactEmoji from "react-emoji";
 
 const Message = ({ msg }) => {
   const currentUser = useSelector((state) => state.auth.user);
+  console.log("haha11", msg);
   return (
     <Media as="li">
       <img

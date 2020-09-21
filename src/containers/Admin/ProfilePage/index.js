@@ -92,8 +92,7 @@ const ProfilePage = () => {
                       </div>
                     )}
                     <Button
-                      variant="info"
-                      // className="btn-block w-50 "
+                      style={{ "background-color": " #047272" }}
                       onClick={uploadWidget}
                       disabled={!editable}
                     >

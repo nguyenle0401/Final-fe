@@ -1,6 +1,5 @@
 import React from "react";
 import "./style.css";
-
 import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
@@ -8,12 +7,12 @@ import { NavLink } from "react-router-dom";
 
 const SideMenu = () => {
   return (
-    <Nav className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+    <Nav className="col-md-3 col-lg-2 d-md-block sidebar collapse">
       <div className="sidebar-sticky pt-3">
         <Nav.Item>
           <div class="card">
             <div class="icon">
-              <i class="material-icons">Profile</i>
+              <i class="material-icons">face</i>
             </div>
             <p class="title">
               <Nav.Link
@@ -22,7 +21,7 @@ const SideMenu = () => {
                 activeClassName="active"
                 strict={true}
               >
-                Profile
+                <p class="color-text">Profile</p>
               </Nav.Link>
             </p>
           </div>
@@ -30,7 +29,7 @@ const SideMenu = () => {
         <Nav.Item>
           <div class="card">
             <div class="icon">
-              <i class="material-icons">Idioms</i>
+              <i class="material-icons">history_edu</i>
             </div>
             <p class="title">
               <Nav.Link
@@ -39,7 +38,7 @@ const SideMenu = () => {
                 activeClassName="active"
                 strict={true}
               >
-                Idioms
+                <p class="color-text">Idioms</p>
               </Nav.Link>
             </p>
           </div>
@@ -47,7 +46,7 @@ const SideMenu = () => {
         <Nav.Item>
           <div class="card">
             <div class="icon">
-              <i class="material-icons">Friends</i>
+              <i class="material-icons">group_add</i>
             </div>
             <p class="title">
               <Nav.Link
@@ -56,25 +55,32 @@ const SideMenu = () => {
                 activeClassName="active"
                 strict={true}
               >
-                Friends
+                <p class="color-text">Friends</p>
               </Nav.Link>
             </p>
           </div>
         </Nav.Item>
         {/* <Nav.Item>
-          <Nav.Link
-            as={NavLink}
-            to="/admin/messenger"
-            activeClassName="active"
-            strict={true}
-          >
-            Messenger
-          </Nav.Link>
+          <div class="card">
+            <div class="icon">
+              <i class="material-icons">chat</i>
+            </div>
+            <p class="title">
+              <Nav.Link
+                as={NavLink}
+                to="/admin/messenger"
+                activeClassName="active"
+                strict={true}
+              >
+                <p class="color-text">Message</p>
+              </Nav.Link>
+            </p>
+          </div>
         </Nav.Item> */}
         <Nav.Item>
           <div class="card">
             <div class="icon">
-              <i class="material-icons">Game</i>
+              <i class="material-icons">sports_esports</i>
             </div>
             <p class="title">
               <Nav.Link
@@ -83,7 +89,7 @@ const SideMenu = () => {
                 activeClassName="active"
                 strict={true}
               >
-                Game
+                <p class="color-text">Game</p>
               </Nav.Link>
             </p>
           </div>

@@ -43,11 +43,50 @@ const HomePage = () => {
   return (
     <>
       <Container>
-        <Carousel activeIndex={index} onSelect={handleSelect}>
+        <div>
+          {" "}
+          <div class="container pt-5 hero">
+            <div class="row align-items-center text-center text-md-left">
+              <div class="col-lg-4">
+                <h1 class="mb-3 display-3">Tell Your Story to the World</h1>
+                <p>
+                  Join with us! Login or Register. Lorem ipsum dolor sit amet,
+                  consectetur adipisicing elit. Delectus, ex!
+                </p>
+                {isAuthenticated && (
+                  <Link to="/idioms/add">
+                    <div variant="primary">
+                      <div id="main">
+                        <div class="container">
+                          <div class="row">
+                            <div class="block col-md-2">
+                              <a href="#" class="btn-con btn-con-1 color-green">
+                                <Button variant="warning">Contribute</Button>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                )}
+              </div>
+              <div class="col-lg-8">
+                <img
+                  src="../../../public/logo.png"
+                  alt="Image"
+                  class="img-fluid"
+                  style={{ width: "30%" }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* <Carousel activeIndex={index} onSelect={handleSelect}>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="https://images.pexels.com/photos/5282392/pexels-photo-5282392.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              src="https://images.pexels.com/photos/1735658/pexels-photo-1735658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
               alt="First slide"
             />
             <Carousel.Caption>
@@ -79,33 +118,7 @@ const HomePage = () => {
               )}
             </Carousel.Caption>
           </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://images.pexels.com/photos/5282392/pexels-photo-5282392.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              alt="Second slide"
-            />
-
-            <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://images.pexels.com/photos/5282392/pexels-photo-5282392.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              alt="Third slide"
-            />
-
-            <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-              </p>
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel>
+        </Carousel> */}
         {/* <Jumbotron className="text-center"></Jumbotron> */}
         {loading ? (
           <ClipLoader color="#f86c6b" size={150} loading={loading} />

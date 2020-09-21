@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./style.css";
 import SearchItem from "../../../components/SearchItem";
 import PaginationItem from "../../../components/PaginationItem";
 import { useSelector, useDispatch } from "react-redux";
@@ -81,11 +82,6 @@ const IdiomListPage = () => {
             onChange={handleFavorWords}
           />
         </Col>
-        <Col md={4} className="d-flex justify-content-end align-items-start">
-          <Link className="btn btn-primary" to="/admin/idiom/add">
-            <FontAwesomeIcon icon="plus" size="1x" /> Add
-          </Link>
-        </Col>
       </Row>
       <Row>
         <Col>
@@ -103,14 +99,16 @@ const IdiomListPage = () => {
               {filteredIdioms.map((idiom) => (
                 <tr key={idiom._id}>
                   <td>
-                    <Link to={`/admin/idioms/${idiom._id}`}>{idiom.title}</Link>
+                    <strong>
+                      <p to={`/admin/idioms/${idiom._id}`}>{idiom.title}</p>
+                    </strong>
                   </td>
                   <td>{idiom.content}</td>
 
                   <td>
                     {currentUser?._id === idiom?.author?._id ? (
                       <Link to={`/admin/idioms/edit/${idiom._id}`}>
-                        <Button variant="primary">
+                        <Button className="color-btn">
                           <FontAwesomeIcon icon="edit" size="1x" /> Edit
                         </Button>
                       </Link>

@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.css";
 import { Navbar, Nav, Modal, Button, Form, FormControl } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -27,32 +28,27 @@ const PublicNavbar = () => {
 
   const authLinks = (
     <Nav>
-      {/* <Form inline>
-        <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-        <Button variant="outline-dark">Search</Button>
-      </Form> */}
-      {/* <SearchItem /> */}
       <Nav.Link as={Link} to="/admin/profile">
-        <Button variant="outline-success">Admin</Button>
+        <Button variant="btn btn-light">Admin</Button>
       </Nav.Link>
       <Nav.Link onClick={handleLogout}>
-        <Button variant="outline-success">Logout</Button>
+        <Button variant="btn btn-danger">Logout</Button>
       </Nav.Link>
     </Nav>
   );
   const publicLinks = (
     <Nav>
       <Nav.Item onClick={() => setShowLogin(true)}>
-        <Button variant="outline-success">Login</Button>
+        <Button variant="btn btn-light">Login</Button>
       </Nav.Item>
       <Nav.Item onClick={() => setShowRegister(true)}>
-        <Button variant="outline-danger">Sign Up Free</Button>
+        <Button variant="btn btn-success ml-2">Sign Up Free</Button>
       </Nav.Item>
     </Nav>
   );
 
   return (
-    <>
+    <div className="nav-style">
       <Modal show={showLogin} onHide={handleCloseLogin}>
         <LoginPage
           setShowRegister={setShowRegister}
@@ -79,7 +75,7 @@ const PublicNavbar = () => {
           <div style={{ width: "100%" }}>
             <Navbar.Brand as={Link} to="/" className="nav-brand">
               <div className="d-flex flex-column justify-content-center align-items-center logo">
-                {/* <img src="/your-logo.png" alt="EL" /> */}
+                {/* <img src="/logo.png" alt="EL" style={{ height: "50%" }} /> */}
               </div>
             </Navbar.Brand>
           </div>
@@ -92,7 +88,7 @@ const PublicNavbar = () => {
           </div>
         </div>
       </Navbar>
-    </>
+    </div>
   );
 };
 
