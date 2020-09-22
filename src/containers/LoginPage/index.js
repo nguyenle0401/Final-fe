@@ -55,7 +55,8 @@ const LoginPage = ({ setShowRegister, setShowLogin }) => {
         <Col xs={{ span: 8, offset: 2 }}>
           <Form onSubmit={handleSubmit}>
             <div className="text-center mb-3">
-              <h1 className="text-primary">Sign In</h1>
+              <h1 className="text-primary">Login</h1>
+              {/* <img src="1.png"></img> */}
               <p className="lead">
                 <FontAwesomeIcon icon="user" size="1x" /> Sign Into Your Account
               </p>

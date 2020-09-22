@@ -65,18 +65,6 @@ const createReview = (idiomId, reviewText) => async (dispatch) => {
 const createNewIdiom = (title, content, images) => async (dispatch) => {
   dispatch({ type: types.CREATE_BLOG_REQUEST, payload: null });
   try {
-    // For uploading file manually
-    // const formData = new FormData();
-    // formData.append("title", title);
-    // formData.append("content", content);
-    // if (images && images.length) {
-    //   for (let index = 0; index < images.length; index++) {
-    //     formData.append("images", images[index]);
-    //   }
-    // }
-    // const res = await api.post("/idioms", formData);
-
-    // Upload images using cloudinary already
     const res = await api.post("/idioms", { title, content, images });
 
     dispatch({

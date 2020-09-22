@@ -12,7 +12,9 @@ const SideMenu = () => {
         <Nav.Item>
           <div class="card">
             <div class="icon">
-              <i class="material-icons">face</i>
+              <i class="material-icons" style={{ "font-size": "35px" }}>
+                face
+              </i>
             </div>
             <p class="title">
               <Nav.Link
@@ -29,7 +31,9 @@ const SideMenu = () => {
         <Nav.Item>
           <div class="card">
             <div class="icon">
-              <i class="material-icons">history_edu</i>
+              <i class="material-icons" style={{ "font-size": "35px" }}>
+                history_edu
+              </i>
             </div>
             <p class="title">
               <Nav.Link
@@ -43,7 +47,7 @@ const SideMenu = () => {
             </p>
           </div>
         </Nav.Item>
-        <Nav.Item>
+        {/* <Nav.Item>
           <div class="card">
             <div class="icon">
               <i class="material-icons">group_add</i>
@@ -59,7 +63,7 @@ const SideMenu = () => {
               </Nav.Link>
             </p>
           </div>
-        </Nav.Item>
+        </Nav.Item> */}
         {/* <Nav.Item>
           <div class="card">
             <div class="icon">
@@ -80,7 +84,9 @@ const SideMenu = () => {
         <Nav.Item>
           <div class="card">
             <div class="icon">
-              <i class="material-icons">sports_esports</i>
+              <i class="material-icons" style={{ "font-size": "35px" }}>
+                sports_esports
+              </i>
             </div>
             <p class="title">
               <Nav.Link
@@ -90,6 +96,25 @@ const SideMenu = () => {
                 strict={true}
               >
                 <p class="color-text">Game</p>
+              </Nav.Link>
+            </p>
+          </div>
+        </Nav.Item>
+        <Nav.Item>
+          <div class="card">
+            <div class="icon">
+              <i class="material-icons" style={{ "font-size": "35px" }}>
+                sports_esports
+              </i>
+            </div>
+            <p class="title">
+              <Nav.Link
+                as={NavLink}
+                to="/admin/socketgame"
+                activeClassName="active"
+                strict={true}
+              >
+                <p class="color-text">Competitive Game</p>
               </Nav.Link>
             </p>
           </div>

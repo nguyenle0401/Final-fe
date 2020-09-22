@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-  Container,
-  CardColumns,
-  Jumbotron,
-  Button,
-  Form,
-  FormControl,
-} from "react-bootstrap";
 import "./style.css";
+import SearchItem from "../../components/SearchItem";
+import { Container, CardColumns, Button, Row, Col } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { idiomActions } from "../../redux/actions";
 import IdiomCard from "../../components/IdiomCard";
@@ -23,22 +17,51 @@ const HomePage = () => {
   const idioms = useSelector((state) => state.idiom.idioms);
   const totalPageNum = useSelector((state) => state.idiom.totalPageNum);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
-  //Carousel
+  const user = useSelector((state) => state.auth.user);
   const [index, setIndex] = useState(0);
+  const [query, setQuery] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredIdioms, setFilteredIdioms] = useState([]);
 
-  const handleSelect = (selectedIndex, e) => {
-    setIndex(selectedIndex);
-  };
+  // const handleSelect = (selectedIndex, e) => {
+  //   setIndex(selectedIndex);
+  // };
 
-  //
   useEffect(() => {
     dispatch(idiomActions.idiomsRequest(pageNum));
   }, [dispatch, pageNum]);
 
-  // const handleClickOnIdiom = (id) => {
-  //   history.push(`/idioms/${id}`);
-  // };
+  //Search idioms
+  const handleSubmitSearch = (e) => {
+    e.preventDefault();
+    setPageNum(1);
+    setQuery(searchInput);
+  };
+
+  useEffect(() => {
+    setFilteredIdioms(idioms);
+  }, [idioms]);
+
+  const handleInputChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+  const renderIdioms = (arr) => {
+    const favoriteWords = arr.map((e) => e._id);
+    return (
+      <CardColumns>
+        {filteredIdioms.map((idiom) => {
+          return (
+            <IdiomCard
+              liked={favoriteWords.includes(idiom._id)}
+              idiom={idiom}
+              key={idiom._id}
+              // handleClick={handleClickOnIdiom}
+            />
+          );
+        })}
+      </CardColumns>
+    );
+  };
 
   return (
     <>
@@ -54,93 +77,61 @@ const HomePage = () => {
                   consectetur adipisicing elit. Delectus, ex!
                 </p>
                 {isAuthenticated && (
-                  <Link to="/idioms/add">
-                    <div variant="primary">
-                      <div id="main">
-                        <div class="container">
-                          <div class="row">
-                            <div class="block col-md-2">
-                              <a href="#" class="btn-con btn-con-1 color-green">
-                                <Button variant="warning">Contribute</Button>
-                              </a>
+                  <div>
+                    <div>
+                      <Link to="/idioms/add">
+                        <div variant="primary">
+                          <div id="main">
+                            <div class="container">
+                              <div class="row">
+                                <div class="block col-md-2">
+                                  <a
+                                    href="#"
+                                    class="btn-con btn-con-1 color-green"
+                                  >
+                                    <Button variant="warning">
+                                      Contribute
+                                    </Button>
+                                  </a>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </Link>
                     </div>
-                  </Link>
+                    <div></div>
+                    <Row>
+                      <Col md={4}>
+                        <SearchItem
+                          searchInput={searchInput}
+                          handleInputChange={handleInputChange}
+                          handleSubmit={handleSubmitSearch}
+                          loading={loading}
+                        />
+                      </Col>
+                    </Row>
+                  </div>
                 )}
               </div>
               <div class="col-lg-8">
-                <img
-                  src="../../../public/logo.png"
-                  alt="Image"
-                  class="img-fluid"
-                  style={{ width: "30%" }}
-                />
+                {/* <img src="1.png" alt="Image" class="img-fluid" width="70%" /> */}
               </div>
             </div>
           </div>
         </div>
-        {/* <Carousel activeIndex={index} onSelect={handleSelect}>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://images.pexels.com/photos/1735658/pexels-photo-1735658.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              alt="First slide"
-            />
-            <Carousel.Caption>
-              {isAuthenticated && (
-                <Link to="/idioms/add">
-                  <div variant="primary">
-                    <div id="main">
-                      <div class="container">
-                        <div class="row">
-                          <div class="block col-md-2">
-                            <a href="#" class="btn-con btn-con-1 color-green">
-                              <svg>
-                                <rect
-                                  x="0"
-                                  y="0"
-                                  fill="none"
-                                  width="100%"
-                                  height="100%"
-                                />
-                              </svg>
-                              Contribute
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              )}
-            </Carousel.Caption>
-          </Carousel.Item>
-        </Carousel> */}
-        {/* <Jumbotron className="text-center"></Jumbotron> */}
         {loading ? (
           <ClipLoader color="#f86c6b" size={150} loading={loading} />
         ) : (
           <>
             {idioms.length ? (
-              <>
-                <CardColumns>
-                  {idioms.map((idiom) => (
-                    <IdiomCard
-                      idiom={idiom}
-                      key={idiom._id}
-                      // handleClick={handleClickOnIdiom}
-                    />
-                  ))}
-                </CardColumns>
-              </>
+              <>{renderIdioms((user && user.favoriteWords) || [])}</>
             ) : (
               <p>There are no idioms</p>
             )}
           </>
         )}
+
         <PaginationItem
           pageNum={pageNum}
           setPageNum={setPageNum}

@@ -44,6 +44,8 @@ const authReducer = (state = initialState, action) => {
     case types.UPDATE_PROFILE_SUCCESS:
       return { ...state, loading: false, user: { ...state.user, payload } };
 
+    case types.UPDATE_USER_FAVORITES:
+      return { ...state, user: { ...state.user, favoriteWords: payload } };
     case types.REGISTER_FAILURE:
     case types.UPDATE_PROFILE_FAILURE:
       return { ...state, loading: false };

@@ -12,6 +12,7 @@ import IdiomListPage from "../Admin/IdiomListPage";
 import IdiomDetailPage from "../IdiomDetailPage";
 import MessengerPage from "../Admin/MessengerPage";
 import GamePage from "../Admin/GamePage";
+import SocketGamePage from "../Admin/SocketGamePage";
 
 const AdminLayout = () => {
   return (
@@ -24,7 +25,7 @@ const AdminLayout = () => {
             <AlertMsg />
             <Switch>
               <Route exact path="/admin/profile" component={ProfilePage} />
-              <Route exact path="/admin/friends" component={FriendListPage} />
+              {/* <Route exact path="/admin/friends" component={FriendListPage} /> */}
               <Route exact path="/admin/idioms" component={IdiomListPage} />
               <Route
                 exact
@@ -43,6 +44,11 @@ const AdminLayout = () => {
               />
               {/* <Route exact path="/admin/messenger" component={MessengerPage} /> */}
               <Route exact path="/admin/game" component={GamePage} />
+              <Route
+                exact
+                path="/admin/socketgame"
+                component={SocketGamePage}
+              />
               <Route component={NotFoundPage} />
             </Switch>
           </Col>

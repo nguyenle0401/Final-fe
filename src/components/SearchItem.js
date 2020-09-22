@@ -33,6 +33,34 @@ const SearchItem = ({
         )}
       </Form.Row>
     </Form>
+    // <div>
+    //   <div class="searchBox">
+    //     <input
+    //       class="searchInput"
+    //       id="search-input"
+    //       placeholder="Search.."
+    //       value={searchInput}
+    //       onChange={handleInputChange}
+    //       type="text"
+    //       name=""
+    //       placeholder="Search"
+    //     />
+    //     {loading ? (
+    //       <button variant="success" type="button" disabled>
+    //         <span
+    //           className="spinner-border spinner-border-sm"
+    //           role="status"
+    //           aria-hidden="true"
+    //         ></span>
+    //         Searching...
+    //       </button>
+    //     ) : (
+    //       <button class="searchButton" type="submit">
+    //         <i class="material-icons">search</i>
+    //       </button>
+    //     )}
+    //   </div>
+    // </div>
   );
 };
 

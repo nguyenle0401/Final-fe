@@ -12,7 +12,7 @@ import { authActions } from "../../../redux/actions/auth.actions";
 const IdiomListPage = () => {
   const [pageNum, setPageNum] = useState(1);
   const [searchInput, setSearchInput] = useState("");
-  const [myFavorWords, setmyFavorWords] = useState(false);
+  const [myFavorIdioms, setmyFavorIdioms] = useState(false);
   const [sortBy, setSortBy] = useState({ key: "", ascending: -1 });
   const [query, setQuery] = useState("");
   const dispatch = useDispatch();
@@ -22,16 +22,14 @@ const IdiomListPage = () => {
   const currentUser = useSelector((state) => state.auth.user);
   const totalPageNum = useSelector((state) => state.idiom.totalPageNum);
 
-  console.log(currentUser);
-
   const handleInputChange = (e) => {
     setSearchInput(e.target.value);
   };
+
   const handleSubmitSearch = (e) => {
     e.preventDefault();
     setPageNum(1);
     setQuery(searchInput);
-    // dispatch(idiomActions.idiomsRequest(1));
   };
 
   const handleSort = (key) => {
@@ -43,14 +41,14 @@ const IdiomListPage = () => {
     }
   };
 
-  const handleFavorWords = () => {
-    if (myFavorWords) {
+  const handleFavorIdioms = () => {
+    if (myFavorIdioms) {
       setFilteredIdioms(idioms);
-      setmyFavorWords(false);
+      setmyFavorIdioms(false);
     } else {
       dispatch(authActions.getCurrentUser());
       setFilteredIdioms(currentUser.favoriteWords);
-      setmyFavorWords(true);
+      setmyFavorIdioms(true);
     }
   };
 
@@ -77,9 +75,9 @@ const IdiomListPage = () => {
         <Col md={4} className="d-flex justify-content-end align-items-start">
           <FormCheck
             type="checkbox"
-            label="My Favorite Word"
-            checked={myFavorWords}
-            onChange={handleFavorWords}
+            label="My Favorite Idioms"
+            checked={myFavorIdioms}
+            onChange={handleFavorIdioms}
           />
         </Col>
       </Row>

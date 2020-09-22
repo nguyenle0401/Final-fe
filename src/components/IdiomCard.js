@@ -1,29 +1,21 @@
 import React from "react";
-import Moment from "react-moment";
 import api from "../redux/api";
 import { makeStyles } from "@material-ui/core/styles";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import RestoreIcon from "@material-ui/icons/Restore";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
+import * as types from "../redux/constants/auth.constants";
 
-const useStyles = makeStyles({
-  root: {
-    width: 500,
-  },
-});
-const IdiomCard = ({ idiom }) => {
-  const handleClickLike = () => {
-    api.get(`/idioms/favorite/${idiom._id}`);
+import { useDispatch } from "react-redux";
+const IdiomCard = ({ idiom, liked }) => {
+  const dispatch = useDispatch();
+
+  const handleClickLike = async () => {
+    const res = await api.get(`/idioms/favorite/${idiom._id}`);
+    console.log("kkk", res.data);
+    dispatch({
+      type: types.UPDATE_USER_FAVORITES,
+      payload: res.data.favoriteWords,
+    });
   };
 
-  const handleClick = () => {
-    api.get(`/idioms/${idiom._id}`);
-  };
-
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
   return (
     <div>
       <div class="courses-container">
@@ -60,14 +52,17 @@ const IdiomCard = ({ idiom }) => {
             <div>
               <span class="progress-text">@{idiom?.author?.name} created </span>
             </div>
-            <button class="btn-card" onClick={() => handleClickLike()}>
-              Like
+            <button
+              class={`btn-card ${liked ? "liked" : ""}`}
+              onClick={() => handleClickLike()}
+            >
+              {liked ? "like" : "ulike"}
             </button>
           </div>
         </div>
       </div>
 
-      <div class="social-panel-container">
+      {/* <div class="social-panel-container">
         <div class="social-panel">
           <p>
             Created with <i class="fa fa-heart"></i> by
@@ -108,7 +103,7 @@ const IdiomCard = ({ idiom }) => {
             </li>
           </ul>
         </div>
-      </div>
+      </div> */}
       {/* <button class="floating-btn">Get in Touch</button> */}
     </div>
   );

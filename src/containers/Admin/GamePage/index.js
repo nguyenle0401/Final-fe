@@ -3,6 +3,7 @@ import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "react-bootstrap";
 import { gameActions } from "../../../redux/actions";
+import { Redirect } from "react-router-dom";
 
 function rand(items) {
   // "~~" for a closest "int"
@@ -15,14 +16,15 @@ const GamePage = () => {
   const gameObj = useSelector((s) => s.game);
 
   const [currentNum, setCurrentNum] = useState(0);
+  const [cliked, setCliked] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
 
-  console.log(gameObj);
   useEffect(() => {
     dispatch(gameActions.fetchGame());
   }, []);
 
   const handleNavigation = (step) => {
+    setCliked(false);
     setCurrentNum(currentNum + step);
   };
   const calcTotalScore = (tempScore) => {
@@ -34,9 +36,6 @@ const GamePage = () => {
 
   return (
     <div className="bg-qui" style={{ width: "100%" }}>
-      <Button variant="warning  d-flex justify-content-center align-items-center">
-        Competition
-      </Button>
       <GameInfo
         user={user}
         qty={gameObj.qty}
@@ -51,6 +50,8 @@ const GamePage = () => {
             setCurrentNum={setCurrentNum}
             currentNum={currentNum}
             calcTotalScore={calcTotalScore}
+            cliked={cliked}
+            setCliked={setCliked}
           />
           <div>
             <GameNaviation
@@ -115,40 +116,84 @@ const GameNaviation = ({
 };
 let time = 300;
 let score = 0;
-const handleAnswer = (v, answer, currentNum, setCurrentNum) => {
+const handleAnswer = (
+  v,
+  answer,
+  currentNum,
+  setCurrentNum,
+  setCliked,
+  cliked,
+  nQuestions
+) => {
+  if (cliked) {
+    return;
+  }
   let result;
   if (v == answer) {
     result = { status: "win", rate: 1 };
-    alert("You win");
   } else {
     result = { status: "lose", rate: 0 };
-    alert("You lose");
   }
-  console.log(result.status);
-  console.log("pre", score);
   score = score + result.rate * time;
-  console.log("score", score);
-  setCurrentNum(currentNum + 1);
-  console.log("this round", currentNum + 1);
+  setCliked(true);
+  setTimeout(() => {
+    if (currentNum >= nQuestions - 1) return;
+    setCurrentNum(currentNum + 1);
+    setCliked(false);
+  }, 5000);
 };
 
-const Answer = ({ v, answer, currentNum, setCurrentNum }) => {
+const Answer = ({
+  v,
+  answer,
+  currentNum,
+  setCurrentNum,
+  correct,
+  setCliked,
+  cliked,
+  nQuestions,
+}) => {
   return (
     <div>
       <button
-        className="style-answer"
-        onClick={() => handleAnswer(v, answer, currentNum, setCurrentNum)}
+        className={`style-answer ${
+          correct ? "correct-answer" : "wrong-answer"
+        }`}
+        onClick={() =>
+          handleAnswer(
+            v,
+            answer,
+            currentNum,
+            setCurrentNum,
+            setCliked,
+            cliked,
+            nQuestions
+          )
+        }
       >
         {v}
       </button>
     </div>
   );
 };
-const GameCard = ({ question, currentNum, setCurrentNum }) => {
+const GameCard = ({
+  question,
+  currentNum,
+  setCurrentNum,
+  cliked,
+  setCliked,
+}) => {
   const [time, setTime] = useState(0);
-  // useEffect(() => {}, []);
 
-  const renderAnswers = (question, answer, currentNum, setCurrentNum) => {
+  const renderAnswers = (
+    question,
+    answer,
+    currentNum,
+    setCurrentNum,
+    cliked,
+    setCliked
+  ) => {
+    console.log("render answers ", cliked);
     let arr = [null, null, null, null];
     let choices = [0, 1, 2, 3];
     for (let i in question) {
@@ -158,24 +203,35 @@ const GameCard = ({ question, currentNum, setCurrentNum }) => {
         arr[foo] = (
           <Answer
             v={question[i]}
+            correct={question[i] == answer && cliked}
+            cliked={cliked}
             answer={answer}
             currentNum={currentNum}
             setCurrentNum={setCurrentNum}
+            setCliked={setCliked}
+            nQuestions={question.length}
           />
         );
-        console.log("asdsa", question[i]);
       }
     }
-    console.log(arr);
     return <>{arr}</>;
   };
+
+  if (!question) return <Redirect to="/" />;
 
   return (
     <div className="game_card_container">
       <button className="style-question">
-        "{question.title}", what's dose it mean?
+        "{question.title}", what dose it mean?
       </button>
-      {renderAnswers(question, question.answer, currentNum, setCurrentNum)}
+      {renderAnswers(
+        question,
+        question.answer,
+        currentNum,
+        setCurrentNum,
+        cliked,
+        setCliked
+      )}
     </div>
   );
 };
