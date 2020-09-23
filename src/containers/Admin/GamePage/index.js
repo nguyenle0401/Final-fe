@@ -222,7 +222,7 @@ const GameCard = ({
   return (
     <div className="game_card_container">
       <button className="style-question">
-        "{question.title}", what dose it mean?
+        "{question.title}", what does it mean?
       </button>
       {renderAnswers(
         question,

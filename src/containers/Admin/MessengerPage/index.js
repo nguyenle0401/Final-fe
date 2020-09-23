@@ -32,6 +32,7 @@ const MessengerPage = () => {
           accessToken,
         },
       });
+      console.log("accessToken", accessToken);
       socket.emit(socketTypes.GLOBAL_MSG_INIT);
     }
     return () => {

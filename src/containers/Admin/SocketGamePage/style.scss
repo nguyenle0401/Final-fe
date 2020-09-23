@@ -1,0 +1,9 @@
+.pin-panel {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  text-decoration: darkmagenta;
+  & p {
+    color: crimson;
+  }
+}
