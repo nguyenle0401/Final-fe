@@ -29,7 +29,9 @@ const SearchItem = ({
             Searching...
           </Button>
         ) : (
-          <Button type="submit">Search</Button>
+          <Button type="submit" className="color-btn">
+            Search
+          </Button>
         )}
       </Form.Row>
     </Form>

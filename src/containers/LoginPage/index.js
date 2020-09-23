@@ -55,8 +55,12 @@ const LoginPage = ({ setShowRegister, setShowLogin }) => {
         <Col xs={{ span: 8, offset: 2 }}>
           <Form onSubmit={handleSubmit}>
             <div className="text-center mb-3">
-              <h1 className="text-primary">Login</h1>
-              {/* <img src="1.png"></img> */}
+              <img
+                src="favicon.png"
+                alt="login"
+                width="200px"
+                height="200px"
+              ></img>
               <p className="lead">
                 <FontAwesomeIcon icon="user" size="1x" /> Sign Into Your Account
               </p>
@@ -91,12 +95,7 @@ const LoginPage = ({ setShowRegister, setShowLogin }) => {
             </Form.Group>
 
             {loading ? (
-              <Button
-                className="btn-block"
-                variant="primary"
-                type="button"
-                disabled
-              >
+              <Button className="btn-block" type="button" disabled>
                 <span
                   className="spinner-border spinner-border-sm"
                   role="status"
@@ -105,53 +104,58 @@ const LoginPage = ({ setShowRegister, setShowLogin }) => {
                 Loading...
               </Button>
             ) : (
-              <Button className="btn-block" type="submit" variant="primary">
+              <Button className="btn-block color-btn" type="submit">
                 Login
               </Button>
             )}
             <hr />
-            <div className="d-flex flex-column text-center">
-              <FacebookLogin
-                appId={FB_APP_ID}
-                fields="name,email,picture"
-                callback={loginWithFacebook}
-                icon="fa-facebook"
-                onFailure={(err) => {
-                  console.log("FB LOGIN ERROR:", err);
-                }}
-                containerStyle={{
-                  textAlign: "center",
-                  backgroundColor: "#3b5998",
-                  borderColor: "#3b5998",
-                  flex: 1,
-                  display: "flex",
-                  color: "#fff",
-                  cursor: "pointer",
-                  marginBottom: "3px",
-                }}
-                buttonStyle={{
-                  flex: 1,
-                  textTransform: "none",
-                  padding: "12px",
-                  background: "none",
-                  border: "none",
-                }}
-              />
-
-              <GoogleLogin
-                className="google-btn d-flex justify-content-center"
-                clientId={GOOGLE_CLIENT_ID}
-                buttonText="Login with Google"
-                onSuccess={loginWithGoogle}
-                onFailure={(err) => {
-                  console.log("GOOGLE LOGIN ERROR:", err);
-                }}
-                cookiePolicy="single_host_origin"
-              />
+            <div className=" d-flex flex-column text-center">
+              <div>
+                <FacebookLogin
+                  appId={FB_APP_ID}
+                  fields="name,email,picture"
+                  callback={loginWithFacebook}
+                  icon="fa-facebook"
+                  onFailure={(err) => {
+                    console.log("FB LOGIN ERROR:", err);
+                  }}
+                  containerStyle={{
+                    textAlign: "center",
+                    backgroundColor: "#3b5998",
+                    borderColor: "#3b5998",
+                    flex: 1,
+                    display: "flex",
+                    color: "#fff",
+                    cursor: "pointer",
+                    marginBottom: "3px",
+                  }}
+                  buttonStyle={{
+                    flex: 1,
+                    textTransform: "none",
+                    padding: "12px",
+                    background: "none",
+                    border: "none",
+                  }}
+                />
+              </div>
+              <div>
+                <GoogleLogin
+                  className="google-btn d-flex justify-content-center"
+                  clientId={GOOGLE_CLIENT_ID}
+                  buttonText="Login with Google"
+                  onSuccess={loginWithGoogle}
+                  onFailure={(err) => {
+                    console.log("GOOGLE LOGIN ERROR:", err);
+                  }}
+                  cookiePolicy="single_host_origin"
+                />
+              </div>
             </div>
             <p>
-              Don't have an account?{" "}
-              <Button onClick={handleSignUp}>Sign Up</Button>
+              Don't have an account?
+              <Button className="color-btn-log" onClick={handleSignUp}>
+                Sign Up
+              </Button>
             </p>
           </Form>
         </Col>

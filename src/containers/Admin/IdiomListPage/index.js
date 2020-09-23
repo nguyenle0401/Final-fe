@@ -62,10 +62,13 @@ const IdiomListPage = () => {
 
   return (
     <Container fluid>
-      <h4 className="mt-3">Idiom Manage</h4>
+      <h4 className="mt-3" style={{ fontWeight: "bold" }}>
+        Idioms Manage
+      </h4>
       <Row>
         <Col md={4}>
           <SearchItem
+            className="color-btn"
             searchInput={searchInput}
             handleInputChange={handleInputChange}
             handleSubmit={handleSubmitSearch}

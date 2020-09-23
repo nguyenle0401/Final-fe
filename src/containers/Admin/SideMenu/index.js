@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import { Nav } from "react-bootstrap";
+import { Container, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 // import { useSelector, useDispatch } from "react-redux";
@@ -10,7 +10,7 @@ const SideMenu = () => {
     <Nav className="col-md-3 col-lg-2 d-md-block sidebar collapse">
       <div className="sidebar-sticky pt-3">
         <Nav.Item>
-          <div class="card">
+          <div>
             <div class="icon">
               <i class="material-icons" style={{ "font-size": "35px" }}>
                 face
@@ -29,7 +29,7 @@ const SideMenu = () => {
           </div>
         </Nav.Item>
         <Nav.Item>
-          <div class="card">
+          <div>
             <div class="icon">
               <i class="material-icons" style={{ "font-size": "35px" }}>
                 history_edu
@@ -82,7 +82,7 @@ const SideMenu = () => {
           </div>
         </Nav.Item> */}
         <Nav.Item>
-          <div class="card">
+          <div>
             <div class="icon">
               <i class="material-icons" style={{ "font-size": "35px" }}>
                 sports_esports
@@ -101,7 +101,7 @@ const SideMenu = () => {
           </div>
         </Nav.Item>
         <Nav.Item>
-          <div class="card">
+          <div>
             <div class="icon">
               <i class="material-icons" style={{ "font-size": "35px" }}>
                 sports_esports
@@ -121,22 +121,6 @@ const SideMenu = () => {
         </Nav.Item>
       </div>
     </Nav>
-    // <div class="card">
-    //   <div class="icon">
-    //     <i class="material-icons">face</i>
-    //   </div>
-    //   <p class="title">
-    //     <Nav.Link
-    //       as={NavLink}
-    //       to="/admin/game"
-    //       activeClassName="active"
-    //       strict={true}
-    //     >
-    //       Game
-    //     </Nav.Link>
-    //   </p>
-    //   <p class="text">Check all your favourites in one place.</p>
-    // </div>
   );
 };
 

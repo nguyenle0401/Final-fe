@@ -29,10 +29,10 @@
   left: 40px;
   height: 299px;
   width: 320px; */
-  background: #fff;
+  background: rgb(249, 250, 249);
   border-radius: 3px;
   overflow: hidden;
-  box-shadow: 10px 10px 15px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 10px 10px 15px 0 rgba(4, 51, 4, 0.705);
 }
 
 .color-btn {

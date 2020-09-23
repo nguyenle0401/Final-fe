@@ -115,7 +115,7 @@ const HomePage = () => {
                 )}
               </div>
               <div class="col-lg-8">
-                {/* <img src="1.png" alt="Image" class="img-fluid" width="70%" /> */}
+                <img src="home.png" alt="Image" class="img-fluid" />
               </div>
             </div>
           </div>

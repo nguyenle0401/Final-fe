@@ -79,7 +79,13 @@ const RegisterPage = ({ setShowLogin, setShowRegister }) => {
       <Row>
         <Col md={{ span: 6, offset: 3 }}>
           <div className="text-center mb-3">
-            <h1 className="text-primary">Sign Up</h1>
+            <img
+              src="favicon.png"
+              alt="login"
+              width="200px"
+              height="200px"
+            ></img>
+            {/* <h1 className="text-primary">Sign Up</h1> */}
             <p className="lead">
               <FontAwesomeIcon icon="user" size="1x" /> Create Your Account
             </p>
@@ -154,12 +160,7 @@ const RegisterPage = ({ setShowLogin, setShowRegister }) => {
             </Form.Group>
 
             {loading ? (
-              <Button
-                className="btn-block"
-                variant="primary"
-                type="button"
-                disabled
-              >
+              <Button className="btn-block" type="button" disabled>
                 <span
                   className="spinner-border spinner-border-sm"
                   role="status"
@@ -168,14 +169,16 @@ const RegisterPage = ({ setShowLogin, setShowRegister }) => {
                 Loading...
               </Button>
             ) : (
-              <Button className="btn-block" type="submit" variant="primary">
+              <Button className="btn-block color-btn" type="submit">
                 Register
               </Button>
             )}
 
             <p>
-              Already have an account?{" "}
-              <Button onClick={handleSignIn}>Sign In</Button>
+              Already have an account?
+              <Button className="color-btn-log" onClick={handleSignIn}>
+                Sign In
+              </Button>
             </p>
           </Form>
         </Col>

@@ -7,7 +7,6 @@ import { authActions } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import LoginPage from "../LoginPage";
 import RegisterPage from "../RegisterPage";
-import SearchItem from "../../components/SearchItem.js";
 const PublicNavbar = () => {
   const [showLogin, setShowLogin] = React.useState(false);
   const [showRegister, setShowRegister] = React.useState(false);
@@ -55,7 +54,9 @@ const PublicNavbar = () => {
           setShowLogin={setShowLogin}
         />
         <Modal.Footer>
-          <Button onClick={handleCloseLogin}>Close</Button>
+          <Button variant="btn btn-light" onClick={handleCloseLogin}>
+            Close
+          </Button>
         </Modal.Footer>
       </Modal>
       <Modal show={showRegister} onHide={handleCloseRegister}>
@@ -64,25 +65,26 @@ const PublicNavbar = () => {
           setShowRegister={setShowRegister}
         />
         <Modal.Footer>
-          <Button onClick={handleCloseRegister}>Close</Button>
+          <Button variant="btn btn-light" onClick={handleCloseRegister}>
+            Close
+          </Button>
         </Modal.Footer>
       </Modal>
-      <Navbar expand="lg" width="100%">
+      <Navbar expand="lg" style={{ width: "100%" }} className="position-fixed">
         <div
           style={{ width: "100%" }}
-          className="d-flex flex-column align-items-center justify-content-center"
+          className="d-flex flex-row align-items-center justify-content-center"
         >
           <div style={{ width: "100%" }}>
             <Navbar.Brand as={Link} to="/" className="nav-brand">
-              <div className="d-flex flex-column justify-content-center align-items-center logo">
-                {/* <img src="/logo.png" alt="EL" style={{ height: "50%" }} /> */}
+              <div className=" logo">
+                <img src="/favicon.png" alt="EL" style={{ width: "80px" }} />
               </div>
             </Navbar.Brand>
           </div>
           <div className="nav-2">
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav" className="nav-collapse">
-              <Nav className="mr-auto"></Nav>
               {!loading && <>{isAuthenticated ? authLinks : publicLinks}</>}
             </Navbar.Collapse>
           </div>
