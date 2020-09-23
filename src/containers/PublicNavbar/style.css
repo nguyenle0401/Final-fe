@@ -1,3 +1,11 @@
 .nav-style {
-  background-color: #f9f9fa;
+  border: 1px solid red;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.sign-up {
+  padding: 14px 40px;
 }

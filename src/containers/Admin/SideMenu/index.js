@@ -8,7 +8,7 @@ import { NavLink } from "react-router-dom";
 const SideMenu = () => {
   return (
     <Nav className="col-md-3 col-lg-2 d-md-block sidebar collapse">
-      <div className="sidebar-sticky pt-3">
+      <div>
         <Nav.Item>
           <div>
             <div class="icon">
@@ -47,40 +47,6 @@ const SideMenu = () => {
             </p>
           </div>
         </Nav.Item>
-        {/* <Nav.Item>
-          <div class="card">
-            <div class="icon">
-              <i class="material-icons">group_add</i>
-            </div>
-            <p class="title">
-              <Nav.Link
-                as={NavLink}
-                to="/admin/friends"
-                activeClassName="active"
-                strict={true}
-              >
-                <p class="color-text">Friends</p>
-              </Nav.Link>
-            </p>
-          </div>
-        </Nav.Item> */}
-        {/* <Nav.Item>
-          <div class="card">
-            <div class="icon">
-              <i class="material-icons">chat</i>
-            </div>
-            <p class="title">
-              <Nav.Link
-                as={NavLink}
-                to="/admin/messenger"
-                activeClassName="active"
-                strict={true}
-              >
-                <p class="color-text">Message</p>
-              </Nav.Link>
-            </p>
-          </div>
-        </Nav.Item> */}
         <Nav.Item>
           <div>
             <div class="icon">

@@ -115,7 +115,7 @@
 }
 
 body {
-  background-image: linear-gradient(50deg, #f9fcfa, #ffffff);
+  // background-image: linear-gradient(50deg, #07f757, #ffffff);
   font-family: "Muli", sans-serif;
   // display: flex;
   // align-items: center;
@@ -464,4 +464,10 @@ body {
 //PAGINATION
 .MuiPagination-ul {
   justify-content: center;
+}
+//HOMEPAGE
+.floating-btn {
+  background-image: linear-gradient(50deg, #7201bd, #1db7e6);
+  border: 1px solid rgb(92, 3, 165);
+  font-size: 14px;
 }

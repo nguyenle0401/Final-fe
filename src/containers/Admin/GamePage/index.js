@@ -35,7 +35,7 @@ const GamePage = () => {
   }
 
   return (
-    <div className="bg-qui" style={{ width: "100%" }}>
+    <div style={{ width: "100%" }}>
       <GameInfo
         user={user}
         qty={gameObj.qty}
@@ -136,6 +136,7 @@ const handleAnswer = (
   }
   score = score + result.rate * time;
   setCliked(true);
+
   setTimeout(() => {
     if (currentNum >= nQuestions - 1) return;
     setCurrentNum(currentNum + 1);

@@ -7,3 +7,46 @@
     color: crimson;
   }
 }
+.game_card_container {
+  width: 50% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
+  flex-direction: column;
+}
+.style-question {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  min-width: 100% !important;
+  max-width: 100 !important;
+  width: 100% !important;
+  padding: 12px;
+  font-weight: bold;
+  background-color: rgb(250, 250, 250);
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  font-family: monospace;
+}
+.style-answer {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  min-width: 100% !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  font-weight: bold;
+  background-color: rgb(219, 247, 247);
+  color: rgb(8, 0, 0);
+  font-family: monospace;
+  padding: 12px;
+  &:disabled {
+    background-color: rgb(184, 127, 127);
+  }
+  /* font-size: 20px; */
+}
+.button {
+  border: 1px solid white;
+  background-color: white;
+}
