@@ -710,9 +710,10 @@ Time to add the logic. Let's connect to the server and get the list of idioms.
     }, [dispatch]);
     ...
     {loading ? (
-      <ClipLoader
+      <HashLoader
 
-  color="#f86c6b" size={150} loading={loading} />
+
+  color="green" size={150} loading={loading} />
     ) : (
       <>
         {idioms.length ? (
@@ -1254,7 +1255,7 @@ Next, we will capture the idiom id in the url that links to Idiom Detail Page. T
   return (
     <>
       {loading ? (
-        <ClipLoader color="#f86c6b" size={150} loading={loading} />
+        <HashLoader color="green" size={150} loading={loading} />
       ) : (
         <>
           {idiom && (

@@ -3,7 +3,7 @@ import { useParams, useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../redux/actions";
 import { Container, Row, Col } from "react-bootstrap";
-import { ClipLoader } from "react-spinners";
+import { HashLoader } from "react-spinners";
 
 const VerifyEmailPage = () => {
   const params = useParams();
@@ -40,7 +40,7 @@ const VerifyEmailPage = () => {
           <br />
           <div className="text-center h-75 d-flex flex-row justify-content-center align-items-center">
             {loading ? (
-              <ClipLoader color="#f86c6b" size={150} loading={true} />
+              <HashLoader color="green" size={150} loading={true} />
             ) : (
               <>
                 {params?.code === "_" ? (

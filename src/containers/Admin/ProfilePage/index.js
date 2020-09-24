@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { authActions } from "../../../redux/actions";
-import { ClipLoader } from "react-spinners";
+import { HashLoader } from "react-spinners";
 
 const ProfilePage = () => {
   const currentUser = useSelector((state) => state.auth.user);
@@ -76,7 +76,7 @@ const ProfilePage = () => {
           <Col>
             {loading ? (
               <div className="d-flex justify-content-center align-items-center">
-                <ClipLoader color="#f86c6b" size={150} loading={true} />
+                <HashLoader color="green" size={150} loading={true} />
               </div>
             ) : (
               <Form onSubmit={handleSubmit}>

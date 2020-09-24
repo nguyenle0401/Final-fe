@@ -3,7 +3,7 @@ import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { idiomActions } from "../../redux/actions";
 import { Button } from "react-bootstrap";
-import { ClipLoader } from "react-spinners";
+import { HashLoader } from "react-spinners";
 import Moment from "react-moment";
 import Markdown from "react-markdown";
 import ReviewList from "../../components/ReviewList";
@@ -58,7 +58,7 @@ const IdiomDetailPage = () => {
         )}
       </div>
       {loading ? (
-        <ClipLoader color="#f86c6b" size={150} loading={loading} />
+        <HashLoader color="green" size={150} loading={loading} />
       ) : (
         <>
           {idiom && (

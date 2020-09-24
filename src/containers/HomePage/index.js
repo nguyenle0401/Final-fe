@@ -4,7 +4,7 @@ import { Container, CardColumns, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { idiomActions } from "../../redux/actions";
 import IdiomCard from "../../components/IdiomCard";
-import ClipLoader from "react-spinners/ClipLoader";
+import HashLoader from "react-spinners/HashLoader";
 import { Link } from "react-router-dom";
 import PaginationItem from "../../components/PaginationItem";
 
@@ -102,8 +102,8 @@ const HomePage = () => {
           </div>
         </div>
         {loading ? (
-          <ClipLoader
-            color="#f86c6b"
+          <HashLoader
+            color="green"
             size={150}
             loading={loading}
             className="position-absolute justify-content-center"
