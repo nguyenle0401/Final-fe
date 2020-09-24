@@ -1,7 +1,6 @@
-export const FB_APP_ID = "215525599776984";
+export const FB_APP_ID = process.env.REACT_APP_FB_APP_ID;
 
-export const GOOGLE_CLIENT_ID =
-  "785386346216-l4fc765ollu5kkp6a4a9f5pcmgatks0t.apps.googleusercontent.com";
+export const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 export const friendListTabNames = {
   FRIENDS: "FRIEND_LIST.TAB_KEY.FRIENDS",
