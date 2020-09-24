@@ -44,9 +44,13 @@
   /* font-size: 20px; */
 }
 
-.button {
-  border: 1px solid white;
-  background-color: white;
+// .button {
+//   border: 1px solid white;
+//   background-color: white;
+// }
+
+.clicked:disabled {
+  background-color: red;
 }
 
 .answer0:disabled {

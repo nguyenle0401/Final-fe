@@ -14,7 +14,7 @@ const GamePage = () => {
   const gameObj = useSelector((s) => s.game);
 
   const [currentNum, setCurrentNum] = useState(0);
-  const [cliked, setCliked] = useState(false);
+  const [clicked, setClicked] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const GamePage = () => {
   }, [dispatch]);
 
   const handleNavigation = (step) => {
-    setCliked(false);
+    setClicked(false);
     setCurrentNum(currentNum + step);
   };
   const calcTotalScore = (tempScore) => {
@@ -48,8 +48,8 @@ const GamePage = () => {
             setCurrentNum={setCurrentNum}
             currentNum={currentNum}
             calcTotalScore={calcTotalScore}
-            cliked={cliked}
-            setCliked={setCliked}
+            clicked={clicked}
+            setClicked={setClicked}
           />
           <div>
             <GameNaviation
@@ -126,13 +126,13 @@ const handleAnswer = (
   answer,
   currentNum,
   setCurrentNum,
-  setCliked,
-  cliked,
+  setClicked,
+  clicked,
   nQuestions
 ) => {
-  if (cliked) {
-    return;
-  }
+  // if (clicked) {
+  //   return;
+  // }
   let result;
   if (v === answer) {
     result = { status: "win", rate: 1 };
@@ -141,12 +141,12 @@ const handleAnswer = (
   }
 
   score = score + result.rate * time;
-  setCliked(true);
+  setClicked(true);
 
   setTimeout(() => {
     if (currentNum >= nQuestions - 1) return;
     setCurrentNum(currentNum + 1);
-    setCliked(false);
+    setClicked(false);
   }, 5000);
 };
 
@@ -156,24 +156,29 @@ const Answer = ({
   currentNum,
   setCurrentNum,
   correct,
-  setCliked,
-  cliked,
+  setClicked,
+  clicked,
   nQuestions,
 }) => {
+  console.log(`correct of ${v} is ${correct} and ${clicked}`);
   return (
     <div>
       <button
-        className={`style-answer ${
-          correct ? "correct-answer" : "wrong-answer"
-        }`}
+        className={
+          correct && clicked
+            ? "style-answer correct-answer"
+            : clicked
+            ? "style-answer wrong-answer"
+            : "style-answer"
+        }
         onClick={() =>
           handleAnswer(
             v,
             answer,
             currentNum,
             setCurrentNum,
-            setCliked,
-            cliked,
+            setClicked,
+            clicked,
             nQuestions
           )
         }
@@ -187,8 +192,8 @@ const GameCard = ({
   question,
   currentNum,
   setCurrentNum,
-  cliked,
-  setCliked,
+  clicked,
+  setClicked,
 }) => {
   // const [time, setTime] = useState(0);
 
@@ -197,25 +202,27 @@ const GameCard = ({
     answer,
     currentNum,
     setCurrentNum,
-    cliked,
-    setCliked
+    clicked,
+    setClicked
   ) => {
-    console.log("render answers ", cliked);
+    console.log("render answers ", clicked);
     let arr = [null, null, null, null];
     let choices = [0, 1, 2, 3];
     for (let i in question) {
       if (i.startsWith("answer")) {
         let foo = rand(choices);
         choices = choices.filter((e) => e !== foo);
+        console.log("okay", question[i] === answer);
         arr[foo] = (
           <Answer
             v={question[i]}
-            correct={question[i] === answer && cliked}
-            cliked={cliked}
+            key={i}
+            correct={question[i] === answer}
+            clicked={clicked}
             answer={answer}
             currentNum={currentNum}
             setCurrentNum={setCurrentNum}
-            setCliked={setCliked}
+            setClicked={setClicked}
             nQuestions={question.length}
           />
         );
@@ -236,8 +243,8 @@ const GameCard = ({
         question.answer,
         currentNum,
         setCurrentNum,
-        cliked,
-        setCliked
+        clicked,
+        setClicked
       )}
     </div>
   );

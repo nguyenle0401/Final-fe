@@ -66,10 +66,12 @@ const HomePage = () => {
           <div className="container pt-5 hero">
             <div className="row align-items-center text-center text-md-left">
               <div className="col-lg-4">
-                <h1 className="mb-3 display-3">Tell Your Story to the World</h1>
+                <h2 className="mb-3 display-3">
+                  "The limits of my language mean the limits of my world"
+                </h2>
                 <p>
-                  Join with us! Login or Register. Lorem ipsum dolor sit amet,
-                  consectetur adipisicing elit. Delectus, ex!
+                  An idiom is a group of words in current usage having a meaning
+                  that is not deducible from those of the individual words.
                 </p>
                 {isAuthenticated && (
                   <div>

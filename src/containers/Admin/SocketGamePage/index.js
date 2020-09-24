@@ -42,7 +42,12 @@ function SocketGamePage() {
   const [opScore, setOpScore] = useState(0);
   const [disabledClick, setDisabledClick] = useState(false);
   const [showResult, setShowResult] = useState(false);
+  const [state0, setState0] = useState({ active: false });
+  const [state1, setState1] = useState({ active: false });
+  const [state2, setState2] = useState({ active: false });
+  const [state3, setState3] = useState({ active: false });
   let name = useSelector((s) => s.auth.user);
+
   useEffect(() => {
     socket.emit("online", name._id);
     return () => {
@@ -53,6 +58,14 @@ function SocketGamePage() {
   useEffect(() => {
     socket.emit("updateScore", name._id, score);
   }, [score, name._id]);
+
+  useEffect(() => {
+    listIndex = Math.floor(Math.random() * lists.length);
+    setState0({ active: false });
+    setState1({ active: false });
+    setState2({ active: false });
+    setState3({ active: false });
+  }, [questIndex]);
 
   // useEffect(() => {
   //   if (questIndex < numberOfQuestions) {
@@ -65,13 +78,12 @@ function SocketGamePage() {
     console.log("next");
     const callback = () => {
       if (questIndex < numberOfQuestions - 1) {
-        console.log("questIndex", questIndex);
         setQuestIndex(questIndex + 1);
-        listIndex = Math.floor(Math.random() * lists.length);
-        console.log("questIndex", questIndex);
         setDisabledClick(false);
+        setShowResult(false);
       } else {
         console.log("okay");
+        setDisabledClick(true);
         setShowResult(true);
       }
     };
@@ -86,6 +98,10 @@ function SocketGamePage() {
       setOpScore(0);
       setShowResult(false);
       setQuestions([]);
+      setState0({ active: false });
+      setState1({ active: false });
+      setState2({ active: false });
+      setState3({ active: false });
     }
     setOpponent(data);
   });
@@ -126,11 +142,50 @@ function SocketGamePage() {
     );
   };
 
-  const handleClick = function (result) {
+  const handleClick = function (result, ansNum) {
+    let currentState0;
+    let currentState1;
+    let currentState2;
+    let currentState3;
+    switch (ansNum) {
+      case 0:
+        currentState0 = state0.active;
+        setState0({ active: !currentState0 });
+        break;
+      case 1:
+        currentState1 = state1.active;
+        setState1({ active: !currentState1 });
+        break;
+      case 2:
+        currentState2 = state2.active;
+        setState2({ active: !currentState2 });
+        break;
+      case 3:
+        currentState3 = state3.active;
+        setState3({ active: !currentState3 });
+        break;
+      default:
+        break;
+    }
     setDisabledClick(true);
+
     if (result) setScore(score + 1);
     if (questIndex < numberOfQuestions) {
       socket.emit("clickState", name._id);
+    }
+  };
+  const getState = (ansNum) => {
+    switch (ansNum) {
+      case 0:
+        return state0.active;
+      case 1:
+        return state1.active;
+      case 2:
+        return state2.active;
+      case 3:
+        return state3.active;
+      default:
+        break;
     }
   };
 
@@ -145,8 +200,12 @@ function SocketGamePage() {
             {lists[listIndex].map((ansNum) => {
               return (
                 <button
-                  className={"style-answer answer" + ansNum}
-                  onClick={() => handleClick(!ansNum)}
+                  className={
+                    getState(ansNum)
+                      ? "style-answer clicked answer" + ansNum
+                      : "style-answer answer" + ansNum
+                  }
+                  onClick={() => handleClick(!ansNum, ansNum)}
                   disabled={props.disabled}
                 >
                   {props.quest["answer" + ansNum]}
