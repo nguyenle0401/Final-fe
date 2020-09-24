@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Button } from "react-bootstrap";
 import { gameActions } from "../../../redux/actions";
 import { Redirect } from "react-router-dom";
 
 function rand(items) {
-  // "~~" for a closest "int"
   return items[~~(items.length * Math.random())];
 }
 
@@ -81,6 +79,9 @@ const GameInfo = ({ totalScore, user, qty, currentNum }) => {
           {currentNum + 1}/{qty}
         </strong>
       </h4>
+      <button className="replay">
+        <span class="material-icons">replay</span>{" "}
+      </button>
     </div>
   );
 };
@@ -116,6 +117,7 @@ const GameNaviation = ({
 };
 let time = 300;
 let score = 0;
+
 const handleAnswer = (
   v,
   answer,
@@ -134,6 +136,7 @@ const handleAnswer = (
   } else {
     result = { status: "lose", rate: 0 };
   }
+
   score = score + result.rate * time;
   setCliked(true);
 
@@ -218,7 +221,7 @@ const GameCard = ({
     return <>{arr}</>;
   };
 
-  if (!question) return <Redirect to="/" />;
+  if (!question) return <Redirect to="/admin/game" />;
 
   return (
     <div className="game_card_container">

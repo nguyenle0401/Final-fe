@@ -6,11 +6,9 @@ import NotFoundPage from "./NotFoundPage";
 import AlertMsg from "./AlertMsg";
 import ProfilePage from "../Admin/ProfilePage";
 import SideMenu from "../Admin/SideMenu";
-import FriendListPage from "../Admin/FriendListPage";
 import AddEditIdiomPage from "../AddEditIdiomPage";
 import IdiomListPage from "../Admin/IdiomListPage";
 import IdiomDetailPage from "../IdiomDetailPage";
-import MessengerPage from "../Admin/MessengerPage";
 import GamePage from "../Admin/GamePage";
 import SocketGamePage from "../Admin/SocketGamePage";
 

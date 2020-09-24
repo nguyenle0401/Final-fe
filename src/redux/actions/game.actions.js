@@ -1,4 +1,3 @@
-import * as types from "../constants/game.constants";
 import api from "../api";
 const fetchGame = () => async (dispatch) => {
   try {

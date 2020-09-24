@@ -115,7 +115,8 @@
 }
 
 body {
-  // background-image: linear-gradient(50deg, #07f757, #ffffff);
+  // background-color: black;
+  background-image: linear-gradient(40deg, #fcfcf5, #fdfcfc);
   font-family: "Muli", sans-serif;
   // display: flex;
   // align-items: center;
@@ -131,9 +132,9 @@ body {
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
   display: flex;
   max-width: 100%;
-  margin: 20px;
+  margin-bottom: 20px;
   overflow: hidden;
-  width: 700px;
+  width: 100%;
 }
 
 .course h6 {
@@ -149,9 +150,9 @@ body {
 }
 
 .course-preview {
-  background-color: #108a21a2;
+  // background-color: rgba(19, 129, 19, 0.5);
   color: #fff;
-  padding: 30px;
+  padding: 10px;
   max-width: 250px;
 }
 

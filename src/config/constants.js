@@ -1,4 +1,4 @@
-export const FB_APP_ID = "252113819289877";
+export const FB_APP_ID = "215525599776984";
 
 export const GOOGLE_CLIENT_ID =
   "785386346216-l4fc765ollu5kkp6a4a9f5pcmgatks0t.apps.googleusercontent.com";

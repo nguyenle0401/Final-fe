@@ -27,6 +27,7 @@ const RegisterPage = ({ setShowLogin, setShowRegister }) => {
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const { name, email, password, password2, avatarUrl } = formData;

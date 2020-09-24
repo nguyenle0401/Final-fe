@@ -54,3 +54,9 @@
 .correct-answer {
   background-color: green;
 }
+.replay {
+  border: none;
+  background-color: white;
+  font-weight: bold;
+  color: red;
+}

@@ -19,7 +19,7 @@ const authReducer = (state = initialState, action) => {
       return { ...state, loading: true };
 
     case types.REGISTER_SUCCESS:
-      return { ...state, loading: false, redirectTo: "/verify/_" };
+      return { ...state, loading: false, redirectTo: "/login" };
 
     case types.LOGIN_SUCCESS:
     case types.LOGIN_FACEBOOK_SUCCESS:

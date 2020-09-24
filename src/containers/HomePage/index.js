@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import SearchItem from "../../components/SearchItem";
-import { Container, CardColumns, Button, Row, Col } from "react-bootstrap";
+import { Container, CardColumns, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { idiomActions } from "../../redux/actions";
 import IdiomCard from "../../components/IdiomCard";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
 import PaginationItem from "../../components/PaginationItem";
-import { Carousel } from "react-bootstrap";
 
 const HomePage = () => {
   const [pageNum, setPageNum] = useState(1);
@@ -32,19 +30,19 @@ const HomePage = () => {
   }, [dispatch, pageNum]);
 
   //Search idioms
-  const handleSubmitSearch = (e) => {
-    e.preventDefault();
-    setPageNum(1);
-    setQuery(searchInput);
-  };
+  // const handleSubmitSearch = (e) => {
+  //   e.preventDefault();
+  //   setPageNum(1);
+  //   setQuery(searchInput);
+  // };
 
   useEffect(() => {
     setFilteredIdioms(idioms);
   }, [idioms]);
 
-  const handleInputChange = (e) => {
-    setSearchInput(e.target.value);
-  };
+  // const handleInputChange = (e) => {
+  //   setSearchInput(e.target.value);
+  // };
   const renderIdioms = (arr) => {
     const favoriteWords = arr.map((e) => e._id);
     return (
@@ -68,10 +66,10 @@ const HomePage = () => {
       <Container>
         <div>
           {" "}
-          <div class="container pt-5 hero">
-            <div class="row align-items-center text-center text-md-left">
-              <div class="col-lg-4">
-                <h1 class="mb-3 display-3">Tell Your Story to the World</h1>
+          <div className="container pt-5 hero">
+            <div className="row align-items-center text-center text-md-left">
+              <div className="col-lg-4">
+                <h1 className="mb-3 display-3">Tell Your Story to the World</h1>
                 <p>
                   Join with us! Login or Register. Lorem ipsum dolor sit amet,
                   consectetur adipisicing elit. Delectus, ex!
@@ -82,12 +80,12 @@ const HomePage = () => {
                       <Link to="/idioms/add">
                         <div variant="primary">
                           <div id="main">
-                            <div class="container">
-                              <div class="row">
-                                <div class="block col-md-2">
+                            <div className="container">
+                              <div className="row">
+                                <div className="block col-md-2">
                                   <a
                                     href="#"
-                                    class="btn-con btn-con-1 color-green"
+                                    className="btn-con btn-con-1 color-green"
                                   >
                                     <Button variant="warning">
                                       Contribute
@@ -100,22 +98,11 @@ const HomePage = () => {
                         </div>
                       </Link>
                     </div>
-                    <div></div>
-                    <Row>
-                      <Col md={4}>
-                        <SearchItem
-                          searchInput={searchInput}
-                          handleInputChange={handleInputChange}
-                          handleSubmit={handleSubmitSearch}
-                          loading={loading}
-                        />
-                      </Col>
-                    </Row>
                   </div>
                 )}
               </div>
-              <div class="col-lg-8">
-                <img src="home.png" alt="Image" class="img-fluid" />
+              <div className="col-lg-8">
+                <img src="favicon.png" alt="Image" className="img-fluid" />
               </div>
             </div>
           </div>
@@ -138,7 +125,43 @@ const HomePage = () => {
           totalPageNum={totalPageNum}
           loading={loading}
         />
+        <div></div>
       </Container>
+      <footer className="page-footer pt-4">
+        <div className="container">
+          <ul className="list-unstyled list-inline text-center">
+            <li className="list-inline-item">
+              <a className="btn-floating btn-fb mx-1">
+                <img
+                  style={{ width: "20px", height: "20px" }}
+                  src="facebook.png"
+                  alt="fb"
+                ></img>
+              </a>
+            </li>
+            <li className="list-inline-item">
+              <a className="btn-floating btn-tw mx-1">
+                <img
+                  style={{ width: "20px", height: "20px" }}
+                  src="instagram.png"
+                  alt="ins"
+                ></img>
+              </a>
+            </li>
+            <li className="list-inline-item">
+              <a className="btn-floating btn-dribbble mx-1">
+                <img
+                  style={{ width: "20px", height: "20px" }}
+                  src="twitter.png"
+                  alt="tw"
+                ></img>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className=" text-center py-3">©2020 Odiom All Rights Reserved</div>
+      </footer>
     </>
   );
 };

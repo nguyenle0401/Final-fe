@@ -73,7 +73,7 @@ const ProfilePage = () => {
         <br />
 
         <Row>
-          <Col md={{ span: 8, offset: 2 }}>
+          <Col>
             {loading ? (
               <div className="d-flex justify-content-center align-items-center">
                 <ClipLoader color="#f86c6b" size={150} loading={true} />
@@ -92,7 +92,7 @@ const ProfilePage = () => {
                       </div>
                     )}
                     <Button
-                      style={{ "background-color": " #047272" }}
+                      style={{ backgroundColor: " #047272" }}
                       onClick={uploadWidget}
                       disabled={!editable}
                     >

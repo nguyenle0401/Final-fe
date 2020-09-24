@@ -1,8 +1,7 @@
-import React, { useState, useEffect, componentWillUnmount } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
 import socket from "./socket";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const numberOfQuestions = 5;
 
@@ -164,11 +163,11 @@ function SocketGamePage() {
     return (
       <div>
         {props.score > props.opScore ? (
-          <h1>WIN</h1>
+          <h1>YOU WIN</h1>
         ) : props.score === props.opScore ? (
           <h1>TIE</h1>
         ) : (
-          <h1>LOSE</h1>
+          <h1>YOU LOSE</h1>
         )}
       </div>
     );

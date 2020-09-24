@@ -1,11 +1,12 @@
 .nav-style {
   border: 1px solid red;
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   left: 0;
   right: 0;
+  /* margin-bottom: 5%; */
   z-index: 1;
 }
 .sign-up {
-  padding: 14px 40px;
+  width: 100px;
 }

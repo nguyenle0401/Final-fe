@@ -1,14 +1,6 @@
 import React from "react";
 import "./style.css";
-import {
-  Navbar,
-  Nav,
-  Modal,
-  Button,
-  Form,
-  FormControl,
-  InputGroup,
-} from "react-bootstrap";
+import { Navbar, Nav, Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { authActions } from "../../redux/actions";
@@ -49,7 +41,7 @@ const PublicNavbar = () => {
         <Button variant="btn btn-light">Login</Button>
       </Nav.Item>
       <Nav.Item onClick={() => setShowRegister(true)}>
-        <Button className="sign-up" variant="btn btn-success ml-2">
+        <Button className="sign-up" variant="btn btn-success">
           Sign Up
         </Button>
       </Nav.Item>

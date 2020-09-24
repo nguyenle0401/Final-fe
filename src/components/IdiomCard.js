@@ -1,6 +1,5 @@
 import React from "react";
 import api from "../redux/api";
-import { makeStyles } from "@material-ui/core/styles";
 import * as types from "../redux/constants/auth.constants";
 
 import { useDispatch } from "react-redux";
@@ -18,22 +17,22 @@ const IdiomCard = ({ idiom, liked }) => {
 
   return (
     <div>
-      <div class="courses-container">
-        <div class="course">
-          <div class="course-preview">
+      <div className="courses-container">
+        <div className="course">
+          <div className="course-preview">
             <img
               src={
                 idiom?.images?.length
                   ? idiom.images[0]
                   : "https://via.placeholder.com/160x100"
               }
-              className="align-self-start mr-3"
+              className="align-self-start"
               alt="..."
-              width={100}
-              height={100}
+              width={150}
+              height={150}
             />
           </div>
-          <div class="course-info">
+          <div className="course-info">
             {/* <h6>Chapter 4</h6> */}
             <h5>
               {" "}
@@ -50,18 +49,24 @@ const IdiomCard = ({ idiom, liked }) => {
               <div className="content-footer d-flex align-items-start"></div>
             </span>
             <div>
-              <span class="progress-text">@{idiom?.author?.name} created </span>
+              <span className="progress-text">
+                @{idiom?.author?.name} created{" "}
+              </span>
             </div>
             <button
-              class={`btn-card ${liked ? "liked" : ""}`}
+              className={`btn-card ${liked ? "liked" : ""}`}
               onClick={() => handleClickLike()}
             >
-              {liked ? "like" : "ulike"}
+              {liked ? (
+                <span className="material-icons">favorite_border</span>
+              ) : (
+                <span className="material-icons">favorite_border</span>
+              )}
             </button>
           </div>
         </div>
       </div>
-      <a href="#top" title="Go to top" class="floating-btn">
+      <a href="#top" title="Go to top" className="floating-btn">
         On top
       </a>
     </div>
