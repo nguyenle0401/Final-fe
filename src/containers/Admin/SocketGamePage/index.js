@@ -6,6 +6,35 @@ import { useDispatch, useSelector } from "react-redux";
 
 const numberOfQuestions = 5;
 
+const lists = [
+  [1, 2, 3, 0],
+  [1, 2, 0, 3],
+  [1, 3, 2, 0],
+  [1, 3, 0, 2],
+  [1, 0, 2, 3],
+  [1, 0, 3, 2],
+  [2, 1, 3, 0],
+  [2, 1, 0, 3],
+  [2, 3, 1, 0],
+  [2, 3, 0, 1],
+  [2, 0, 1, 3],
+  [2, 0, 3, 1],
+  [3, 1, 2, 0],
+  [3, 1, 0, 2],
+  [3, 2, 1, 0],
+  [3, 2, 0, 1],
+  [3, 0, 1, 2],
+  [3, 0, 2, 1],
+  [0, 1, 2, 3],
+  [0, 1, 3, 2],
+  [0, 2, 1, 3],
+  [0, 2, 3, 1],
+  [0, 3, 1, 2],
+  [0, 3, 2, 1],
+];
+
+let listIndex = Math.floor(Math.random() * lists.length);
+
 function SocketGamePage() {
   const [questions, setQuestions] = useState([]);
   const [questIndex, setQuestIndex] = useState(0);
@@ -35,14 +64,19 @@ function SocketGamePage() {
 
   socket.on("next", () => {
     console.log("next");
-    if (questIndex < numberOfQuestions - 1) {
-      console.log("questIndex", questIndex);
-      setQuestIndex(questIndex + 1);
-      console.log("questIndex", questIndex);
-      setDisabledClick(false);
-    } else {
-      setShowResult(true);
-    }
+    const callback = () => {
+      if (questIndex < numberOfQuestions - 1) {
+        console.log("questIndex", questIndex);
+        setQuestIndex(questIndex + 1);
+        listIndex = Math.floor(Math.random() * lists.length);
+        console.log("questIndex", questIndex);
+        setDisabledClick(false);
+      } else {
+        console.log("okay");
+        setShowResult(true);
+      }
+    };
+    setTimeout(callback, 5000);
   });
 
   socket.on("opponent", (data) => {
@@ -96,7 +130,7 @@ function SocketGamePage() {
   const handleClick = function (result) {
     setDisabledClick(true);
     if (result) setScore(score + 1);
-    if (questIndex < numberOfQuestions - 1) {
+    if (questIndex < numberOfQuestions) {
       socket.emit("clickState", name._id);
     }
   };
@@ -109,35 +143,17 @@ function SocketGamePage() {
             <button className="style-question">
               "{props.quest.title}?", what does it mean?
             </button>
-
-            <button
-              className="style-answer"
-              onClick={() => handleClick(true)}
-              disabled={props.disabled}
-            >
-              {props.quest.answer}
-            </button>
-            <button
-              className="style-answer"
-              onClick={() => handleClick(false)}
-              disabled={props.disabled}
-            >
-              {props.quest.answer1}
-            </button>
-            <button
-              className="style-answer"
-              onClick={() => handleClick(false)}
-              disabled={props.disabled}
-            >
-              {props.quest.answer2}
-            </button>
-            <button
-              className="style-answer"
-              onClick={() => handleClick(false)}
-              disabled={props.disabled}
-            >
-              {props.quest.answer3}
-            </button>
+            {lists[listIndex].map((ansNum) => {
+              return (
+                <button
+                  className={"style-answer answer" + ansNum}
+                  onClick={() => handleClick(!ansNum)}
+                  disabled={props.disabled}
+                >
+                  {props.quest["answer" + ansNum]}
+                </button>
+              );
+            })}
           </div>
         )}
       </div>
@@ -168,7 +184,12 @@ function SocketGamePage() {
             opScore={opScore}
             questIndex={questIndex}
           ></ScoreDetail>
-          <Quest quest={questions[questIndex]} disabled={disabledClick}></Quest>
+          {questions ? (
+            <Quest
+              quest={questions[questIndex]}
+              disabled={disabledClick}
+            ></Quest>
+          ) : null}
           {showResult ? (
             <Result score={score} opScore={opScore}></Result>
           ) : null}

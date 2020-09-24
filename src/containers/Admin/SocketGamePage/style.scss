@@ -41,12 +41,14 @@
   color: rgb(8, 0, 0);
   font-family: monospace;
   padding: 12px;
-  &:disabled {
-    background-color: rgb(184, 127, 127);
-  }
   /* font-size: 20px; */
 }
+
 .button {
   border: 1px solid white;
   background-color: white;
+}
+
+.answer0:disabled {
+  background-color: green;
 }
