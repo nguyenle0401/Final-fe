@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.scss";
 import socket from "./socket";
 import { useSelector } from "react-redux";
+import HashLoader from "react-spinners/HashLoader";
 
 const numberOfQuestions = 5;
 
@@ -35,6 +36,7 @@ const lists = [
 let listIndex = Math.floor(Math.random() * lists.length);
 
 function SocketGamePage() {
+  const loading = useSelector((state) => state.idiom.loading);
   const [questions, setQuestions] = useState([]);
   const [questIndex, setQuestIndex] = useState(0);
   const [opponent, setOpponent] = useState(null);
@@ -253,7 +255,19 @@ function SocketGamePage() {
           ) : null}
         </div>
       ) : (
-        <WaitingPanel></WaitingPanel>
+        <div
+          style={{ width: "100%" }}
+          className="d-flex justify-content-center flex-column position-absolute"
+        >
+          <div className="d-flex justify-content-center">
+            {" "}
+            <HashLoader color="green" size={150} loading={true} />
+          </div>
+          <div className=" align-items-center">
+            {" "}
+            <WaitingPanel></WaitingPanel>
+          </div>
+        </div>
       )}
     </div>
   );
