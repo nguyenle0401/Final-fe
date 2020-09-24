@@ -48,11 +48,11 @@ function SocketGamePage() {
     return () => {
       socket.emit("offline", name._id);
     };
-  }, []);
+  }, [name._id]);
 
   useEffect(() => {
     socket.emit("updateScore", name._id, score);
-  }, [score]);
+  }, [score, name._id]);
 
   // useEffect(() => {
   //   if (questIndex < numberOfQuestions) {

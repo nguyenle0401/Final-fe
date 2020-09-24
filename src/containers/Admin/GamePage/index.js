@@ -68,7 +68,7 @@ const GameInfo = ({ totalScore, user, qty, currentNum }) => {
   return (
     <div>
       <h4>
-        🧑🏼‍💻: <strong>{user.name}</strong>
+        <span>🧑🏼‍💻</span>: <strong>{user.name}</strong>
       </h4>
       <h4>
         Score:<strong>{totalScore}</strong>
@@ -100,7 +100,7 @@ const GameNaviation = ({
           disabled={currentNum <= 0}
           onClick={() => handleNavigation(-1)}
         >
-          ⏪
+          <span>⏪</span>
         </button>{" "}
         &nbsp;
         <button
@@ -109,7 +109,7 @@ const GameNaviation = ({
           onClick={() => handleNavigation(1)}
         >
           {" "}
-          ⏩
+          <span>⏩</span>
         </button>
       </h1>
     </div>
@@ -131,7 +131,7 @@ const handleAnswer = (
     return;
   }
   let result;
-  if (v == answer) {
+  if (v === answer) {
     result = { status: "win", rate: 1 };
   } else {
     result = { status: "lose", rate: 0 };
@@ -187,7 +187,7 @@ const GameCard = ({
   cliked,
   setCliked,
 }) => {
-  const [time, setTime] = useState(0);
+  // const [time, setTime] = useState(0);
 
   const renderAnswers = (
     question,
@@ -207,7 +207,7 @@ const GameCard = ({
         arr[foo] = (
           <Answer
             v={question[i]}
-            correct={question[i] == answer && cliked}
+            correct={question[i] === answer && cliked}
             cliked={cliked}
             answer={answer}
             currentNum={currentNum}

@@ -16,8 +16,6 @@ const HomePage = () => {
   const totalPageNum = useSelector((state) => state.idiom.totalPageNum);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
-  const [index, setIndex] = useState(0);
-  const [query, setQuery] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [filteredIdioms, setFilteredIdioms] = useState([]);
 
@@ -83,14 +81,11 @@ const HomePage = () => {
                             <div className="container">
                               <div className="row">
                                 <div className="block col-md-2">
-                                  <a
-                                    href="#"
-                                    className="btn-con btn-con-1 color-green"
-                                  >
+                                  <div className="btn-con btn-con-1 color-green">
                                     <Button variant="warning">
                                       Contribute
                                     </Button>
-                                  </a>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -102,7 +97,7 @@ const HomePage = () => {
                 )}
               </div>
               <div className="col-lg-8">
-                <img src="favicon.png" alt="Image" className="img-fluid" />
+                <img src="favicon.png" alt="logo" className="img-fluid" />
               </div>
             </div>
           </div>
@@ -131,13 +126,13 @@ const HomePage = () => {
         <div className="container">
           <ul className="list-unstyled list-inline text-center">
             <li className="list-inline-item">
-              <a className="btn-floating btn-fb mx-1">
+              <div className="btn-floating btn-fb mx-1">
                 <img
                   style={{ width: "20px", height: "20px" }}
                   src="facebook.png"
                   alt="fb"
                 ></img>
-              </a>
+              </div>
             </li>
             <li className="list-inline-item">
               <a className="btn-floating btn-tw mx-1">
@@ -149,13 +144,13 @@ const HomePage = () => {
               </a>
             </li>
             <li className="list-inline-item">
-              <a className="btn-floating btn-dribbble mx-1">
+              <div className="btn-floating btn-dribbble mx-1">
                 <img
                   style={{ width: "20px", height: "20px" }}
                   src="twitter.png"
                   alt="tw"
                 ></img>
-              </a>
+              </div>
             </li>
           </ul>
         </div>
