@@ -19,7 +19,7 @@ const GamePage = () => {
 
   useEffect(() => {
     dispatch(gameActions.fetchGame());
-  }, []);
+  }, [dispatch]);
 
   const handleNavigation = (step) => {
     setCliked(false);
@@ -68,7 +68,7 @@ const GameInfo = ({ totalScore, user, qty, currentNum }) => {
   return (
     <div>
       <h4>
-        <span>🧑🏼‍💻</span>: <strong>{user.name}</strong>
+        <span role="img">🧑🏼‍💻</span>: <strong>{user.name}</strong>
       </h4>
       <h4>
         Score:<strong>{totalScore}</strong>
@@ -100,7 +100,7 @@ const GameNaviation = ({
           disabled={currentNum <= 0}
           onClick={() => handleNavigation(-1)}
         >
-          <span>⏪</span>
+          <span role="img">⏪</span>
         </button>{" "}
         &nbsp;
         <button
@@ -109,7 +109,7 @@ const GameNaviation = ({
           onClick={() => handleNavigation(1)}
         >
           {" "}
-          <span>⏩</span>
+          <span role="img">⏩</span>
         </button>
       </h1>
     </div>

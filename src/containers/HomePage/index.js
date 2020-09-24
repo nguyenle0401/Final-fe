@@ -16,7 +16,6 @@ const HomePage = () => {
   const totalPageNum = useSelector((state) => state.idiom.totalPageNum);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.auth.user);
-  const [searchInput, setSearchInput] = useState("");
   const [filteredIdioms, setFilteredIdioms] = useState([]);
 
   // const handleSelect = (selectedIndex, e) => {
@@ -135,13 +134,13 @@ const HomePage = () => {
               </div>
             </li>
             <li className="list-inline-item">
-              <a className="btn-floating btn-tw mx-1">
+              <div className="btn-floating btn-tw mx-1">
                 <img
                   style={{ width: "20px", height: "20px" }}
                   src="instagram.png"
                   alt="ins"
                 ></img>
-              </a>
+              </div>
             </li>
             <li className="list-inline-item">
               <div className="btn-floating btn-dribbble mx-1">
