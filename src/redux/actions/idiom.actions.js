@@ -16,7 +16,7 @@ const idiomsRequest = (
       queryString = `&title[$regex]=${query}&title[$options]=i`;
     }
     if (ownerId) {
-      // queryString = `${queryString}&author=${ownerId}`;
+      queryString = `${queryString}&author=${ownerId}`;
     }
     let sortByString = "";
     if (sortBy?.key) {

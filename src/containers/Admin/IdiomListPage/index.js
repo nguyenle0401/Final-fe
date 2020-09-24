@@ -53,7 +53,10 @@ const IdiomListPage = () => {
   };
 
   useEffect(() => {
-    dispatch(idiomActions.idiomsRequest(pageNum, 10, query, sortBy));
+    console.log(pageNum, 10, query, currentUser._id, sortBy);
+    dispatch(
+      idiomActions.idiomsRequest(pageNum, 10, query, currentUser._id, sortBy)
+    );
   }, [dispatch, pageNum, query, sortBy]);
 
   useEffect(() => {
