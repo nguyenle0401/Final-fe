@@ -57,7 +57,7 @@ const IdiomListPage = () => {
     dispatch(
       idiomActions.idiomsRequest(pageNum, 10, query, currentUser._id, sortBy)
     );
-  }, [dispatch, pageNum, query, sortBy]);
+  }, [dispatch, pageNum, query, sortBy, currentUser._id]);
 
   useEffect(() => {
     setFilteredIdioms(idioms);

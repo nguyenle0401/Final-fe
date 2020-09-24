@@ -102,7 +102,12 @@ const HomePage = () => {
           </div>
         </div>
         {loading ? (
-          <ClipLoader color="#f86c6b" size={150} loading={loading} />
+          <ClipLoader
+            color="#f86c6b"
+            size={150}
+            loading={loading}
+            className="position-absolute justify-content-center"
+          />
         ) : (
           <>
             {idioms.length ? (

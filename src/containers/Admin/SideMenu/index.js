@@ -7,7 +7,10 @@ import { NavLink } from "react-router-dom";
 
 const SideMenu = () => {
   return (
-    <Nav className="col-md-3 col-lg-2 d-md-block  collapse">
+    <Nav
+      className="col-md-3 col-lg-2 d-md-block  collapse"
+      style={{ paddingTop: "30px" }}
+    >
       <div>
         <Nav.Item>
           <div>

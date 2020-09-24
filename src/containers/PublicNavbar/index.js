@@ -49,7 +49,7 @@ const PublicNavbar = () => {
   );
 
   return (
-    <div className="nav-style">
+    <div>
       <Modal show={showLogin} onHide={handleCloseLogin}>
         <LoginPage
           setShowRegister={setShowRegister}

@@ -15,7 +15,7 @@ const PublicLayout = () => {
   return (
     <>
       <PublicNavbar />
-      <Container>
+      <Container style={{ paddingTop: "100px" }}>
         <AlertMsg />
         <Switch>
           <Route exact path="/" component={HomePage} />

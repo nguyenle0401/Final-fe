@@ -710,7 +710,9 @@ Time to add the logic. Let's connect to the server and get the list of idioms.
     }, [dispatch]);
     ...
     {loading ? (
-      <ClipLoader color="#f86c6b" size={150} loading={loading} />
+      <ClipLoader
+
+  color="#f86c6b" size={150} loading={loading} />
     ) : (
       <>
         {idioms.length ? (

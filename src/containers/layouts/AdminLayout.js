@@ -16,7 +16,7 @@ const AdminLayout = () => {
   return (
     <>
       <PublicNavbar />
-      <Container fluid>
+      <Container fluid style={{ paddingTop: "100px" }}>
         <Row>
           <SideMenu />
           <Col md={9} lg={10}>
