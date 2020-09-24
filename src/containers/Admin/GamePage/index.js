@@ -72,17 +72,14 @@ const GameInfo = ({ totalScore, user, qty, currentNum }) => {
         <span role="img">🧑🏼‍💻</span>: <strong>{user.name}</strong>
       </h4>
       <h4>
-        Score:<strong>{totalScore}</strong>
-      </h4>
-      <h4>
         Question:{" "}
         <strong>
           {currentNum + 1}/{qty}
         </strong>
       </h4>
-      <button className="replay">
+      {/* <button className="replay">
         <span className="material-icons">replay</span>{" "}
-      </button>
+      </button> */}
     </div>
   );
 };
