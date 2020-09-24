@@ -68,6 +68,7 @@ const GameInfo = ({ totalScore, user, qty, currentNum }) => {
   return (
     <div>
       <h4>
+        {/* eslint-disable jsx-a11y/accessible-emoji */}
         <span role="img">🧑🏼‍💻</span>: <strong>{user.name}</strong>
       </h4>
       <h4>
@@ -80,7 +81,7 @@ const GameInfo = ({ totalScore, user, qty, currentNum }) => {
         </strong>
       </h4>
       <button className="replay">
-        <span class="material-icons">replay</span>{" "}
+        <span className="material-icons">replay</span>{" "}
       </button>
     </div>
   );
@@ -100,6 +101,7 @@ const GameNaviation = ({
           disabled={currentNum <= 0}
           onClick={() => handleNavigation(-1)}
         >
+          {/* eslint-disable jsx-a11y/accessible-emoji */}
           <span role="img">⏪</span>
         </button>{" "}
         &nbsp;
@@ -109,6 +111,7 @@ const GameNaviation = ({
           onClick={() => handleNavigation(1)}
         >
           {" "}
+          {/* eslint-disable jsx-a11y/accessible-emoji */}
           <span role="img">⏩</span>
         </button>
       </h1>
