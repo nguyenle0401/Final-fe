@@ -70,13 +70,6 @@ function SocketGamePage() {
     setState3({ active: false });
   }, [questIndex]);
 
-  // useEffect(() => {
-  //   if (questIndex < numberOfQuestions) {
-  //     console.log("clickState", questIndex, numberOfQuestions);
-  //     socket.emit("clickState", name._id);
-  //   }
-  // }, [clickState]);
-
   socket.on("next", () => {
     console.log("next");
     const callback = () => {
@@ -313,11 +306,11 @@ function SocketGamePage() {
 
   return (
     <div
-      style={{ width: "100%", display: "flex" }}
-      className="d-flex justify-content-center flex-column position-absolute"
+      style={{ width: "100%", height: "100%", display: "flex" }}
+      className="loading d-flex flex-row"
     >
       {opponent ? (
-        <div style={{ width: "70%" }}>
+        <div style={{ width: "100%" }}>
           <OpponentDetail op={opponent}></OpponentDetail>
           <ScoreDetail
             score={score}
@@ -341,22 +334,20 @@ function SocketGamePage() {
         </div>
       ) : (
         <div
-          style={{ width: "100%" }}
+          style={{ width: "100%", marginTop: "200px" }}
           className="d-flex justify-content-center flex-column position-absolute"
         >
-          <div className="d-flex justify-content-center">
-            {" "}
-            <HashLoader color="green" size={150} loading={true} />
-          </div>
           <div className=" align-items-center">
             {" "}
             <WaitingPanel></WaitingPanel>
           </div>
+          <div className="d-flex justify-content-center">
+            {" "}
+            <HashLoader color="green" size={150} loading={true} />
+          </div>
         </div>
       )}
-      <div style={{ width: "30%" }}>
-        <Users playingUsers={playingUsers} onlineUsers={onlineUsers}></Users>
-      </div>
+      <Users playingUsers={playingUsers} onlineUsers={onlineUsers}></Users>
     </div>
   );
 }

@@ -30,7 +30,7 @@ const PublicNavbar = () => {
       <div>
         <header className="header">
           <div className="header_container">
-            <div className="container">
+            <div>
               <div className="row">
                 <div className="col">
                   <div className="header_content d-flex flex-row align-items-center justify-content-start">

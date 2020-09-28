@@ -8,14 +8,7 @@
     color: rgb(5, 0, 1);
   }
 }
-.game_card_container {
-  width: 100% !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* text-align: center; */
-  flex-direction: column;
-}
+
 .style-question {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -42,13 +35,7 @@
   color: rgb(8, 0, 0);
   font-family: monospace;
   padding: 12px;
-  /* font-size: 20px; */
 }
-
-// .button {
-//   border: 1px solid white;
-//   background-color: white;
-// }
 
 .clicked:disabled {
   background-color: red;
@@ -56,4 +43,18 @@
 
 .answer0:disabled {
   background-color: green;
+}
+.justify-content-center {
+  justify-content: center !important;
+  top: 10px;
+}
+.loading {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  flex-direction: column;
+}
+.game_card_container {
+  width: 50%;
 }

@@ -57,25 +57,21 @@ const HomePage = () => {
   };
 
   return (
-    <>
+    <div className="home">
       <Container>
-        <div>
+        <div className="home_background">
           {" "}
-          <div className="container">
+          <div>
             <div>
-              <div class="home_background"></div>
-              <div class="home_content">
-                <div class="container">
-                  <div class="row">
-                    <div class="col text-center">
-                      <h1 class="home_title">Learn Languages Easily</h1>
-                      <div>
-                        <img
-                          alt="logo"
-                          src="/favicon.png"
-                          style={{ width: "50%" }}
-                        ></img>
-                      </div>
+              <div>
+                <div className="row">
+                  <div className="col text-center logo-big">
+                    <div>
+                      <img
+                        alt="logo"
+                        src="/favicon.png"
+                        style={{ width: "35%" }}
+                      ></img>
                     </div>
                   </div>
                 </div>
@@ -83,7 +79,7 @@ const HomePage = () => {
                   <div>
                     <div>
                       <Link to="/idioms/add">
-                        <div className="container">
+                        <div>
                           <div className="row justify-content-center">
                             <div>
                               <Button variant="warning">Contribute</Button>
@@ -96,11 +92,11 @@ const HomePage = () => {
                       {" "}
                       <Col
                         md={5}
-                        style={{ width: "100%" }}
-                        className="container mt-3"
+                        style={{ width: "30%" }}
+                        className="container mt-3 mb-3"
                       >
                         <SearchItem
-                          className="row justify-content-center"
+                          className="row justify-content-center search-bar"
                           searchInput={searchInput}
                           handleInputChange={handleInputChange}
                           handleSubmit={handleSubmitSearch}
@@ -116,7 +112,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div>
+        <div className="blog-card">
           {loading ? (
             <HashLoader
               color="green"
@@ -141,7 +137,6 @@ const HomePage = () => {
           totalPageNum={totalPageNum}
           loading={loading}
         />
-        <div></div>
       </Container>
       <footer className="page-footer pt-4">
         <div className="container">
@@ -179,7 +174,7 @@ const HomePage = () => {
 
         <div className=" text-center py-3">©2020 Odiom All Rights Reserved</div>
       </footer>
-    </>
+    </div>
   );
 };
 

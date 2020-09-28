@@ -126,9 +126,6 @@ const handleAnswer = (
   clicked,
   nQuestions
 ) => {
-  // if (clicked) {
-  //   return;
-  // }
   let result;
   if (v === answer) {
     result = { status: "win", rate: 1 };
@@ -230,7 +227,7 @@ const GameCard = ({
   if (!question) return <Redirect to="/admin/game" />;
 
   return (
-    <div className="game_card_container">
+    <div>
       <button className="style-question">
         "{question.title}", what does it mean?
       </button>

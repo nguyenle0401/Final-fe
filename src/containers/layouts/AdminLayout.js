@@ -11,19 +11,31 @@ import IdiomListPage from "../Admin/IdiomListPage";
 import IdiomDetailPage from "../IdiomDetailPage";
 import GamePage from "../Admin/GamePage";
 import SocketGamePage from "../Admin/SocketGamePage";
+import "./AdminLayout.css";
 
 const AdminLayout = () => {
   return (
     <>
       <PublicNavbar />
-      <Container fluid style={{ paddingTop: "100px" }}>
+      <Container
+        fluid
+        style={{
+          paddingTop: "100px",
+          paddingLeft: 0,
+          paddingRight: 0,
+          marginLeft: 0,
+          marginRight: 0,
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Row>
           {/* <SideMenu /> */}
           <Col md={9} lg={10}>
             <AlertMsg />
             <Switch>
               <Route exact path="/admin/profile" component={ProfilePage} />
-              {/* <Route exact path="/admin/friends" component={FriendListPage} /> */}
               <Route exact path="/admin/idioms" component={IdiomListPage} />
               <Route
                 exact
@@ -40,7 +52,6 @@ const AdminLayout = () => {
                 path="/admin/idioms/edit/:id"
                 component={AddEditIdiomPage}
               />
-              {/* <Route exact path="/admin/messenger" component={MessengerPage} /> */}
               <Route exact path="/admin/game" component={GamePage} />
               <Route
                 exact

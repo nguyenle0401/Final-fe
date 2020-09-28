@@ -65,11 +65,11 @@ const IdiomListPage = () => {
 
   return (
     <Container fluid>
-      <h4 className="mt-3" style={{ fontWeight: "bold" }}>
+      <h3 className="mt-3" style={{ fontWeight: "bold" }}>
         Idioms Manage
-      </h4>
+      </h3>
       <Row>
-        <Col md={4}>
+        <Col className="mb-2" style={{ width: "30%" }}>
           <SearchItem
             className="color-btn"
             searchInput={searchInput}
@@ -95,7 +95,7 @@ const IdiomListPage = () => {
                 <th className="mouse-hover" onClick={() => handleSort("title")}>
                   Word <FontAwesomeIcon icon="sort" size="sm" />
                 </th>
-                <th>Description</th>
+                <th>Meaning</th>
                 <th>Actions</th>
               </tr>
             </thead>

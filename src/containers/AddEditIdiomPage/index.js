@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./style.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Form,
@@ -100,11 +101,11 @@ const AddEditIdiomPage = () => {
 
   return (
     <Container>
-      <Row>
+      <Row className="position-add">
         <Col md={{ span: 6, offset: 3 }}>
           <Form onSubmit={handleSubmit}>
             <div className="text-center mb-3">
-              <h1 className="text-primary">{addOrEdit} idiom</h1>
+              <h1 className="text-success">{addOrEdit} idiom</h1>
               <p className="lead">
                 <i className="fas fa-user" />
               </p>

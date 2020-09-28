@@ -4,38 +4,6 @@
 
 .header_container {
   width: 100%;
-  background: #ffffff;
-}
-.header_content {
-  height: 80px;
-  -webkit-transition: all 200ms ease;
-  -moz-transition: all 200ms ease;
-  -ms-transition: all 200ms ease;
-  -o-transition: all 200ms ease;
-  transition: all 200ms ease;
-}
-.header.scrolled .header_content {
-  height: 80px;
-} */
-/* Paste */
-
-/******************************
-
-[Table of Contents]
-
-1. Fonts
-2. Body and some general stuff
-3. Header
-	3.1 Top Bar
-	3.2 Header Content
-	3.3 Logo
-	3.4 Main Nav
-	3.5 Hamburger
-4. Menu
-5. Home
-6. Blog
-7. Footer
-
 
 
 ******************************/
@@ -50,11 +18,11 @@
 2. Body and some general stuff
 *********************************/
 
-body {
+/* body {
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 400;
-  background: #ffffff;
+  background: #000000 !important;
 }
 div {
   display: block;
@@ -62,7 +30,7 @@ div {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-}
+} */
 ul {
   list-style: none;
   margin-bottom: 0px;
@@ -352,7 +320,7 @@ section {
   background: #ffffff;
 }
 .header_content {
-  height: 80px;
+  min-height: 100%;
   -webkit-transition: all 200ms ease;
   -moz-transition: all 200ms ease;
   -ms-transition: all 200ms ease;
@@ -985,4 +953,23 @@ section {
   text-transform: uppercase;
   line-height: 41px;
   letter-spacing: 0.3em;
+}
+@media (min-width: 768px) {
+  .offset-md-3 {
+    margin-left: 0px !important;
+  }
+}
+@media (min-width: 768) {
+  .offset-md-3 {
+    margin: 50px !important;
+  }
+}
+.offset-2 {
+  margin-left: 0px !important;
+}
+
+/* BUTTON  */
+.btn-light {
+  border: none !important;
+  background-color: white !important;
 }
