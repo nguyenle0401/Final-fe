@@ -5,7 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import NotFoundPage from "./NotFoundPage";
 import AlertMsg from "./AlertMsg";
 import ProfilePage from "../Admin/ProfilePage";
-import SideMenu from "../Admin/SideMenu";
+// import SideMenu from "../Admin/SideMenu";
 import AddEditIdiomPage from "../AddEditIdiomPage";
 import IdiomListPage from "../Admin/IdiomListPage";
 import IdiomDetailPage from "../IdiomDetailPage";
@@ -18,7 +18,7 @@ const AdminLayout = () => {
       <PublicNavbar />
       <Container fluid style={{ paddingTop: "100px" }}>
         <Row>
-          <SideMenu />
+          {/* <SideMenu /> */}
           <Col md={9} lg={10}>
             <AlertMsg />
             <Switch>

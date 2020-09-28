@@ -23,7 +23,7 @@
   width: 100% !important;
   padding: 12px;
   font-weight: bold;
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(77, 114, 56);
   font-size: 20px;
   color: rgb(0, 0, 0);
   font-family: monospace;
@@ -43,26 +43,19 @@
   flex-direction: column;
 }
 
-.game_card_container {
-  width: 50% !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* text-align: center; */
-  flex-direction: column;
-}
 .correct-answer {
   background-color: green !important;
   border: 1px solid green;
 }
 
-/* .wrong-answer {
-  background-color: red !important;
-  border: 1px solid red;
-} */
 .replay {
   border: none;
   background-color: white;
   font-weight: bold;
   color: red;
 }
+/* .game-body-1 {
+  background-image: url("https://media.giphy.com/media/l49JM8ZFtvOsJS29G/giphy.gif");
+  background-size: cover;
+  background-size: 100%;
+} */

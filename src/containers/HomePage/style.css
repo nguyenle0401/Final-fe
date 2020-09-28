@@ -83,3 +83,8 @@
   /* border: 1px solid rgb(2, 139, 9); */
   background-color: none;
 }
+
+/* Search */
+.form-search {
+  width: 100% !important;
+}

@@ -12,7 +12,6 @@ const GamePage = () => {
   const dispatch = useDispatch();
   const user = useSelector((s) => s.auth.user);
   const gameObj = useSelector((s) => s.game);
-
   const [currentNum, setCurrentNum] = useState(0);
   const [clicked, setClicked] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
@@ -33,7 +32,7 @@ const GamePage = () => {
   }
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%" }} className="game-body-1">
       <GameInfo
         user={user}
         qty={gameObj.qty}
@@ -77,9 +76,9 @@ const GameInfo = ({ totalScore, user, qty, currentNum }) => {
           {currentNum + 1}/{qty}
         </strong>
       </h4>
-      {/* <button className="replay">
+      <button className="replay">
         <span className="material-icons">replay</span>{" "}
-      </button> */}
+      </button>
     </div>
   );
 };

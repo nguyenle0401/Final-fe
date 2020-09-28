@@ -36,7 +36,6 @@ const lists = [
 let listIndex = Math.floor(Math.random() * lists.length);
 
 function SocketGamePage() {
-  const loading = useSelector((state) => state.idiom.loading);
   const [questions, setQuestions] = useState([]);
   const [questIndex, setQuestIndex] = useState(0);
   const [opponent, setOpponent] = useState(null);
@@ -44,6 +43,8 @@ function SocketGamePage() {
   const [opScore, setOpScore] = useState(0);
   const [disabledClick, setDisabledClick] = useState(false);
   const [showResult, setShowResult] = useState(false);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [playingUsers, setPlayingUsers] = useState([]);
   const [state0, setState0] = useState({ active: false });
   const [state1, setState1] = useState({ active: false });
   const [state2, setState2] = useState({ active: false });
@@ -116,6 +117,30 @@ function SocketGamePage() {
     setOpScore(data);
   });
 
+  socket.on("onlineUsers", (data) => {
+    setOnlineUsers(data);
+  });
+
+  socket.on("playingUsers", (data) => {
+    setPlayingUsers(data);
+  });
+
+  const replayClicked = () => {
+    socket.emit("replay", name._id);
+    setDisabledClick(false);
+    setQuestIndex(0);
+    setScore(0);
+    setOpScore(0);
+    setShowResult(false);
+    setQuestions([]);
+    setOpponent(null);
+    setState0({ active: false });
+    setState1({ active: false });
+    setState2({ active: false });
+    setState3({ active: false });
+    // socket.emit("online", name._id);
+  };
+
   const WaitingPanel = () => {
     return (
       <div className="pin-panel">
@@ -128,7 +153,11 @@ function SocketGamePage() {
     return (
       <div className="opponent-detail">
         <p>
-          This is your opponent {props.op[0].name} {props.op[0]._id}
+          <strong>Your opponent:</strong>
+          <strong style={{ color: "red" }}> {props.op[0].name} </strong>
+        </p>
+        <p>
+          <strong>ID:</strong> {props.op[0]._id}
         </p>
       </div>
     );
@@ -137,9 +166,16 @@ function SocketGamePage() {
   const ScoreDetail = (props) => {
     return (
       <div className="score-detail">
-        <p>Your Score: {props.score}</p>
-        <p>Your opponent's score: {props.opScore}</p>
-        <p>Question Number: {props.questIndex + 1}</p>
+        <p>
+          <strong>Your Score:</strong> {props.score}
+        </p>
+        <p>
+          <strong>Your opponent's score: </strong>
+          {props.opScore}
+        </p>
+        <p>
+          <strong>Question Number:</strong> {props.questIndex + 1}
+        </p>
       </div>
     );
   };
@@ -234,10 +270,54 @@ function SocketGamePage() {
     );
   };
 
-  return (
-    <div>
-      {opponent ? (
+  const Users = (props) => {
+    return (
+      <div>
         <div>
+          <div>
+            <strong>Online Users</strong>
+          </div>
+          {props.onlineUsers.map((user) => {
+            return (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <div>{user.name}</div>
+                <div>{user._id}</div>
+              </div>
+            );
+          })}
+        </div>
+        <div>
+          <strong>Playing Users</strong>
+        </div>
+        {props.playingUsers.map((user) => {
+          return (
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+              }}
+            >
+              <div>{user.name}</div>
+              <div>{user._id}</div>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
+  return (
+    <div
+      style={{ width: "100%", display: "flex" }}
+      className="d-flex justify-content-center flex-column position-absolute"
+    >
+      {opponent ? (
+        <div style={{ width: "70%" }}>
           <OpponentDetail op={opponent}></OpponentDetail>
           <ScoreDetail
             score={score}
@@ -251,7 +331,12 @@ function SocketGamePage() {
             ></Quest>
           ) : null}
           {showResult ? (
-            <Result score={score} opScore={opScore}></Result>
+            <div>
+              <Result score={score} opScore={opScore}></Result>
+              <button className="replay" onClick={() => replayClicked()}>
+                <span className="material-icons">replay</span>{" "}
+              </button>
+            </div>
           ) : null}
         </div>
       ) : (
@@ -269,6 +354,9 @@ function SocketGamePage() {
           </div>
         </div>
       )}
+      <div style={{ width: "30%" }}>
+        <Users playingUsers={playingUsers} onlineUsers={onlineUsers}></Users>
+      </div>
     </div>
   );
 }

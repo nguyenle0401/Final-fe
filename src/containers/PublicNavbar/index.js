@@ -26,26 +26,113 @@ const PublicNavbar = () => {
   };
 
   const authLinks = (
-    <Nav>
-      <Nav.Link as={Link} to="/admin/profile">
-        <Button variant="btn btn-light">Admin</Button>
-      </Nav.Link>
-      <Nav.Link onClick={handleLogout}>
-        <Button variant="btn btn-danger">Logout</Button>
-      </Nav.Link>
-    </Nav>
+    <div>
+      <div>
+        <header className="header">
+          <div className="header_container">
+            <div className="container">
+              <div className="row">
+                <div className="col">
+                  <div className="header_content d-flex flex-row align-items-center justify-content-start">
+                    <div className="logo_container mr-auto">
+                      <a href="/">
+                        <div className="logo_text">Odiom</div>
+                      </a>
+                    </div>
+                    <nav className="main_nav_contaner">
+                      <ul className="main_nav">
+                        <li>
+                          <Nav.Link as={Link} to="/">
+                            <Button variant="btn btn-light">Home</Button>
+                          </Nav.Link>{" "}
+                        </li>
+                        <li>
+                          <Nav.Link as={Link} to="/admin/profile">
+                            <Button variant="btn btn-light">Profile</Button>
+                          </Nav.Link>{" "}
+                        </li>
+                        <li>
+                          <Nav.Link as={Link} to="/admin/idioms">
+                            <Button variant="btn btn-light"> Manage </Button>
+                          </Nav.Link>{" "}
+                        </li>
+                        <li>
+                          <Nav.Link as={Link} to="/admin/game">
+                            <Button variant="btn btn-light"> Game</Button>
+                          </Nav.Link>
+                        </li>
+                        <li className="active ">
+                          <Nav.Link as={Link} to="/admin/socketgame">
+                            <Button variant="btn btn-light">
+                              {" "}
+                              Competitive
+                            </Button>
+                          </Nav.Link>
+                        </li>
+                        <li>
+                          <Button
+                            variant="btn btn-danger"
+                            onClick={handleLogout}
+                          >
+                            Logout
+                          </Button>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+      {/* <Nav>
+        <Nav.Link as={Link} to="/admin/profile">
+          <Button variant="btn btn-light">Admin</Button>
+        </Nav.Link>
+        <Nav.Link onClick={handleLogout}>
+          <Button variant="btn btn-danger">Logout</Button>
+        </Nav.Link>
+      </Nav> */}
+    </div>
   );
   const publicLinks = (
-    <Nav>
-      <Nav.Item onClick={() => setShowLogin(true)}>
-        <Button variant="btn btn-light">Login</Button>
-      </Nav.Item>
-      <Nav.Item onClick={() => setShowRegister(true)}>
-        <Button className="sign-up" variant="btn btn-success">
-          Sign Up
-        </Button>
-      </Nav.Item>
-    </Nav>
+    <div>
+      <div>
+        <header className="header">
+          <div className="header_container">
+            <div className="container">
+              <div className="row">
+                <div className="col">
+                  <div className="header_content d-flex flex-row align-items-center justify-content-start">
+                    <div className="logo_container mr-auto">
+                      <a href="/">
+                        <div className="logo_text">Odiom</div>
+                      </a>
+                    </div>
+                    <nav className="main_nav_contaner">
+                      <ul className="main_nav">
+                        <li onClick={() => setShowLogin(true)}>
+                          <Button variant="btn btn-light">Login</Button>
+                        </li>
+                        <li>
+                          <Button
+                            variant="btn btn-danger"
+                            onClick={() => setShowRegister(true)}
+                          >
+                            Sign up
+                          </Button>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+    </div>
   );
 
   return (
@@ -72,21 +159,16 @@ const PublicNavbar = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+
       <Navbar expand="lg" style={{ width: "100%" }}>
         <div
           style={{ width: "100%" }}
           className="d-flex flex-row align-items-center justify-content-center"
         >
-          <div style={{ width: "100%" }}>
-            <Navbar.Brand as={Link} to="/" className="nav-brand">
-              <div className=" logo">
-                <img src="/favicon.png" alt="EL" style={{ width: "80px" }} />
-              </div>
-            </Navbar.Brand>
-          </div>
-          <div className="nav-2">
+          <div style={{ width: "100%" }}></div>
+          <div>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav" className="nav-collapse">
+            <Navbar.Collapse id="basic-navbar-nav">
               {!loading && <>{isAuthenticated ? authLinks : publicLinks}</>}
             </Navbar.Collapse>
           </div>
