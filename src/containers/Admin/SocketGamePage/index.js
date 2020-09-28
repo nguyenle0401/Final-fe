@@ -265,7 +265,7 @@ function SocketGamePage() {
 
   const Users = (props) => {
     return (
-      <div>
+      <div className="color-text">
         <div>
           <div>
             <strong>Online Users</strong>

@@ -78,7 +78,10 @@ const IdiomListPage = () => {
             loading={loading}
           />
         </Col>
-        <Col md={4} className="d-flex justify-content-end align-items-start">
+        <Col
+          md={4}
+          className="d-flex justify-content-end align-items-start color-text"
+        >
           <FormCheck
             type="checkbox"
             label="My Favorite Idioms"
