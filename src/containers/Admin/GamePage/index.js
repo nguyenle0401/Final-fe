@@ -34,9 +34,9 @@ const GamePage = () => {
     return <h1>No game yet</h1>;
   }
 
-  setTimeout(() => {
-    handleNavigation(1);
-  }, 5000);
+  // setTimeout(() => {
+  //   handleNavigation(1);
+  // }, 5000);
 
   return (
     <div style={{ width: "100%" }} className="game-body-1">
