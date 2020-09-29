@@ -58,7 +58,7 @@ const IdiomDetailPage = () => {
         )}
       </div>
       {loading ? (
-        <HashLoader color="green" size={150} loading={loading} />
+        <HashLoader color="green" size={100} loading={loading} />
       ) : (
         <>
           {idiom && (

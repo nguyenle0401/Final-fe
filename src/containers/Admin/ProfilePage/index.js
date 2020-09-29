@@ -61,8 +61,8 @@ const ProfilePage = () => {
         <br />
 
         <div>
-          <div>
-            <Button variant="danger" onClick={() => setEditable(true)}>
+          <div className="d-flex justify-content-start ml-3">
+            <Button variant="warning" onClick={() => setEditable(true)}>
               <FontAwesomeIcon icon="edit" size="1x" /> Edit
             </Button>
           </div>
@@ -73,7 +73,7 @@ const ProfilePage = () => {
           <div className="card">
             {loading ? (
               <div>
-                <HashLoader color="green" size={150} loading={true} />
+                <HashLoader color="green" size={100} loading={true} />
               </div>
             ) : (
               <Form onSubmit={handleSubmit}>
@@ -98,8 +98,8 @@ const ProfilePage = () => {
                   </div>
                 </Form.Group>
                 <Form.Group as={Row}>
-                  <Form.Label column sm="2">
-                    Name
+                  <Form.Label column sm="2" className="form-style">
+                    Name{" "}
                   </Form.Label>
                   <Col>
                     <Form.Control
@@ -114,7 +114,7 @@ const ProfilePage = () => {
                   </Col>
                 </Form.Group>
                 <Form.Group as={Row}>
-                  <Form.Label column sm="2">
+                  <Form.Label column sm="2" className="form-style">
                     Email
                   </Form.Label>
                   <Col>
@@ -140,13 +140,18 @@ const ProfilePage = () => {
                       >
                         <span
                           className="spinner-border spinner-border-sm"
+                          style={{ backgroundColor: " #047272" }}
                           role="status"
                           aria-hidden="true"
                         ></span>
                         Submitting...
                       </Button>
                     ) : (
-                      <Button className="mr-3" type="submit" variant="primary">
+                      <Button
+                        className="mr-3"
+                        type="submit"
+                        style={{ backgroundColor: " #047272" }}
+                      >
                         Submit
                       </Button>
                     )}

@@ -344,7 +344,7 @@ function SocketGamePage() {
           >
             <WaitingPanel></WaitingPanel>
 
-            <HashLoader color="green" size={150} loading={true} />
+            <HashLoader color="green" size={100} loading={true} />
           </div>
           <div className="list">
             <Users

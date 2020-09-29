@@ -1,5 +1,5 @@
 .center {
-  background: rgb(249, 250, 249);
+  background: rgb(103, 167, 133);
   border-radius: 3px;
   overflow: hidden;
   box-shadow: 10px 10px 15px 0 rgba(4, 51, 4, 0.705);
@@ -13,4 +13,11 @@
   position: relative;
   width: 100% !important;
   height: 100% !important;
+}
+.form-style {
+  color: black;
+  display: flex;
+  font-weight: bolder;
+  justify-content: center;
+  align-items: center;
 }

@@ -111,7 +111,7 @@ const HomePage = () => {
           {loading ? (
             <HashLoader
               color="green"
-              size={150}
+              size={100}
               loading={loading}
               className="position-absolute justify-content-center"
             />

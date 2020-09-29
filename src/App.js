@@ -87,7 +87,7 @@ function App() {
     <>
       {isAuthenticated === undefined ? (
         <div className="vh-100 vw-100 d-flex justify-content-center align-items-center">
-          <HashLoader color="green" size={150} loading={true} />
+          <HashLoader color="green" size={100} loading={true} />
         </div>
       ) : (
         <Router>

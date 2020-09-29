@@ -40,7 +40,7 @@ const VerifyEmailPage = () => {
           <br />
           <div className="text-center h-75 d-flex flex-row justify-content-center align-items-center">
             {loading ? (
-              <HashLoader color="green" size={150} loading={true} />
+              <HashLoader color="green" size={100} loading={true} />
             ) : (
               <>
                 {params?.code === "_" ? (
