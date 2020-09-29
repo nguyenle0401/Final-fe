@@ -158,7 +158,7 @@ function SocketGamePage() {
 
   const ScoreDetail = (props) => {
     return (
-      <div className="score-detail">
+      <div className=" color-text">
         <p>
           <strong>Your Score:</strong> {props.score}
         </p>
@@ -225,9 +225,9 @@ function SocketGamePage() {
       <div className="game_card_container">
         {!props.quest ? null : (
           <div className="d-flex justify-content-center flex-column">
-            <button className="style-question">
+            <p className="style-question">
               "{props.quest.title}?", what does it mean?
-            </button>
+            </p>
             {lists[listIndex].map((ansNum) => {
               return (
                 <button
@@ -279,7 +279,6 @@ function SocketGamePage() {
                 }}
               >
                 <div>{user.name}</div>
-                <div>{user._id}</div>
               </div>
             );
           })}
@@ -296,7 +295,6 @@ function SocketGamePage() {
               }}
             >
               <div>{user.name}</div>
-              <div>{user._id}</div>
             </div>
           );
         })}

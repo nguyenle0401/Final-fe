@@ -17,13 +17,13 @@
 .style-question {
   margin-top: 10px;
   margin-bottom: 10px;
-  border-radius: 12px;
+  font-weight: bolder;
+  font-size: 30px !important;
   min-width: 100% !important;
   max-width: 100 !important;
   width: 100% !important;
   padding: 12px;
   font-weight: bold;
-  background-color: rgb(77, 114, 56);
   font-size: 20px;
   color: rgb(0, 0, 0);
   font-family: monospace;
@@ -49,6 +49,11 @@
   border: 1px solid green;
 }
 
+.wrong-answer {
+  background-color: red !important;
+  border: 1px solid red;
+}
+
 .replay {
   border: none;
   background-color: white;
@@ -56,7 +61,7 @@
   color: red;
 }
 /* .game-body-1 {
-  background-image: url("https://media.giphy.com/media/l49JM8ZFtvOsJS29G/giphy.gif");
+  background-image: url("https://media.giphy.com/media/l0Ex3vQtX5VX2YtAQ/giphy.gif");
   background-size: cover;
   background-size: 100%;
 } */

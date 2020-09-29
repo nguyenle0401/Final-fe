@@ -973,3 +973,18 @@ section {
   border: none !important;
   background-color: white !important;
 }
+
+@media (min-width: 768px) {
+  .offset-md-3 {
+    margin-left: 0px !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .logo_container.mr-auto {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 200;
+  }
+}

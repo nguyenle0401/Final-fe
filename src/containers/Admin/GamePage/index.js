@@ -13,15 +13,18 @@ const GamePage = () => {
   const user = useSelector((s) => s.auth.user);
   const gameObj = useSelector((s) => s.game);
   const [currentNum, setCurrentNum] = useState(0);
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(null);
   const [totalScore, setTotalScore] = useState(0);
 
   useEffect(() => {
     dispatch(gameActions.fetchGame());
   }, [dispatch]);
 
+  useEffect(() => {
+    setClicked(null);
+  }, [currentNum]);
+
   const handleNavigation = (step) => {
-    setClicked(false);
     setCurrentNum(currentNum + step);
   };
   const calcTotalScore = (tempScore) => {
@@ -83,12 +86,7 @@ const GameInfo = ({ totalScore, user, qty, currentNum }) => {
   );
 };
 
-const GameNaviation = ({
-  handleNavigation,
-  qty,
-  currentNum,
-  setCurrentNum,
-}) => {
+const GameNaviation = ({ handleNavigation, qty, currentNum }) => {
   return (
     <div>
       <h1>
@@ -134,13 +132,13 @@ const handleAnswer = (
   }
 
   score = score + result.rate * time;
-  setClicked(true);
+  setClicked(v);
+  alert(v);
 
-  setTimeout(() => {
-    if (currentNum >= nQuestions - 1) return;
-    setCurrentNum(currentNum + 1);
-    setClicked(false);
-  }, 5000);
+  // setTimeout(() => {
+  //   if (currentNum >= nQuestions - 1) return;
+  //   setCurrentNum(currentNum + 1);
+  // }, 5000);
 };
 
 const Answer = ({
@@ -154,13 +152,14 @@ const Answer = ({
   nQuestions,
 }) => {
   console.log(`correct of ${v} is ${correct} and ${clicked}`);
+  const clickedThisAnswer = clicked === v;
   return (
     <div>
       <button
         className={
           correct && clicked
             ? "style-answer correct-answer"
-            : clicked
+            : clickedThisAnswer
             ? "style-answer wrong-answer"
             : "style-answer"
         }
@@ -228,9 +227,7 @@ const GameCard = ({
 
   return (
     <div>
-      <button className="style-question">
-        "{question.title}", what does it mean?
-      </button>
+      <p className="style-question">"{question.title}", what does it mean?</p>
       {renderAnswers(
         question,
         question.answer,
