@@ -18,9 +18,9 @@ const AdminLayout = () => {
     <>
       <PublicNavbar />
       <Container
-        fluid
         style={{
           paddingTop: "100px",
+          marginTop: "100px",
           paddingLeft: 0,
           paddingRight: 0,
           marginLeft: 0,

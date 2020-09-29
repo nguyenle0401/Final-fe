@@ -4,7 +4,7 @@ import SearchItem from "../../../components/SearchItem";
 import PaginationItem from "../../../components/PaginationItem";
 import { useSelector, useDispatch } from "react-redux";
 import { idiomActions } from "../../../redux/actions";
-import { Button, Row, Col, Container, Table, FormCheck } from "react-bootstrap";
+import { Button, div, Table, FormCheck } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { authActions } from "../../../redux/actions/auth.actions";
@@ -64,12 +64,12 @@ const IdiomListPage = () => {
   }, [idioms]);
 
   return (
-    <Container fluid>
+    <div>
       <h3 className="mt-3" style={{ fontWeight: "bold" }}>
         Idioms Manage
       </h3>
-      <Row>
-        <Col className="mb-2" style={{ width: "30%" }}>
+      <div>
+        <div className="mb-2" style={{ width: "30%" }}>
           <SearchItem
             className="color-btn"
             searchInput={searchInput}
@@ -77,8 +77,8 @@ const IdiomListPage = () => {
             handleSubmit={handleSubmitSearch}
             loading={loading}
           />
-        </Col>
-        <Col
+        </div>
+        <div
           md={4}
           className="d-flex justify-content-end align-items-start color-text"
         >
@@ -88,15 +88,15 @@ const IdiomListPage = () => {
             checked={myFavorIdioms}
             onChange={handleFavorIdioms}
           />
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+        </div>
+      </div>
+      <div>
+        <div>
           <Table striped bordered hover>
             <thead>
               <tr>
                 <th className="mouse-hover" onClick={() => handleSort("title")}>
-                  Word <FontAwesomeIcon icon="sort" size="sm" />
+                  Idiom <FontAwesomeIcon icon="sort" size="sm" />
                 </th>
                 <th>Meaning</th>
                 <th>Actions</th>
@@ -127,19 +127,19 @@ const IdiomListPage = () => {
               ))}
             </tbody>
           </Table>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
+        </div>
+      </div>
+      <div>
+        <div>
           <PaginationItem
             pageNum={pageNum}
             setPageNum={setPageNum}
             totalPageNum={totalPageNum}
             loading={loading}
           />
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 };
 

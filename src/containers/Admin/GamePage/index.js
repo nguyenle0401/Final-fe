@@ -4,10 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { gameActions } from "../../../redux/actions";
 import { Redirect } from "react-router-dom";
 
-function rand(items) {
-  return items[~~(items.length * Math.random())];
-}
-
 const GamePage = () => {
   const dispatch = useDispatch();
   const user = useSelector((s) => s.auth.user);
@@ -25,14 +21,22 @@ const GamePage = () => {
   }, [currentNum]);
 
   const handleNavigation = (step) => {
+    if (currentNum >= gameObj.questions.length - 1) {
+      return;
+    }
     setCurrentNum(currentNum + step);
   };
+
   const calcTotalScore = (tempScore) => {
     setTotalScore(tempScore + totalScore);
   };
   if (gameObj.questions.length <= 0) {
     return <h1>No game yet</h1>;
   }
+
+  setTimeout(() => {
+    handleNavigation(1);
+  }, 5000);
 
   return (
     <div style={{ width: "100%" }} className="game-body-1">
@@ -125,6 +129,7 @@ const handleAnswer = (
   nQuestions
 ) => {
   let result;
+  if (clicked) return;
   if (v === answer) {
     result = { status: "win", rate: 1 };
   } else {
@@ -133,12 +138,6 @@ const handleAnswer = (
 
   score = score + result.rate * time;
   setClicked(v);
-  alert(v);
-
-  // setTimeout(() => {
-  //   if (currentNum >= nQuestions - 1) return;
-  //   setCurrentNum(currentNum + 1);
-  // }, 5000);
 };
 
 const Answer = ({
@@ -197,30 +196,19 @@ const GameCard = ({
     clicked,
     setClicked
   ) => {
-    console.log("render answers ", clicked);
-    let arr = [null, null, null, null];
-    let choices = [0, 1, 2, 3];
-    for (let i in question) {
-      if (i.startsWith("answer")) {
-        let foo = rand(choices);
-        choices = choices.filter((e) => e !== foo);
-        console.log("okay", question[i] === answer);
-        arr[foo] = (
-          <Answer
-            v={question[i]}
-            key={i}
-            correct={question[i] === answer}
-            clicked={clicked}
-            answer={answer}
-            currentNum={currentNum}
-            setCurrentNum={setCurrentNum}
-            setClicked={setClicked}
-            nQuestions={question.length}
-          />
-        );
-      }
-    }
-    return <>{arr}</>;
+    return question.answers.map((ans, i) => (
+      <Answer
+        v={ans}
+        key={i}
+        correct={ans === answer}
+        clicked={clicked}
+        answer={answer}
+        currentNum={currentNum}
+        setCurrentNum={setCurrentNum}
+        setClicked={setClicked}
+        nQuestions={question.length}
+      />
+    ));
   };
 
   if (!question) return <Redirect to="/admin/game" />;

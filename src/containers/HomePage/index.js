@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import { Container, CardColumns, Button, Col } from "react-bootstrap";
+import { Container, CardColumns, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { idiomActions } from "../../redux/actions";
 import IdiomCard from "../../components/IdiomCard";
@@ -90,19 +90,14 @@ const HomePage = () => {
                     </div>
                     <div>
                       {" "}
-                      <Col
-                        md={5}
-                        style={{ width: "30%" }}
-                        className="container mt-3 mb-3"
-                      >
+                      <div className="search-bar">
                         <SearchItem
-                          className="row justify-content-center search-bar"
                           searchInput={searchInput}
                           handleInputChange={handleInputChange}
                           handleSubmit={handleSubmitSearch}
                           loading={loading}
                         />
-                      </Col>
+                      </div>
                     </div>
                     <div></div>
                   </div>
@@ -170,9 +165,11 @@ const HomePage = () => {
               </div>
             </li>
           </ul>
+          <h6 className=" text-center py-3">
+            {" "}
+            ©2020 Odiom All Rights Reserved
+          </h6>
         </div>
-
-        <div className=" text-center py-3">©2020 Odiom All Rights Reserved</div>
       </footer>
     </div>
   );

@@ -754,11 +754,11 @@ section {
 5. Home
 *********************************/
 
-.home {
+/* .home {
   width: 100%;
   height: 179px;
   background: #f8f8f8;
-}
+} */
 
 /*********************************
 6. Blog
@@ -980,11 +980,11 @@ section {
   }
 }
 
-@media (max-width: 500px) {
+/* @media (max-width: 500px) {
   .logo_container.mr-auto {
     position: fixed;
     top: 10px;
     left: 10px;
     z-index: 200;
   }
-}
+} */

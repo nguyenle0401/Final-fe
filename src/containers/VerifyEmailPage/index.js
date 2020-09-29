@@ -34,7 +34,7 @@ const VerifyEmailPage = () => {
 
   if (isAuthenticated) return <Redirect to="/" />;
   return (
-    <Container fluid>
+    <Container>
       <Row className="vh-100">
         <Col md={{ span: 6, offset: 3 }}>
           <br />

@@ -2,7 +2,7 @@ import React from "react";
 import PublicNavbar from "../PublicNavbar";
 import HomePage from "../HomePage";
 import RegisterPage from "../RegisterPage";
-import { Container } from "react-bootstrap";
+import { div } from "react-bootstrap";
 import { Switch, Route } from "react-router-dom";
 import NotFoundPage from "./NotFoundPage";
 import AlertMsg from "./AlertMsg";
@@ -10,12 +10,13 @@ import IdiomDetailPage from "../IdiomDetailPage";
 import AddEditIdiomPage from "../AddEditIdiomPage";
 import PrivateRoute from "../Routes/PrivateRoute";
 import VerifyEmailPage from "../VerifyEmailPage";
+import "./PublicLayout.css";
 
 const PublicLayout = () => {
   return (
     <>
       <PublicNavbar />
-      <Container style={{ paddingTop: "100px" }}>
+      <div>
         <AlertMsg />
         <Switch>
           <Route exact path="/" component={HomePage} />
@@ -32,7 +33,7 @@ const PublicLayout = () => {
 
           <Route component={NotFoundPage} />
         </Switch>
-      </Container>
+      </div>
     </>
   );
 };

@@ -54,7 +54,7 @@ const ConversationList = ({
   }, [dispatch, pageNum, query, tabKey]);
 
   return (
-    <Container fluid>
+    <Container>
       <Row className="mb-2">
         <Col>
           <SearchItem

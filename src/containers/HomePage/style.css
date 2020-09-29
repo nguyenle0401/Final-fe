@@ -111,3 +111,12 @@
   margin-left: 15%;
   margin-right: 15%;
 }
+.search-bar {
+  margin-top: 30px;
+  /* position: absolute; */
+  display: flex;
+  top: 0px;
+  left: 0px;
+  justify-content: center;
+  align-items: center;
+}

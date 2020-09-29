@@ -133,7 +133,7 @@ const MessengerPage = () => {
   };
 
   return (
-    <Container fluid>
+    <Container>
       <br />
 
       {selectedConversation.type === conversationTypes.GLOBAL ? (

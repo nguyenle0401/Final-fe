@@ -54,12 +54,12 @@
   position: absolute;
   justify-content: center;
   flex-direction: column;
-  background-image: url("https://media.giphy.com/media/l4FGsui2TFPz8k84E/giphy.gif");
+  // background-image: url("https://media.giphy.com/media/l4FGsui2TFPz8k84E/giphy.gif");
   background-size: cover;
 }
 .game_card_container {
   width: 90%;
 }
 .color-text {
-  color: black;
+  color: black !important;
 }

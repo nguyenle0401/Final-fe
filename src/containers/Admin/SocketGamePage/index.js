@@ -333,7 +333,7 @@ function SocketGamePage() {
       ) : (
         <div
           style={{ width: "100%", marginTop: "200px" }}
-          className="d-flex justify-content-center flex-column position-absolute"
+          className="d-flex justify-content-center flex-row position-absolute"
         >
           <div className=" align-items-center">
             {" "}
@@ -342,10 +342,13 @@ function SocketGamePage() {
           <div className="d-flex justify-content-center">
             {" "}
             <HashLoader color="green" size={150} loading={true} />
+            <Users
+              playingUsers={playingUsers}
+              onlineUsers={onlineUsers}
+            ></Users>
           </div>
         </div>
       )}
-      <Users playingUsers={playingUsers} onlineUsers={onlineUsers}></Users>
     </div>
   );
 }

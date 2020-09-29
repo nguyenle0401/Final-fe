@@ -170,7 +170,7 @@ const FriendListPage = () => {
   };
 
   return (
-    <Container fluid>
+    <Container>
       <h4 className="mt-3">Friend Manage</h4>
       <Row>
         <Col md={4}>

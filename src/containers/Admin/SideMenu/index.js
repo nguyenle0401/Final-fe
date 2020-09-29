@@ -64,7 +64,7 @@ const SideMenu = () => {
                 activeClassName="active"
                 strict={true}
               >
-                <p className="color-text">Game</p>
+                <p className="color-text">Practice</p>
               </Nav.Link>
             </div>
           </div>
@@ -83,7 +83,7 @@ const SideMenu = () => {
                 activeClassName="active"
                 strict={true}
               >
-                <p className="color-text">Competitive Game</p>
+                <p className="color-text">Competitive</p>
               </Nav.Link>
             </div>
           </div>

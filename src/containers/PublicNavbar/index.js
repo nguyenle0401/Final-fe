@@ -36,7 +36,12 @@ const PublicNavbar = () => {
                   <div className="header_content d-flex flex-row align-items-center justify-content-start">
                     <div className="logo_container mr-auto">
                       <a href="/">
-                        <div className="logo_text">Odiom</div>
+                        <img
+                          alt="logo"
+                          className="logo_text"
+                          src="/logo.png"
+                          style={{ width: "200px", height: "70px" }}
+                        />
                       </a>
                     </div>
                     <nav className="main_nav_contaner">
@@ -58,15 +63,12 @@ const PublicNavbar = () => {
                         </li>
                         <li>
                           <Nav.Link as={Link} to="/admin/game">
-                            <Button variant="btn btn-light"> Game</Button>
+                            <Button variant="btn btn-light">Practice</Button>
                           </Nav.Link>
                         </li>
                         <li className="active ">
                           <Nav.Link as={Link} to="/admin/socketgame">
-                            <Button variant="btn btn-light">
-                              {" "}
-                              Competitive
-                            </Button>
+                            <Button variant="btn btn-light"> Competiton</Button>
                           </Nav.Link>
                         </li>
                         <li>
@@ -86,14 +88,6 @@ const PublicNavbar = () => {
           </div>
         </header>
       </div>
-      {/* <Nav>
-        <Nav.Link as={Link} to="/admin/profile">
-          <Button variant="btn btn-light">Admin</Button>
-        </Nav.Link>
-        <Nav.Link onClick={handleLogout}>
-          <Button variant="btn btn-danger">Logout</Button>
-        </Nav.Link>
-      </Nav> */}
     </div>
   );
   const publicLinks = (
@@ -101,26 +95,36 @@ const PublicNavbar = () => {
       <div>
         <header className="header">
           <div className="header_container">
-            <div className="container">
+            <div>
               <div className="row">
                 <div className="col">
                   <div className="header_content d-flex flex-row align-items-center justify-content-start">
                     <div className="logo_container mr-auto">
                       <a href="/">
-                        <div className="logo_text">Odiom</div>
+                        <img
+                          alt="logo"
+                          className="logo_text"
+                          src="/logo.png"
+                          style={{ width: "200px", height: "70px" }}
+                        />
                       </a>
                     </div>
                     <nav className="main_nav_contaner">
                       <ul className="main_nav">
-                        <li onClick={() => setShowLogin(true)}>
-                          <Button variant="btn btn-light">Login</Button>
+                        <li>
+                          <Button
+                            variant="btn btn-light"
+                            onClick={() => setShowLogin(true)}
+                          >
+                            Login
+                          </Button>
                         </li>
                         <li>
                           <Button
                             variant="btn btn-danger"
                             onClick={() => setShowRegister(true)}
                           >
-                            Sign up
+                            Sign Up
                           </Button>
                         </li>
                       </ul>
@@ -137,28 +141,31 @@ const PublicNavbar = () => {
 
   return (
     <div>
-      <Modal show={showLogin} onHide={handleCloseLogin}>
-        <LoginPage
-          setShowRegister={setShowRegister}
-          setShowLogin={setShowLogin}
-        />
-        <Modal.Footer>
-          <Button variant="btn btn-light" onClick={handleCloseLogin}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-      <Modal show={showRegister} onHide={handleCloseRegister}>
-        <RegisterPage
-          setShowLogin={setShowLogin}
-          setShowRegister={setShowRegister}
-        />
-        <Modal.Footer>
-          <Button variant="btn btn-light" onClick={handleCloseRegister}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <div>
+        <Modal show={showLogin} onHide={handleCloseLogin}>
+          <LoginPage
+            setShowRegister={setShowRegister}
+            setShowLogin={setShowLogin}
+          />
+          <Modal.Footer>
+            <Button variant="btn btn-light" onClick={handleCloseLogin}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+
+        <Modal show={showRegister} onHide={handleCloseRegister}>
+          <RegisterPage
+            setShowLogin={setShowLogin}
+            setShowRegister={setShowRegister}
+          />
+          <Modal.Footer>
+            <Button variant="btn btn-light" onClick={handleCloseRegister}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </div>
 
       <Navbar expand="lg" style={{ width: "100%" }}>
         <div
