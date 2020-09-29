@@ -69,7 +69,7 @@ const IdiomListPage = () => {
         Idioms Manage
       </h3>
       <div>
-        <div className="mb-2" style={{ width: "30%" }}>
+        <div style={{ width: "30%" }}>
           <SearchItem
             className="color-btn"
             searchInput={searchInput}

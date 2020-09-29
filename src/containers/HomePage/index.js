@@ -134,7 +134,7 @@ const HomePage = () => {
         />
       </Container>
       <footer className="page-footer pt-4">
-        <div className="container">
+        <div>
           <ul className="list-unstyled list-inline text-center">
             <li className="list-inline-item">
               <div className="btn-floating btn-fb mx-1">

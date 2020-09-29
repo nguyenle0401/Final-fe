@@ -66,9 +66,12 @@ const IdiomCard = ({ idiom, liked }) => {
           </div>
         </div>
       </div>
-      <a href="#top" title="Go to top" className="floating-btn">
-        On top
-      </a>
+      <span>
+        {/* eslint-disable jsx-a11y/accessible-emoji */}
+        <a href="#top" title="Go to top" className="floating-btn" role="img">
+          ⬆️
+        </a>
+      </span>
     </div>
   );
 };

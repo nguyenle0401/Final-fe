@@ -33,14 +33,14 @@ const PublicNavbar = () => {
             <div>
               <div className="row">
                 <div className="col">
-                  <div className="header_content d-flex flex-row align-items-center justify-content-start">
+                  <div className="header_content d-flex flex-row align-items-center justify-content-start bg-nav">
                     <div className="logo_container mr-auto">
                       <a href="/">
                         <img
                           alt="logo"
-                          className="logo_text"
-                          src="/logo.png"
-                          style={{ width: "200px", height: "70px" }}
+                          className="bg-nav"
+                          src="/favicon.png"
+                          style={{ width: "80px", height: "80px" }}
                         />
                       </a>
                     </div>
@@ -73,10 +73,10 @@ const PublicNavbar = () => {
                         </li>
                         <li>
                           <Button
-                            variant="btn btn-danger"
+                            variant="btn btn-light"
                             onClick={handleLogout}
                           >
-                            Logout
+                            Log Out
                           </Button>
                         </li>
                       </ul>
@@ -121,7 +121,7 @@ const PublicNavbar = () => {
                         </li>
                         <li>
                           <Button
-                            variant="btn btn-danger"
+                            variant="btn btn-light"
                             onClick={() => setShowRegister(true)}
                           >
                             Sign Up

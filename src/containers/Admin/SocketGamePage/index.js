@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./style.scss";
 import socket from "./socket";
 import { useSelector } from "react-redux";
+import { Table } from "react-bootstrap";
 import HashLoader from "react-spinners/HashLoader";
 
 const numberOfQuestions = 5;
@@ -159,6 +160,7 @@ function SocketGamePage() {
   const ScoreDetail = (props) => {
     return (
       <div className=" color-text">
+        <br />
         <p>
           <strong>Your Score:</strong> {props.score}
         </p>
@@ -265,50 +267,54 @@ function SocketGamePage() {
 
   const Users = (props) => {
     return (
-      <div className="color-text">
-        <div>
-          <div>
-            <strong>Online Users</strong>
-          </div>
+      <div className="color-text d-flex justify-content-between d-flex-row mf-5">
+        <Table className="user-online" boder="2">
+          <tr>
+            <td style={{ backgroundColor: "rgb(121, 226, 240)" }}>
+              <strong>Online Users</strong>
+            </td>
+          </tr>
           {props.onlineUsers.map((user) => {
             return (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div>{user.name}</div>
-              </div>
+              <tr>
+                <td>
+                  <div>{user.name}</div>
+                </td>
+              </tr>
             );
           })}
-        </div>
-        <div>
-          <strong>Playing Users</strong>
-        </div>
-        {props.playingUsers.map((user) => {
-          return (
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-              }}
-            >
-              <div>{user.name}</div>
-            </div>
-          );
-        })}
+        </Table>
+        <Table className="playing" boder="2">
+          <tr>
+            <td style={{ backgroundColor: "rgb(121, 226, 240)" }}>
+              <strong>Playing Users</strong>
+            </td>
+          </tr>
+          {props.playingUsers.map((user) => {
+            return (
+              <tr>
+                <td>
+                  <div>{user.name}</div>
+                </td>
+              </tr>
+            );
+          })}
+        </Table>
       </div>
     );
   };
 
   return (
     <div
-      style={{ width: "100%", height: "100%", display: "flex" }}
-      className="loading d-flex flex-row"
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+      }}
+      className="loading d-flex flex-column"
     >
       {opponent ? (
-        <div style={{ width: "100%" }}>
+        <div style={{ width: "100%" }} className="position">
           <OpponentDetail op={opponent}></OpponentDetail>
           <ScoreDetail
             score={score}
@@ -331,17 +337,16 @@ function SocketGamePage() {
           ) : null}
         </div>
       ) : (
-        <div
-          style={{ width: "100%", marginTop: "200px" }}
-          className="d-flex justify-content-center flex-row position-absolute"
-        >
-          <div className=" align-items-center">
-            {" "}
+        <div className="d-flex flex-column">
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{ marginTop: "500px" }}
+          >
             <WaitingPanel></WaitingPanel>
-          </div>
-          <div className="d-flex justify-content-center">
-            {" "}
+
             <HashLoader color="green" size={150} loading={true} />
+          </div>
+          <div className="list">
             <Users
               playingUsers={playingUsers}
               onlineUsers={onlineUsers}
