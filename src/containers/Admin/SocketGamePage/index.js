@@ -84,7 +84,7 @@ function SocketGamePage() {
         setShowResult(true);
       }
     };
-    setTimeout(callback, 5000);
+    setTimeout(callback, 3000);
   });
 
   socket.on("opponent", (data) => {
